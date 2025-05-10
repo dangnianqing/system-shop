@@ -1,0 +1,12 @@
+package com.example.systemshop.service;
+
+import com.example.systemshop.entity.SysMenu;
+import java.util.List;
+
+public interface SysMenuService {
+    List<SysMenu> findAll();
+    SysMenu findById(Long id);
+    SysMenu create(SysMenu menu);
+    SysMenu update(SysMenu menu);
+    void delete(Long id);
+} 
