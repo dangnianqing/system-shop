@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.system.shop.admin.mapper.SysUserMapper">
-    <resultMap id="userMap" type="com.system.shop.admin.entity.SysUser">
+<mapper namespace="com.system.shop.mapper.SysUserMapper">
+    <resultMap id="userMap" type="com.system.shop.entity.SysUser">
         <id property="id" column="id"/>
         <result property="userName" column="user_name"/>
         <result property="mobile" column="mobile"/>
@@ -13,7 +13,7 @@
         <result property="updateBy" column="update_by"/>
         <result property="updateTime" column="update_time"/>
         <result property="deleteFlag" column="delete_flag"/>
-        <collection property="roles" ofType="com.system.shop.admin.entity.SysRole">
+        <collection property="roles" ofType="com.system.shop.entity.SysRole">
             <id property="id" column="role_id"/>
             <result property="name" column="role_name"/>
             <result property="remark" column="role_remark"/>
@@ -46,7 +46,7 @@
         WHERE u.delete_flag = 0
     </select>
 
-    <insert id="insert" parameterType="com.system.shop.admin.entity.SysUser" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.system.shop.entity.SysUser" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO sys_user (
             user_name, mobile, image, status, password,
             create_time, create_by, update_by, update_time, delete_flag
@@ -56,7 +56,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="com.system.shop.admin.entity.SysUser">
+    <update id="update" parameterType="com.system.shop.entity.SysUser">
         UPDATE sys_user
         SET user_name = #{userName},
             mobile = #{mobile},

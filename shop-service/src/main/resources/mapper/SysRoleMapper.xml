@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.system.shop.admin.mapper.SysRoleMapper">
-    <resultMap id="roleMap" type="com.system.shop.admin.entity.SysRole">
+<mapper namespace="com.system.shop.mapper.SysRoleMapper">
+    <resultMap id="roleMap" type="com.system.shop.entity.SysRole">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="remark" column="remark"/>
@@ -23,7 +23,7 @@
         WHERE delete_flag = 0
     </select>
 
-    <insert id="insert" parameterType="com.system.shop.admin.entity.SysRole" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.system.shop.entity.SysRole" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO sys_role (
             name, remark, create_time, create_by,
             update_by, update_time, delete_flag
@@ -33,7 +33,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="com.system.shop.admin.entity.SysRole">
+    <update id="update" parameterType="com.system.shop.entity.SysRole">
         UPDATE sys_role
         SET name = #{name},
             remark = #{remark},
