@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.shop.admin.mapper.SysUserMapper">
+    <resultMap id="userMap" type="com.system.shop.admin.entity.SysUser">
+        <id property="id" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="mobile" column="mobile"/>
+        <result property="image" column="image"/>
+        <result property="status" column="status"/>
+        <result property="password" column="password"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="deleteFlag" column="delete_flag"/>
+        <collection property="roles" ofType="com.system.shop.admin.entity.SysRole">
+            <id property="id" column="role_id"/>
+            <result property="name" column="role_name"/>
+            <result property="remark" column="role_remark"/>
+        </collection>
+    </resultMap>
+
+    <select id="findByUsername" resultMap="userMap">
+        SELECT u.*, r.id as role_id, r.name as role_name, r.remark as role_remark
+        FROM sys_user u
+        LEFT JOIN sys_user_role ur ON u.id = ur.user_id
+        LEFT JOIN sys_role r ON ur.role_id = r.id
+        WHERE u.user_name = #{username}
+        AND u.delete_flag = 0
+    </select>
+
+    <select id="findById" resultMap="userMap">
+        SELECT u.*, r.id as role_id, r.name as role_name, r.remark as role_remark
+        FROM sys_user u
+        LEFT JOIN sys_user_role ur ON u.id = ur.user_id
+        LEFT JOIN sys_role r ON ur.role_id = r.id
+        WHERE u.id = #{id}
+        AND u.delete_flag = 0
+    </select>
+
+    <select id="findAll" resultMap="userMap">
+        SELECT u.*, r.id as role_id, r.name as role_name, r.remark as role_remark
+        FROM sys_user u
+        LEFT JOIN sys_user_role ur ON u.id = ur.user_id
+        LEFT JOIN sys_role r ON ur.role_id = r.id
+        WHERE u.delete_flag = 0
+    </select>
+
+    <insert id="insert" parameterType="com.system.shop.admin.entity.SysUser" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_user (
+            user_name, mobile, image, status, password,
+            create_time, create_by, update_by, update_time, delete_flag
+        ) VALUES (
+            #{userName}, #{mobile}, #{image}, #{status}, #{password},
+            #{createTime}, #{createBy}, #{updateBy}, #{updateTime}, #{deleteFlag}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.system.shop.admin.entity.SysUser">
+        UPDATE sys_user
+        SET user_name = #{userName},
+            mobile = #{mobile},
+            image = #{image},
+            status = #{status},
+            password = #{password},
+            update_by = #{updateBy},
+            update_time = #{updateTime},
+            delete_flag = #{deleteFlag}
+        WHERE id = #{id}
+    </update>
+</mapper> 
