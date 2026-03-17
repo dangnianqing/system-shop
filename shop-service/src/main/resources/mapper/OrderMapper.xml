@@ -1,0 +1,1409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.shop.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.system.shop.entity.Order">
+        <!--@mbg.generated-->
+        <!--@Table `order`-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="store_id" jdbcType="BIGINT" property="storeId"/>
+        <result column="store_name" jdbcType="VARCHAR" property="storeName"/>
+        <result column="order_code" jdbcType="VARCHAR" property="orderCode"/>
+        <result column="order_header_code" jdbcType="VARCHAR" property="orderHeaderCode"/>
+        <result column="order_time" jdbcType="TIMESTAMP" property="orderTime"/>
+        <result column="member_id" jdbcType="BIGINT" property="memberId"/>
+        <result column="product_num" jdbcType="INTEGER" property="productNum"/>
+        <result column="total_price" jdbcType="DECIMAL" property="totalPrice"/>
+        <result column="product_price" jdbcType="DECIMAL" property="productPrice"/>
+        <result column="freight_price" jdbcType="DECIMAL" property="freightPrice"/>
+        <result column="coupon_price" jdbcType="DECIMAL" property="couponPrice"/>
+        <result column="activity_price" jdbcType="DECIMAL" property="activityPrice"/>
+        <result column="discount_price" jdbcType="DECIMAL" property="discountPrice"/>
+        <result column="pay_price" jdbcType="DECIMAL" property="payPrice"/>
+        <result column="order_status" jdbcType="VARCHAR" property="orderStatus"/>
+        <result column="pay_status" jdbcType="VARCHAR" property="payStatus"/>
+        <result column="pay_method" jdbcType="VARCHAR" property="payMethod"/>
+        <result column="pay_time" jdbcType="TIMESTAMP" property="payTime"/>
+        <result column="pay_no" jdbcType="VARCHAR" property="payNo"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="receive_name" jdbcType="VARCHAR" property="receiveName"/>
+        <result column="receive_mobile" jdbcType="VARCHAR" property="receiveMobile"/>
+        <result column="receive_path_name" jdbcType="VARCHAR" property="receivePathName"/>
+        <result column="receive_path_id" jdbcType="VARCHAR" property="receivePathId"/>
+        <result column="receive_path_detail" jdbcType="VARCHAR" property="receivePathDetail"/>
+        <result column="cancel" jdbcType="INTEGER" property="cancel"/>
+        <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime"/>
+        <result column="cancel_reason" jdbcType="VARCHAR" property="cancelReason"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id,
+        store_id,
+        store_name,
+        order_code,
+        order_header_code,
+        order_time,
+        member_id,
+        product_num,
+        total_price,
+        product_price,
+        freight_price,
+        coupon_price,
+        activity_price,
+        discount_price,
+        pay_price,
+        order_status,
+        pay_status,
+        pay_method,
+        pay_time,
+        pay_no,
+        remark,
+        receive_name,
+        receive_mobile,
+        receive_path_name,
+        receive_path_id,
+        receive_path_detail,
+        cancel,
+        cancel_time,
+        cancel_reason,
+        create_time,
+        create_by,
+        update_by,
+        update_time,
+        delete_flag
+    </sql>
+    <sql id="Order_Column_List">
+        <!--@mbg.generated-->
+        `order`.id,
+        `order`.store_id,
+        `order`.store_name,
+        `order`.order_code,
+        `order`.order_header_code,
+        `order`.order_time,
+        `order`.member_id,
+        `order`.product_num,
+        `order`.total_price,
+        `order`.product_price,
+        `order`.freight_price,
+        `order`.coupon_price,
+        `order`.activity_price,
+        `order`.discount_price,
+        `order`.pay_price,
+        `order`.order_status,
+        `order`.pay_status,
+        `order`.pay_method,
+        `order`.pay_time,
+        `order`.pay_no,
+        `order`.remark,
+        `order`.receive_name,
+        `order`.receive_mobile,
+        `order`.receive_path_name,
+        `order`.receive_path_id,
+        `order`.receive_path_detail,
+        `order`.cancel,
+        `order`.cancel_time,
+        `order`.cancel_reason,
+        `order`.create_time,
+        `order`.create_by,
+        `order`.update_by,
+        `order`.update_time,
+        `order`.delete_flag
+    </sql>
+    <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from `order`
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteById" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete
+        from `order`
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.system.shop.entity.Order">
+        <!--@mbg.generated-->
+        insert into `order` (id, store_id, store_name,
+        order_code, order_header_code, order_time,
+        member_id, product_num, total_price,
+        product_price, freight_price, coupon_price,
+        activity_price, discount_price, pay_price,
+        order_status, pay_status, pay_method,
+        pay_time, pay_no, remark,
+        receive_name, receive_mobile, receive_path_name,
+        receive_path_id, receive_path_detail, cancel,
+        cancel_time, cancel_reason, create_time,
+        create_by, update_by, update_time,
+        delete_flag)
+        values (#{id,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR},
+        #{orderCode,jdbcType=VARCHAR}, #{orderHeaderCode,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP},
+        #{memberId,jdbcType=BIGINT}, #{productNum,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL},
+        #{productPrice,jdbcType=DECIMAL}, #{freightPrice,jdbcType=DECIMAL}, #{couponPrice,jdbcType=DECIMAL},
+        #{activityPrice,jdbcType=DECIMAL}, #{discountPrice,jdbcType=DECIMAL}, #{payPrice,jdbcType=DECIMAL},
+        #{orderStatus,jdbcType=VARCHAR}, #{payStatus,jdbcType=VARCHAR}, #{payMethod,jdbcType=VARCHAR},
+        #{payTime,jdbcType=TIMESTAMP}, #{payNo,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+        #{receiveName,jdbcType=VARCHAR}, #{receiveMobile,jdbcType=VARCHAR}, #{receivePathName,jdbcType=VARCHAR},
+        #{receivePathId,jdbcType=VARCHAR}, #{receivePathDetail,jdbcType=VARCHAR}, #{cancel,jdbcType=INTEGER},
+        #{cancelTime,jdbcType=TIMESTAMP}, #{cancelReason,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},
+        #{deleteFlag,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.system.shop.entity.Order">
+        <!--@mbg.generated-->
+        insert into `order`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="orderCode != null">
+                order_code,
+            </if>
+            <if test="orderHeaderCode != null">
+                order_header_code,
+            </if>
+            <if test="orderTime != null">
+                order_time,
+            </if>
+            <if test="memberId != null">
+                member_id,
+            </if>
+            <if test="productNum != null">
+                product_num,
+            </if>
+            <if test="totalPrice != null">
+                total_price,
+            </if>
+            <if test="productPrice != null">
+                product_price,
+            </if>
+            <if test="freightPrice != null">
+                freight_price,
+            </if>
+            <if test="couponPrice != null">
+                coupon_price,
+            </if>
+            <if test="activityPrice != null">
+                activity_price,
+            </if>
+            <if test="discountPrice != null">
+                discount_price,
+            </if>
+            <if test="payPrice != null">
+                pay_price,
+            </if>
+            <if test="orderStatus != null">
+                order_status,
+            </if>
+            <if test="payStatus != null">
+                pay_status,
+            </if>
+            <if test="payMethod != null">
+                pay_method,
+            </if>
+            <if test="payTime != null">
+                pay_time,
+            </if>
+            <if test="payNo != null">
+                pay_no,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="receiveName != null">
+                receive_name,
+            </if>
+            <if test="receiveMobile != null">
+                receive_mobile,
+            </if>
+            <if test="receivePathName != null">
+                receive_path_name,
+            </if>
+            <if test="receivePathId != null">
+                receive_path_id,
+            </if>
+            <if test="receivePathDetail != null">
+                receive_path_detail,
+            </if>
+            <if test="cancel != null">
+                cancel,
+            </if>
+            <if test="cancelTime != null">
+                cancel_time,
+            </if>
+            <if test="cancelReason != null">
+                cancel_reason,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=BIGINT},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderCode != null">
+                #{orderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderHeaderCode != null">
+                #{orderHeaderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTime != null">
+                #{orderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberId != null">
+                #{memberId,jdbcType=BIGINT},
+            </if>
+            <if test="productNum != null">
+                #{productNum,jdbcType=INTEGER},
+            </if>
+            <if test="totalPrice != null">
+                #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="productPrice != null">
+                #{productPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="freightPrice != null">
+                #{freightPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="couponPrice != null">
+                #{couponPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="activityPrice != null">
+                #{activityPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="discountPrice != null">
+                #{discountPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="payPrice != null">
+                #{payPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="orderStatus != null">
+                #{orderStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="payStatus != null">
+                #{payStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="payMethod != null">
+                #{payMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null">
+                #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payNo != null">
+                #{payNo,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveName != null">
+                #{receiveName,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveMobile != null">
+                #{receiveMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="receivePathName != null">
+                #{receivePathName,jdbcType=VARCHAR},
+            </if>
+            <if test="receivePathId != null">
+                #{receivePathId,jdbcType=VARCHAR},
+            </if>
+            <if test="receivePathDetail != null">
+                #{receivePathDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="cancel != null">
+                #{cancel,jdbcType=INTEGER},
+            </if>
+            <if test="cancelTime != null">
+                #{cancelTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cancelReason != null">
+                #{cancelReason,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.system.shop.entity.Order">
+        <!--@mbg.generated-->
+        update `order`
+        <set>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=BIGINT},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderCode != null">
+                order_code = #{orderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderHeaderCode != null">
+                order_header_code = #{orderHeaderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTime != null">
+                order_time = #{orderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberId != null">
+                member_id = #{memberId,jdbcType=BIGINT},
+            </if>
+            <if test="productNum != null">
+                product_num = #{productNum,jdbcType=INTEGER},
+            </if>
+            <if test="totalPrice != null">
+                total_price = #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="productPrice != null">
+                product_price = #{productPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="freightPrice != null">
+                freight_price = #{freightPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="couponPrice != null">
+                coupon_price = #{couponPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="activityPrice != null">
+                activity_price = #{activityPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="discountPrice != null">
+                discount_price = #{discountPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="payPrice != null">
+                pay_price = #{payPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="payMethod != null">
+                pay_method = #{payMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payNo != null">
+                pay_no = #{payNo,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveName != null">
+                receive_name = #{receiveName,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveMobile != null">
+                receive_mobile = #{receiveMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="receivePathName != null">
+                receive_path_name = #{receivePathName,jdbcType=VARCHAR},
+            </if>
+            <if test="receivePathId != null">
+                receive_path_id = #{receivePathId,jdbcType=VARCHAR},
+            </if>
+            <if test="receivePathDetail != null">
+                receive_path_detail = #{receivePathDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="cancel != null">
+                cancel = #{cancel,jdbcType=INTEGER},
+            </if>
+            <if test="cancelTime != null">
+                cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cancelReason != null">
+                cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateById" parameterType="com.system.shop.entity.Order">
+        <!--@mbg.generated-->
+        update `order`
+        set store_id = #{storeId,jdbcType=BIGINT},
+        store_name = #{storeName,jdbcType=VARCHAR},
+        order_code = #{orderCode,jdbcType=VARCHAR},
+        order_header_code = #{orderHeaderCode,jdbcType=VARCHAR},
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+        member_id = #{memberId,jdbcType=BIGINT},
+        product_num = #{productNum,jdbcType=INTEGER},
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+        product_price = #{productPrice,jdbcType=DECIMAL},
+        freight_price = #{freightPrice,jdbcType=DECIMAL},
+        coupon_price = #{couponPrice,jdbcType=DECIMAL},
+        activity_price = #{activityPrice,jdbcType=DECIMAL},
+        discount_price = #{discountPrice,jdbcType=DECIMAL},
+        pay_price = #{payPrice,jdbcType=DECIMAL},
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+        pay_status = #{payStatus,jdbcType=VARCHAR},
+        pay_method = #{payMethod,jdbcType=VARCHAR},
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+        pay_no = #{payNo,jdbcType=VARCHAR},
+        remark = #{remark,jdbcType=VARCHAR},
+        receive_name = #{receiveName,jdbcType=VARCHAR},
+        receive_mobile = #{receiveMobile,jdbcType=VARCHAR},
+        receive_path_name = #{receivePathName,jdbcType=VARCHAR},
+        receive_path_id = #{receivePathId,jdbcType=VARCHAR},
+        receive_path_detail = #{receivePathDetail,jdbcType=VARCHAR},
+        cancel = #{cancel,jdbcType=INTEGER},
+        cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+        cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_by = #{createBy,jdbcType=VARCHAR},
+        update_by = #{updateBy,jdbcType=VARCHAR},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        delete_flag = #{deleteFlag,jdbcType=INTEGER}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update `order`
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="store_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.storeId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="store_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.storeName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="order_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.orderCode,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="order_header_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.orderHeaderCode,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="order_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.orderTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="member_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.memberId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="product_num = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.productNum,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="total_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.totalPrice,jdbcType=DECIMAL}
+                </foreach>
+            </trim>
+            <trim prefix="product_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.productPrice,jdbcType=DECIMAL}
+                </foreach>
+            </trim>
+            <trim prefix="freight_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.freightPrice,jdbcType=DECIMAL}
+                </foreach>
+            </trim>
+            <trim prefix="coupon_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.couponPrice,jdbcType=DECIMAL}
+                </foreach>
+            </trim>
+            <trim prefix="activity_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.activityPrice,jdbcType=DECIMAL}
+                </foreach>
+            </trim>
+            <trim prefix="discount_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.discountPrice,jdbcType=DECIMAL}
+                </foreach>
+            </trim>
+            <trim prefix="pay_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.payPrice,jdbcType=DECIMAL}
+                </foreach>
+            </trim>
+            <trim prefix="order_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.orderStatus,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="pay_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.payStatus,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="pay_method = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.payMethod,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="pay_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.payTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="pay_no = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.payNo,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="remark = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.remark,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="receive_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.receiveName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="receive_mobile = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.receiveMobile,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="receive_path_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.receivePathName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="receive_path_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.receivePathId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="receive_path_detail = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.receivePathDetail,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="cancel = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.cancel,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="cancel_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.cancelTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="cancel_reason = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.cancelReason,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="create_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="update_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="delete_flag = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update `order`
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="store_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.storeId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.storeId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="store_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.storeName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.storeName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="order_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.orderCode != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.orderCode,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="order_header_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.orderHeaderCode != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.orderHeaderCode,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="order_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.orderTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.orderTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="member_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.memberId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.memberId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="product_num = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.productNum != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.productNum,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="total_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.totalPrice != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.totalPrice,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="product_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.productPrice != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.productPrice,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="freight_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.freightPrice != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.freightPrice,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="coupon_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.couponPrice != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.couponPrice,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="activity_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.activityPrice != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.activityPrice,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="discount_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.discountPrice != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.discountPrice,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="pay_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.payPrice != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.payPrice,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="order_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.orderStatus != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.orderStatus,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="pay_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.payStatus != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.payStatus,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="pay_method = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.payMethod != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.payMethod,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="pay_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.payTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.payTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="pay_no = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.payNo != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.payNo,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="remark = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.remark != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.remark,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="receive_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.receiveName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.receiveName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="receive_mobile = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.receiveMobile != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.receiveMobile,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="receive_path_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.receivePathName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.receivePathName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="receive_path_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.receivePathId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.receivePathId,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="receive_path_detail = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.receivePathDetail != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.receivePathDetail,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="cancel = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.cancel != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.cancel,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="cancel_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.cancelTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.cancelTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="cancel_reason = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.cancelReason != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.cancelReason,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createBy != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateBy != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="delete_flag = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.deleteFlag != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into `order`
+        (id, store_id, store_name, order_code, order_header_code, order_time, member_id,
+        product_num, total_price, product_price, freight_price, coupon_price, activity_price,
+        discount_price, pay_price, order_status, pay_status, pay_method, pay_time, pay_no,
+        remark, receive_name, receive_mobile, receive_path_name, receive_path_id, receive_path_detail,
+        cancel, cancel_time, cancel_reason, create_time, create_by, update_by, update_time,
+        delete_flag)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id,jdbcType=BIGINT}, #{item.storeId,jdbcType=BIGINT}, #{item.storeName,jdbcType=VARCHAR},
+            #{item.orderCode,jdbcType=VARCHAR}, #{item.orderHeaderCode,jdbcType=VARCHAR},
+            #{item.orderTime,jdbcType=TIMESTAMP},
+            #{item.memberId,jdbcType=BIGINT}, #{item.productNum,jdbcType=INTEGER}, #{item.totalPrice,jdbcType=DECIMAL},
+            #{item.productPrice,jdbcType=DECIMAL}, #{item.freightPrice,jdbcType=DECIMAL},
+            #{item.couponPrice,jdbcType=DECIMAL},
+            #{item.activityPrice,jdbcType=DECIMAL}, #{item.discountPrice,jdbcType=DECIMAL},
+            #{item.payPrice,jdbcType=DECIMAL}, #{item.orderStatus,jdbcType=VARCHAR},
+            #{item.payStatus,jdbcType=VARCHAR},
+            #{item.payMethod,jdbcType=VARCHAR}, #{item.payTime,jdbcType=TIMESTAMP}, #{item.payNo,jdbcType=VARCHAR},
+            #{item.remark,jdbcType=VARCHAR}, #{item.receiveName,jdbcType=VARCHAR},
+            #{item.receiveMobile,jdbcType=VARCHAR},
+            #{item.receivePathName,jdbcType=VARCHAR}, #{item.receivePathId,jdbcType=VARCHAR},
+            #{item.receivePathDetail,jdbcType=VARCHAR}, #{item.cancel,jdbcType=INTEGER},
+            #{item.cancelTime,jdbcType=TIMESTAMP},
+            #{item.cancelReason,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.createBy,jdbcType=VARCHAR},
+            #{item.updateBy,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=TIMESTAMP},
+            #{item.deleteFlag,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" parameterType="com.system.shop.entity.Order">
+        <!--@mbg.generated-->
+        insert into `order`
+        (id, store_id, store_name, order_code, order_header_code, order_time, member_id,
+         product_num, total_price, product_price, freight_price, coupon_price, activity_price,
+         discount_price, pay_price, order_status, pay_status, pay_method, pay_time, pay_no,
+         remark, receive_name, receive_mobile, receive_path_name, receive_path_id, receive_path_detail,
+         cancel, cancel_time, cancel_reason, create_time, create_by, update_by, update_time,
+         delete_flag)
+        values (#{id,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR},
+                #{orderCode,jdbcType=VARCHAR}, #{orderHeaderCode,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP},
+                #{memberId,jdbcType=BIGINT}, #{productNum,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL},
+                #{productPrice,jdbcType=DECIMAL}, #{freightPrice,jdbcType=DECIMAL}, #{couponPrice,jdbcType=DECIMAL},
+                #{activityPrice,jdbcType=DECIMAL}, #{discountPrice,jdbcType=DECIMAL}, #{payPrice,jdbcType=DECIMAL},
+                #{orderStatus,jdbcType=VARCHAR}, #{payStatus,jdbcType=VARCHAR}, #{payMethod,jdbcType=VARCHAR},
+                #{payTime,jdbcType=TIMESTAMP}, #{payNo,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+                #{receiveName,jdbcType=VARCHAR}, #{receiveMobile,jdbcType=VARCHAR}, #{receivePathName,jdbcType=VARCHAR},
+                #{receivePathId,jdbcType=VARCHAR}, #{receivePathDetail,jdbcType=VARCHAR}, #{cancel,jdbcType=INTEGER},
+                #{cancelTime,jdbcType=TIMESTAMP}, #{cancelReason,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+                #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},
+                #{deleteFlag,jdbcType=INTEGER})
+        on duplicate key update id                  = #{id,jdbcType=BIGINT},
+                                store_id            = #{storeId,jdbcType=BIGINT},
+                                store_name          = #{storeName,jdbcType=VARCHAR},
+                                order_code          = #{orderCode,jdbcType=VARCHAR},
+                                order_header_code   = #{orderHeaderCode,jdbcType=VARCHAR},
+                                order_time          = #{orderTime,jdbcType=TIMESTAMP},
+                                member_id           = #{memberId,jdbcType=BIGINT},
+                                product_num         = #{productNum,jdbcType=INTEGER},
+                                total_price         = #{totalPrice,jdbcType=DECIMAL},
+                                product_price       = #{productPrice,jdbcType=DECIMAL},
+                                freight_price       = #{freightPrice,jdbcType=DECIMAL},
+                                coupon_price        = #{couponPrice,jdbcType=DECIMAL},
+                                activity_price      = #{activityPrice,jdbcType=DECIMAL},
+                                discount_price      = #{discountPrice,jdbcType=DECIMAL},
+                                pay_price           = #{payPrice,jdbcType=DECIMAL},
+                                order_status        = #{orderStatus,jdbcType=VARCHAR},
+                                pay_status          = #{payStatus,jdbcType=VARCHAR},
+                                pay_method          = #{payMethod,jdbcType=VARCHAR},
+                                pay_time            = #{payTime,jdbcType=TIMESTAMP},
+                                pay_no              = #{payNo,jdbcType=VARCHAR},
+                                remark              = #{remark,jdbcType=VARCHAR},
+                                receive_name        = #{receiveName,jdbcType=VARCHAR},
+                                receive_mobile      = #{receiveMobile,jdbcType=VARCHAR},
+                                receive_path_name   = #{receivePathName,jdbcType=VARCHAR},
+                                receive_path_id     = #{receivePathId,jdbcType=VARCHAR},
+                                receive_path_detail = #{receivePathDetail,jdbcType=VARCHAR},
+                                cancel              = #{cancel,jdbcType=INTEGER},
+                                cancel_time         = #{cancelTime,jdbcType=TIMESTAMP},
+                                cancel_reason       = #{cancelReason,jdbcType=VARCHAR},
+                                create_time         = #{createTime,jdbcType=TIMESTAMP},
+                                create_by           = #{createBy,jdbcType=VARCHAR},
+                                update_by           = #{updateBy,jdbcType=VARCHAR},
+                                update_time         = #{updateTime,jdbcType=TIMESTAMP},
+                                delete_flag         = #{deleteFlag,jdbcType=INTEGER}
+    </insert>
+    <insert id="insertOrUpdateSelective" parameterType="com.system.shop.entity.Order">
+        <!--@mbg.generated-->
+        insert into `order`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="orderCode != null">
+                order_code,
+            </if>
+            <if test="orderHeaderCode != null">
+                order_header_code,
+            </if>
+            <if test="orderTime != null">
+                order_time,
+            </if>
+            <if test="memberId != null">
+                member_id,
+            </if>
+            <if test="productNum != null">
+                product_num,
+            </if>
+            <if test="totalPrice != null">
+                total_price,
+            </if>
+            <if test="productPrice != null">
+                product_price,
+            </if>
+            <if test="freightPrice != null">
+                freight_price,
+            </if>
+            <if test="couponPrice != null">
+                coupon_price,
+            </if>
+            <if test="activityPrice != null">
+                activity_price,
+            </if>
+            <if test="discountPrice != null">
+                discount_price,
+            </if>
+            <if test="payPrice != null">
+                pay_price,
+            </if>
+            <if test="orderStatus != null">
+                order_status,
+            </if>
+            <if test="payStatus != null">
+                pay_status,
+            </if>
+            <if test="payMethod != null">
+                pay_method,
+            </if>
+            <if test="payTime != null">
+                pay_time,
+            </if>
+            <if test="payNo != null">
+                pay_no,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="receiveName != null">
+                receive_name,
+            </if>
+            <if test="receiveMobile != null">
+                receive_mobile,
+            </if>
+            <if test="receivePathName != null">
+                receive_path_name,
+            </if>
+            <if test="receivePathId != null">
+                receive_path_id,
+            </if>
+            <if test="receivePathDetail != null">
+                receive_path_detail,
+            </if>
+            <if test="cancel != null">
+                cancel,
+            </if>
+            <if test="cancelTime != null">
+                cancel_time,
+            </if>
+            <if test="cancelReason != null">
+                cancel_reason,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=BIGINT},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderCode != null">
+                #{orderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderHeaderCode != null">
+                #{orderHeaderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTime != null">
+                #{orderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberId != null">
+                #{memberId,jdbcType=BIGINT},
+            </if>
+            <if test="productNum != null">
+                #{productNum,jdbcType=INTEGER},
+            </if>
+            <if test="totalPrice != null">
+                #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="productPrice != null">
+                #{productPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="freightPrice != null">
+                #{freightPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="couponPrice != null">
+                #{couponPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="activityPrice != null">
+                #{activityPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="discountPrice != null">
+                #{discountPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="payPrice != null">
+                #{payPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="orderStatus != null">
+                #{orderStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="payStatus != null">
+                #{payStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="payMethod != null">
+                #{payMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null">
+                #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payNo != null">
+                #{payNo,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveName != null">
+                #{receiveName,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveMobile != null">
+                #{receiveMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="receivePathName != null">
+                #{receivePathName,jdbcType=VARCHAR},
+            </if>
+            <if test="receivePathId != null">
+                #{receivePathId,jdbcType=VARCHAR},
+            </if>
+            <if test="receivePathDetail != null">
+                #{receivePathDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="cancel != null">
+                #{cancel,jdbcType=INTEGER},
+            </if>
+            <if test="cancelTime != null">
+                #{cancelTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cancelReason != null">
+                #{cancelReason,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=BIGINT},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderCode != null">
+                order_code = #{orderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderHeaderCode != null">
+                order_header_code = #{orderHeaderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTime != null">
+                order_time = #{orderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberId != null">
+                member_id = #{memberId,jdbcType=BIGINT},
+            </if>
+            <if test="productNum != null">
+                product_num = #{productNum,jdbcType=INTEGER},
+            </if>
+            <if test="totalPrice != null">
+                total_price = #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="productPrice != null">
+                product_price = #{productPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="freightPrice != null">
+                freight_price = #{freightPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="couponPrice != null">
+                coupon_price = #{couponPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="activityPrice != null">
+                activity_price = #{activityPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="discountPrice != null">
+                discount_price = #{discountPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="payPrice != null">
+                pay_price = #{payPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="payMethod != null">
+                pay_method = #{payMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payNo != null">
+                pay_no = #{payNo,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveName != null">
+                receive_name = #{receiveName,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveMobile != null">
+                receive_mobile = #{receiveMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="receivePathName != null">
+                receive_path_name = #{receivePathName,jdbcType=VARCHAR},
+            </if>
+            <if test="receivePathId != null">
+                receive_path_id = #{receivePathId,jdbcType=VARCHAR},
+            </if>
+            <if test="receivePathDetail != null">
+                receive_path_detail = #{receivePathDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="cancel != null">
+                cancel = #{cancel,jdbcType=INTEGER},
+            </if>
+            <if test="cancelTime != null">
+                cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cancelReason != null">
+                cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectList" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from `order`
+        <where>
+            <if test="param.memberId != null">
+                and member_id = #{param.memberId}
+            </if>
+            <if test="param.mobile != null and param.mobile != ''">
+                and mobile = #{param.mobile}
+            </if>
+            <if test="param.userName != null and param.userName != ''">
+                and user_name = #{param.userName}
+            </if>
+            <if test="param.storeId != null">
+                and store_id = #{param.storeId}
+            </if>
+            <if test="param.orderCode != null and param.orderCode != ''">
+                and order_code = #{param.orderCode}
+            </if>
+            <if test="param.cancel != null">
+                and cancel = #{param.cancel}
+            </if>
+            <if test="param.orderStatus != null and param.orderStatus != ''">
+                and order_status = #{param.orderStatus}
+            </if>
+            <if test="param.payTime != null and param.payTime != ''">
+                and  <![CDATA[ pay_time <= #{param.payTime} ]]>
+            </if>
+            <if test="param.orderTime != null and param.orderTime != ''">
+                and  <![CDATA[ order_time <= #{param.orderTime} ]]>
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <select id="selectByOrderCode" resultType="com.system.shop.entity.Order">
+        select<include refid="Order_Column_List"/>,member.mobile,member.user_name
+        from `order`
+        left join member on member.id = `order`.member_id
+        where `order`.order_code = #{orderCode}
+    </select>
+
+    <select id="selectOrderTagInfo" resultType="com.system.shop.bean.order.OrderTagInfo">
+        SELECT order_status, COUNT(*) AS order_num
+        FROM `order` where member_id=#{memberId}
+        GROUP BY order_status;
+    </select>
+
+    <select id="findPage" resultMap="BaseResultMap">
+        select<include refid="Order_Column_List"/>,
+        member.mobile,
+        member.user_name
+        from `order`
+        left join member on member.id = `order`.member_id
+        <where>
+            <if test="param.memberId != null">
+                and `order`.member_id = #{param.memberId}
+            </if>
+            <if test="param.mobile != null and param.mobile != ''">
+                and member.mobile = #{param.mobile}
+            </if>
+            <if test="param.userName != null and param.userName != ''">
+                and member.user_name = #{param.userName}
+            </if>
+            <if test="param.storeId != null">
+                and `order`.store_id = #{param.storeId}
+            </if>
+            <if test="param.orderCode != null and param.orderCode != ''">
+                and `order`.order_code = #{param.orderCode}
+            </if>
+            <if test="param.orderStatus != null and param.orderStatus != ''">
+                and `order`.order_status = #{param.orderStatus}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>

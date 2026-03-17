@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.shop.mapper.AfterSaleItemMapper">
+  <resultMap id="BaseResultMap" type="com.system.shop.entity.AfterSaleItem">
+    <!--@mbg.generated-->
+    <!--@Table after_sale_item-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="after_sale_code" jdbcType="VARCHAR" property="afterSaleCode" />
+    <result column="after_sale_item_code" jdbcType="VARCHAR" property="afterSaleItemCode" />
+    <result column="order_item_code" jdbcType="VARCHAR" property="orderItemCode" />
+    <result column="product_sku_code" jdbcType="VARCHAR" property="productSkuCode" />
+    <result column="product_sku_id" jdbcType="BIGINT" property="productSkuId" />
+    <result column="spec_info" jdbcType="VARCHAR" property="specInfo" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_code" jdbcType="VARCHAR" property="productCode" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="product_image" jdbcType="VARCHAR" property="productImage" />
+    <result column="sale_price" jdbcType="DECIMAL" property="salePrice" />
+    <result column="after_sale_num" jdbcType="INTEGER" property="afterSaleNum" />
+    <result column="after_sale_price" jdbcType="DECIMAL" property="afterSalePrice" />
+    <result column="apply_after_sale_price" jdbcType="DECIMAL" property="applyAfterSalePrice" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, after_sale_code, after_sale_item_code, order_item_code, product_sku_code, product_sku_id, 
+    spec_info, product_name, product_code, product_id, product_image, sale_price, after_sale_num, 
+    after_sale_price, apply_after_sale_price, create_time, create_by, update_by, update_time, 
+    delete_flag
+  </sql>
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from after_sale_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from after_sale_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.system.shop.entity.AfterSaleItem">
+    <!--@mbg.generated-->
+    insert into after_sale_item (id, after_sale_code, after_sale_item_code, 
+      order_item_code, product_sku_code, product_sku_id, 
+      spec_info, product_name, product_code, 
+      product_id, product_image, sale_price, 
+      after_sale_num, after_sale_price, apply_after_sale_price, 
+      create_time, create_by, update_by, 
+      update_time, delete_flag)
+    values (#{id,jdbcType=BIGINT}, #{afterSaleCode,jdbcType=VARCHAR}, #{afterSaleItemCode,jdbcType=VARCHAR}, 
+      #{orderItemCode,jdbcType=VARCHAR}, #{productSkuCode,jdbcType=VARCHAR}, #{productSkuId,jdbcType=BIGINT}, 
+      #{specInfo,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, 
+      #{productId,jdbcType=BIGINT}, #{productImage,jdbcType=VARCHAR}, #{salePrice,jdbcType=DECIMAL}, 
+      #{afterSaleNum,jdbcType=INTEGER}, #{afterSalePrice,jdbcType=DECIMAL}, #{applyAfterSalePrice,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.system.shop.entity.AfterSaleItem">
+    <!--@mbg.generated-->
+    insert into after_sale_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="afterSaleCode != null">
+        after_sale_code,
+      </if>
+      <if test="afterSaleItemCode != null">
+        after_sale_item_code,
+      </if>
+      <if test="orderItemCode != null">
+        order_item_code,
+      </if>
+      <if test="productSkuCode != null">
+        product_sku_code,
+      </if>
+      <if test="productSkuId != null">
+        product_sku_id,
+      </if>
+      <if test="specInfo != null">
+        spec_info,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="productCode != null">
+        product_code,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productImage != null">
+        product_image,
+      </if>
+      <if test="salePrice != null">
+        sale_price,
+      </if>
+      <if test="afterSaleNum != null">
+        after_sale_num,
+      </if>
+      <if test="afterSalePrice != null">
+        after_sale_price,
+      </if>
+      <if test="applyAfterSalePrice != null">
+        apply_after_sale_price,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="afterSaleCode != null">
+        #{afterSaleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleItemCode != null">
+        #{afterSaleItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderItemCode != null">
+        #{orderItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productSkuCode != null">
+        #{productSkuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productSkuId != null">
+        #{productSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="specInfo != null">
+        #{specInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null">
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productImage != null">
+        #{productImage,jdbcType=VARCHAR},
+      </if>
+      <if test="salePrice != null">
+        #{salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="afterSaleNum != null">
+        #{afterSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="afterSalePrice != null">
+        #{afterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="applyAfterSalePrice != null">
+        #{applyAfterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByIdSelective" parameterType="com.system.shop.entity.AfterSaleItem">
+    <!--@mbg.generated-->
+    update after_sale_item
+    <set>
+      <if test="afterSaleCode != null">
+        after_sale_code = #{afterSaleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleItemCode != null">
+        after_sale_item_code = #{afterSaleItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderItemCode != null">
+        order_item_code = #{orderItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productSkuCode != null">
+        product_sku_code = #{productSkuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productSkuId != null">
+        product_sku_id = #{productSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="specInfo != null">
+        spec_info = #{specInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null">
+        product_code = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productImage != null">
+        product_image = #{productImage,jdbcType=VARCHAR},
+      </if>
+      <if test="salePrice != null">
+        sale_price = #{salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="afterSaleNum != null">
+        after_sale_num = #{afterSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="afterSalePrice != null">
+        after_sale_price = #{afterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="applyAfterSalePrice != null">
+        apply_after_sale_price = #{applyAfterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateById" parameterType="com.system.shop.entity.AfterSaleItem">
+    <!--@mbg.generated-->
+    update after_sale_item
+    set after_sale_code = #{afterSaleCode,jdbcType=VARCHAR},
+      after_sale_item_code = #{afterSaleItemCode,jdbcType=VARCHAR},
+      order_item_code = #{orderItemCode,jdbcType=VARCHAR},
+      product_sku_code = #{productSkuCode,jdbcType=VARCHAR},
+      product_sku_id = #{productSkuId,jdbcType=BIGINT},
+      spec_info = #{specInfo,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_code = #{productCode,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=BIGINT},
+      product_image = #{productImage,jdbcType=VARCHAR},
+      sale_price = #{salePrice,jdbcType=DECIMAL},
+      after_sale_num = #{afterSaleNum,jdbcType=INTEGER},
+      after_sale_price = #{afterSalePrice,jdbcType=DECIMAL},
+      apply_after_sale_price = #{applyAfterSalePrice,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update after_sale_item
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="after_sale_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_item_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleItemCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="order_item_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.orderItemCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="product_sku_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.productSkuCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="product_sku_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.productSkuId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="spec_info = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.specInfo,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="product_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.productName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="product_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.productCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="product_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.productId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="product_image = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.productImage,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="sale_price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.salePrice,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_num = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleNum,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.afterSalePrice,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="apply_after_sale_price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.applyAfterSalePrice,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="create_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="update_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="delete_flag = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update after_sale_item
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="after_sale_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.afterSaleCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_item_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.afterSaleItemCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleItemCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="order_item_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.orderItemCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.orderItemCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="product_sku_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.productSkuCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.productSkuCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="product_sku_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.productSkuId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.productSkuId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="spec_info = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.specInfo != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.specInfo,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="product_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.productName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.productName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="product_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.productCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.productCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="product_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.productId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.productId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="product_image = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.productImage != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.productImage,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sale_price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.salePrice != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.salePrice,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_num = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.afterSaleNum != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleNum,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.afterSalePrice != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.afterSalePrice,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="apply_after_sale_price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.applyAfterSalePrice != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.applyAfterSalePrice,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createBy != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateBy != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="delete_flag = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deleteFlag != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into after_sale_item
+    (id, after_sale_code, after_sale_item_code, order_item_code, product_sku_code, product_sku_id, 
+      spec_info, product_name, product_code, product_id, product_image, sale_price, after_sale_num, 
+      after_sale_price, apply_after_sale_price, create_time, create_by, update_by, update_time, 
+      delete_flag)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.afterSaleCode,jdbcType=VARCHAR}, #{item.afterSaleItemCode,jdbcType=VARCHAR}, 
+        #{item.orderItemCode,jdbcType=VARCHAR}, #{item.productSkuCode,jdbcType=VARCHAR}, 
+        #{item.productSkuId,jdbcType=BIGINT}, #{item.specInfo,jdbcType=VARCHAR}, #{item.productName,jdbcType=VARCHAR}, 
+        #{item.productCode,jdbcType=VARCHAR}, #{item.productId,jdbcType=BIGINT}, #{item.productImage,jdbcType=VARCHAR}, 
+        #{item.salePrice,jdbcType=DECIMAL}, #{item.afterSaleNum,jdbcType=INTEGER}, #{item.afterSalePrice,jdbcType=DECIMAL}, 
+        #{item.applyAfterSalePrice,jdbcType=DECIMAL}, #{item.createTime,jdbcType=TIMESTAMP}, 
+        #{item.createBy,jdbcType=VARCHAR}, #{item.updateBy,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=TIMESTAMP}, 
+        #{item.deleteFlag,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.system.shop.entity.AfterSaleItem">
+    <!--@mbg.generated-->
+    insert into after_sale_item
+    (id, after_sale_code, after_sale_item_code, order_item_code, product_sku_code, product_sku_id, 
+      spec_info, product_name, product_code, product_id, product_image, sale_price, after_sale_num, 
+      after_sale_price, apply_after_sale_price, create_time, create_by, update_by, update_time, 
+      delete_flag)
+    values
+    (#{id,jdbcType=BIGINT}, #{afterSaleCode,jdbcType=VARCHAR}, #{afterSaleItemCode,jdbcType=VARCHAR}, 
+      #{orderItemCode,jdbcType=VARCHAR}, #{productSkuCode,jdbcType=VARCHAR}, #{productSkuId,jdbcType=BIGINT}, 
+      #{specInfo,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, 
+      #{productId,jdbcType=BIGINT}, #{productImage,jdbcType=VARCHAR}, #{salePrice,jdbcType=DECIMAL}, 
+      #{afterSaleNum,jdbcType=INTEGER}, #{afterSalePrice,jdbcType=DECIMAL}, #{applyAfterSalePrice,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER})
+    on duplicate key update 
+    id = #{id,jdbcType=BIGINT}, 
+    after_sale_code = #{afterSaleCode,jdbcType=VARCHAR}, 
+    after_sale_item_code = #{afterSaleItemCode,jdbcType=VARCHAR}, 
+    order_item_code = #{orderItemCode,jdbcType=VARCHAR}, 
+    product_sku_code = #{productSkuCode,jdbcType=VARCHAR}, 
+    product_sku_id = #{productSkuId,jdbcType=BIGINT}, 
+    spec_info = #{specInfo,jdbcType=VARCHAR}, 
+    product_name = #{productName,jdbcType=VARCHAR}, 
+    product_code = #{productCode,jdbcType=VARCHAR}, 
+    product_id = #{productId,jdbcType=BIGINT}, 
+    product_image = #{productImage,jdbcType=VARCHAR}, 
+    sale_price = #{salePrice,jdbcType=DECIMAL}, 
+    after_sale_num = #{afterSaleNum,jdbcType=INTEGER}, 
+    after_sale_price = #{afterSalePrice,jdbcType=DECIMAL}, 
+    apply_after_sale_price = #{applyAfterSalePrice,jdbcType=DECIMAL}, 
+    create_time = #{createTime,jdbcType=TIMESTAMP}, 
+    create_by = #{createBy,jdbcType=VARCHAR}, 
+    update_by = #{updateBy,jdbcType=VARCHAR}, 
+    update_time = #{updateTime,jdbcType=TIMESTAMP}, 
+    delete_flag = #{deleteFlag,jdbcType=INTEGER}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.system.shop.entity.AfterSaleItem">
+    <!--@mbg.generated-->
+    insert into after_sale_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="afterSaleCode != null">
+        after_sale_code,
+      </if>
+      <if test="afterSaleItemCode != null">
+        after_sale_item_code,
+      </if>
+      <if test="orderItemCode != null">
+        order_item_code,
+      </if>
+      <if test="productSkuCode != null">
+        product_sku_code,
+      </if>
+      <if test="productSkuId != null">
+        product_sku_id,
+      </if>
+      <if test="specInfo != null">
+        spec_info,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="productCode != null">
+        product_code,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productImage != null">
+        product_image,
+      </if>
+      <if test="salePrice != null">
+        sale_price,
+      </if>
+      <if test="afterSaleNum != null">
+        after_sale_num,
+      </if>
+      <if test="afterSalePrice != null">
+        after_sale_price,
+      </if>
+      <if test="applyAfterSalePrice != null">
+        apply_after_sale_price,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="afterSaleCode != null">
+        #{afterSaleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleItemCode != null">
+        #{afterSaleItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderItemCode != null">
+        #{orderItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productSkuCode != null">
+        #{productSkuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productSkuId != null">
+        #{productSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="specInfo != null">
+        #{specInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null">
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productImage != null">
+        #{productImage,jdbcType=VARCHAR},
+      </if>
+      <if test="salePrice != null">
+        #{salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="afterSaleNum != null">
+        #{afterSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="afterSalePrice != null">
+        #{afterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="applyAfterSalePrice != null">
+        #{applyAfterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="afterSaleCode != null">
+        after_sale_code = #{afterSaleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleItemCode != null">
+        after_sale_item_code = #{afterSaleItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderItemCode != null">
+        order_item_code = #{orderItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productSkuCode != null">
+        product_sku_code = #{productSkuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productSkuId != null">
+        product_sku_id = #{productSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="specInfo != null">
+        spec_info = #{specInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null">
+        product_code = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productImage != null">
+        product_image = #{productImage,jdbcType=VARCHAR},
+      </if>
+      <if test="salePrice != null">
+        sale_price = #{salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="afterSaleNum != null">
+        after_sale_num = #{afterSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="afterSalePrice != null">
+        after_sale_price = #{afterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="applyAfterSalePrice != null">
+        apply_after_sale_price = #{applyAfterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectByAfterSaleCode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from after_sale_item
+    where after_sale_code = #{afterSaleCode,jdbcType=VARCHAR}
+    </select>
+</mapper>

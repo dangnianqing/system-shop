@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.shop.mapper.ProductSpecValueMapper">
+    <resultMap id="BaseResultMap" type="com.system.shop.entity.ProductSpecValue">
+        <!--@mbg.generated-->
+        <!--@Table product_spec_value-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="product_id" jdbcType="BIGINT" property="productId"/>
+        <result column="product_spec_id" jdbcType="BIGINT" property="productSpecId"/>
+        <result column="product_spec_code" jdbcType="VARCHAR" property="productSpecCode"/>
+        <result column="product_spec_name" jdbcType="VARCHAR" property="productSpecName"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id,
+        product_id,
+        product_spec_id,
+        product_spec_code,
+        product_spec_name,
+        code,
+        `name`,
+        create_time,
+        create_by,
+        update_by,
+        update_time,
+        delete_flag
+    </sql>
+    <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from product_spec_value
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteById" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete
+        from product_spec_value
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.system.shop.entity.ProductSpecValue"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into product_spec_value (product_id, product_spec_id, product_spec_code,
+                                        product_spec_name, code, `name`,
+                                        create_time, create_by, update_by,
+                                        update_time, delete_flag)
+        values (#{productId,jdbcType=BIGINT}, #{productSpecId,jdbcType=BIGINT}, #{productSpecCode,jdbcType=VARCHAR},
+                #{productSpecName,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.system.shop.entity.ProductSpecValue"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into product_spec_value
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="productSpecId != null">
+                product_spec_id,
+            </if>
+            <if test="productSpecCode != null">
+                product_spec_code,
+            </if>
+            <if test="productSpecName != null">
+                product_spec_name,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                #{productId,jdbcType=BIGINT},
+            </if>
+            <if test="productSpecId != null">
+                #{productSpecId,jdbcType=BIGINT},
+            </if>
+            <if test="productSpecCode != null">
+                #{productSpecCode,jdbcType=VARCHAR},
+            </if>
+            <if test="productSpecName != null">
+                #{productSpecName,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.system.shop.entity.ProductSpecValue">
+        <!--@mbg.generated-->
+        update product_spec_value
+        <set>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=BIGINT},
+            </if>
+            <if test="productSpecId != null">
+                product_spec_id = #{productSpecId,jdbcType=BIGINT},
+            </if>
+            <if test="productSpecCode != null">
+                product_spec_code = #{productSpecCode,jdbcType=VARCHAR},
+            </if>
+            <if test="productSpecName != null">
+                product_spec_name = #{productSpecName,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateById" parameterType="com.system.shop.entity.ProductSpecValue">
+        <!--@mbg.generated-->
+        update product_spec_value
+        set product_id        = #{productId,jdbcType=BIGINT},
+            product_spec_id   = #{productSpecId,jdbcType=BIGINT},
+            product_spec_code = #{productSpecCode,jdbcType=VARCHAR},
+            product_spec_name = #{productSpecName,jdbcType=VARCHAR},
+            code              = #{code,jdbcType=VARCHAR},
+            `name`            = #{name,jdbcType=VARCHAR},
+            create_time       = #{createTime,jdbcType=TIMESTAMP},
+            create_by         = #{createBy,jdbcType=VARCHAR},
+            update_by         = #{updateBy,jdbcType=VARCHAR},
+            update_time       = #{updateTime,jdbcType=TIMESTAMP},
+            delete_flag       = #{deleteFlag,jdbcType=INTEGER}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update product_spec_value
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="product_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.productId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="product_spec_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.productSpecId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="product_spec_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.productSpecCode,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="product_spec_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.productSpecName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.code,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`name` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="create_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="update_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="delete_flag = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update product_spec_value
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="product_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.productId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.productId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="product_spec_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.productSpecId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.productSpecId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="product_spec_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.productSpecCode != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.productSpecCode,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="product_spec_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.productSpecName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.productSpecName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.code != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.code,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`name` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.name != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createBy != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateBy != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="delete_flag = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.deleteFlag != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into product_spec_value
+        (product_id, product_spec_id, product_spec_code, product_spec_name, code, `name`,
+         create_time, create_by, update_by, update_time, delete_flag)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.productId,jdbcType=BIGINT}, #{item.productSpecId,jdbcType=BIGINT},
+             #{item.productSpecCode,jdbcType=VARCHAR},
+             #{item.productSpecName,jdbcType=VARCHAR}, #{item.code,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR},
+             #{item.createTime,jdbcType=TIMESTAMP}, #{item.createBy,jdbcType=VARCHAR},
+             #{item.updateBy,jdbcType=VARCHAR},
+             #{item.updateTime,jdbcType=TIMESTAMP}, #{item.deleteFlag,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.system.shop.entity.ProductSpecValue"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into product_spec_value
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            product_id,
+            product_spec_id,
+            product_spec_code,
+            product_spec_name,
+            code,
+            `name`,
+            create_time,
+            create_by,
+            update_by,
+            update_time,
+            delete_flag,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{productId,jdbcType=BIGINT},
+            #{productSpecId,jdbcType=BIGINT},
+            #{productSpecCode,jdbcType=VARCHAR},
+            #{productSpecName,jdbcType=VARCHAR},
+            #{code,jdbcType=VARCHAR},
+            #{name,jdbcType=VARCHAR},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{createBy,jdbcType=VARCHAR},
+            #{updateBy,jdbcType=VARCHAR},
+            #{updateTime,jdbcType=TIMESTAMP},
+            #{deleteFlag,jdbcType=INTEGER},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            product_id        = #{productId,jdbcType=BIGINT},
+            product_spec_id   = #{productSpecId,jdbcType=BIGINT},
+            product_spec_code = #{productSpecCode,jdbcType=VARCHAR},
+            product_spec_name = #{productSpecName,jdbcType=VARCHAR},
+            code              = #{code,jdbcType=VARCHAR},
+            `name`            = #{name,jdbcType=VARCHAR},
+            create_time       = #{createTime,jdbcType=TIMESTAMP},
+            create_by         = #{createBy,jdbcType=VARCHAR},
+            update_by         = #{updateBy,jdbcType=VARCHAR},
+            update_time       = #{updateTime,jdbcType=TIMESTAMP},
+            delete_flag       = #{deleteFlag,jdbcType=INTEGER},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.system.shop.entity.ProductSpecValue"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into product_spec_value
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="productSpecId != null">
+                product_spec_id,
+            </if>
+            <if test="productSpecCode != null">
+                product_spec_code,
+            </if>
+            <if test="productSpecName != null">
+                product_spec_name,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="productId != null">
+                #{productId,jdbcType=BIGINT},
+            </if>
+            <if test="productSpecId != null">
+                #{productSpecId,jdbcType=BIGINT},
+            </if>
+            <if test="productSpecCode != null">
+                #{productSpecCode,jdbcType=VARCHAR},
+            </if>
+            <if test="productSpecName != null">
+                #{productSpecName,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=BIGINT},
+            </if>
+            <if test="productSpecId != null">
+                product_spec_id = #{productSpecId,jdbcType=BIGINT},
+            </if>
+            <if test="productSpecCode != null">
+                product_spec_code = #{productSpecCode,jdbcType=VARCHAR},
+            </if>
+            <if test="productSpecName != null">
+                product_spec_name = #{productSpecName,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+
+    <select id="selectBySpecIdAndProductId" resultMap="BaseResultMap">
+        select id,
+               product_spec_id,
+               product_spec_code,
+               product_spec_name,
+               code,
+               `name`
+        from product_spec_value
+        where product_spec_id = #{productSpecId}
+          and product_id = #{productId}
+    </select>
+
+    <delete id="deleteByProductId">
+        delete
+        from product_spec_value
+        where product_id = #{productId}
+    </delete>
+
+    <select id="selectByProductId" resultMap="BaseResultMap">
+        select
+        id,
+        product_id,
+        product_spec_id,
+        product_spec_code,
+        product_spec_name,
+        code,
+        `name`
+        from product_spec_value
+        where product_id = #{productId}
+    </select>
+</mapper>

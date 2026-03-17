@@ -1,0 +1,1179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.shop.mapper.ProductMapper">
+    <resultMap id="BaseResultMap" type="com.system.shop.entity.Product">
+        <!--@mbg.generated-->
+        <!--@Table product-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="product_code" jdbcType="VARCHAR" property="productCode"/>
+        <result column="brand_id" jdbcType="BIGINT" property="brandId"/>
+        <result column="category_class_one" jdbcType="BIGINT" property="categoryClassOne"/>
+        <result column="category_class_two" jdbcType="BIGINT" property="categoryClassTwo"/>
+        <result column="category_class_three" jdbcType="BIGINT" property="categoryClassThree"/>
+        <result column="category_class_four" jdbcType="BIGINT" property="categoryClassFour"/>
+        <result column="buy_count" jdbcType="INTEGER" property="buyCount"/>
+        <result column="cost_price" jdbcType="DECIMAL" property="costPrice"/>
+        <result column="sale_price" jdbcType="DECIMAL" property="salePrice"/>
+        <result column="market_price" jdbcType="DECIMAL" property="marketPrice"/>
+        <result column="audit_status" jdbcType="INTEGER" property="auditStatus"/>
+        <result column="up_down_status" jdbcType="INTEGER" property="upDownStatus"/>
+        <result column="quantity" jdbcType="INTEGER" property="quantity"/>
+        <result column="store_id" jdbcType="BIGINT" property="storeId"/>
+        <result column="store_name" jdbcType="VARCHAR" property="storeName"/>
+        <result column="head_image" jdbcType="VARCHAR" property="headImage"/>
+        <result column="year_code" jdbcType="VARCHAR" property="yearCode"/>
+        <result column="season_code" jdbcType="VARCHAR" property="seasonCode"/>
+        <result column="spec_id" jdbcType="VARCHAR" property="specId"/>
+        <result column="freight_template_id" jdbcType="BIGINT" property="freightTemplateId"/>
+        <result column="weight" jdbcType="DECIMAL" property="weight"/>
+        <result column="product_info" jdbcType="LONGVARCHAR" property="productInfo"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id,
+        product_name,
+        product_code,
+        brand_id,
+        category_class_one,
+        category_class_two,
+        category_class_three,
+        category_class_four,
+        buy_count,
+        cost_price,
+        sale_price,
+        market_price,
+        audit_status,
+        up_down_status,
+        quantity,
+        store_id,
+        store_name,
+        head_image,
+        year_code,
+        season_code,
+        spec_id,
+        freight_template_id,
+        weight,
+        product_info,
+        create_time,
+        create_by,
+        update_by,
+        update_time,
+        delete_flag
+    </sql>
+    <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from product
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteById" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete
+        from product
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.system.shop.entity.Product">
+        <!--@mbg.generated-->
+        insert into product (id, product_name, product_code,
+                             brand_id, category_class_one, category_class_two,
+                             category_class_three, category_class_four, buy_count,
+                             cost_price, sale_price, market_price,
+                             audit_status, up_down_status, quantity,
+                             store_id, store_name, head_image,
+                             year_code, season_code, spec_id,
+                             freight_template_id, weight, product_info,
+                             create_time, create_by, update_by,
+                             update_time, delete_flag)
+        values (#{id,jdbcType=BIGINT}, #{productName,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR},
+                #{brandId,jdbcType=BIGINT}, #{categoryClassOne,jdbcType=BIGINT}, #{categoryClassTwo,jdbcType=BIGINT},
+                #{categoryClassThree,jdbcType=BIGINT}, #{categoryClassFour,jdbcType=BIGINT},
+                #{buyCount,jdbcType=INTEGER},
+                #{costPrice,jdbcType=DECIMAL}, #{salePrice,jdbcType=DECIMAL}, #{marketPrice,jdbcType=DECIMAL},
+                #{auditStatus,jdbcType=INTEGER}, #{upDownStatus,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER},
+                #{storeId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR}, #{headImage,jdbcType=VARCHAR},
+                #{yearCode,jdbcType=VARCHAR}, #{seasonCode,jdbcType=VARCHAR}, #{specId,jdbcType=VARCHAR},
+                #{freightTemplateId,jdbcType=BIGINT}, #{weight,jdbcType=DECIMAL}, #{productInfo,jdbcType=LONGVARCHAR},
+                #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.system.shop.entity.Product">
+        <!--@mbg.generated-->
+        insert into product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="productCode != null">
+                product_code,
+            </if>
+            <if test="brandId != null">
+                brand_id,
+            </if>
+            <if test="categoryClassOne != null">
+                category_class_one,
+            </if>
+            <if test="categoryClassTwo != null">
+                category_class_two,
+            </if>
+            <if test="categoryClassThree != null">
+                category_class_three,
+            </if>
+            <if test="categoryClassFour != null">
+                category_class_four,
+            </if>
+            <if test="buyCount != null">
+                buy_count,
+            </if>
+            <if test="costPrice != null">
+                cost_price,
+            </if>
+            <if test="salePrice != null">
+                sale_price,
+            </if>
+            <if test="marketPrice != null">
+                market_price,
+            </if>
+            <if test="auditStatus != null">
+                audit_status,
+            </if>
+            <if test="upDownStatus != null">
+                up_down_status,
+            </if>
+            <if test="quantity != null">
+                quantity,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="headImage != null">
+                head_image,
+            </if>
+            <if test="yearCode != null">
+                year_code,
+            </if>
+            <if test="seasonCode != null">
+                season_code,
+            </if>
+            <if test="specId != null">
+                spec_id,
+            </if>
+            <if test="freightTemplateId != null">
+                freight_template_id,
+            </if>
+            <if test="weight != null">
+                weight,
+            </if>
+            <if test="productInfo != null">
+                product_info,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="productCode != null">
+                #{productCode,jdbcType=VARCHAR},
+            </if>
+            <if test="brandId != null">
+                #{brandId,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassOne != null">
+                #{categoryClassOne,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassTwo != null">
+                #{categoryClassTwo,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassThree != null">
+                #{categoryClassThree,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassFour != null">
+                #{categoryClassFour,jdbcType=BIGINT},
+            </if>
+            <if test="buyCount != null">
+                #{buyCount,jdbcType=INTEGER},
+            </if>
+            <if test="costPrice != null">
+                #{costPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="salePrice != null">
+                #{salePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="marketPrice != null">
+                #{marketPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="auditStatus != null">
+                #{auditStatus,jdbcType=INTEGER},
+            </if>
+            <if test="upDownStatus != null">
+                #{upDownStatus,jdbcType=INTEGER},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=BIGINT},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="headImage != null">
+                #{headImage,jdbcType=VARCHAR},
+            </if>
+            <if test="yearCode != null">
+                #{yearCode,jdbcType=VARCHAR},
+            </if>
+            <if test="seasonCode != null">
+                #{seasonCode,jdbcType=VARCHAR},
+            </if>
+            <if test="specId != null">
+                #{specId,jdbcType=VARCHAR},
+            </if>
+            <if test="freightTemplateId != null">
+                #{freightTemplateId,jdbcType=BIGINT},
+            </if>
+            <if test="weight != null">
+                #{weight,jdbcType=DECIMAL},
+            </if>
+            <if test="productInfo != null">
+                #{productInfo,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.system.shop.entity.Product">
+        <!--@mbg.generated-->
+        update product
+        <set>
+            <if test="productName != null">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="productCode != null">
+                product_code = #{productCode,jdbcType=VARCHAR},
+            </if>
+            <if test="brandId != null">
+                brand_id = #{brandId,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassOne != null">
+                category_class_one = #{categoryClassOne,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassTwo != null">
+                category_class_two = #{categoryClassTwo,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassThree != null">
+                category_class_three = #{categoryClassThree,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassFour != null">
+                category_class_four = #{categoryClassFour,jdbcType=BIGINT},
+            </if>
+            <if test="buyCount != null">
+                buy_count = #{buyCount,jdbcType=INTEGER},
+            </if>
+            <if test="costPrice != null">
+                cost_price = #{costPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="salePrice != null">
+                sale_price = #{salePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="marketPrice != null">
+                market_price = #{marketPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="auditStatus != null">
+                audit_status = #{auditStatus,jdbcType=INTEGER},
+            </if>
+            <if test="upDownStatus != null">
+                up_down_status = #{upDownStatus,jdbcType=INTEGER},
+            </if>
+            <if test="quantity != null">
+                quantity = #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=BIGINT},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="headImage != null">
+                head_image = #{headImage,jdbcType=VARCHAR},
+            </if>
+            <if test="yearCode != null">
+                year_code = #{yearCode,jdbcType=VARCHAR},
+            </if>
+            <if test="seasonCode != null">
+                season_code = #{seasonCode,jdbcType=VARCHAR},
+            </if>
+            <if test="specId != null">
+                spec_id = #{specId,jdbcType=VARCHAR},
+            </if>
+            <if test="freightTemplateId != null">
+                freight_template_id = #{freightTemplateId,jdbcType=BIGINT},
+            </if>
+            <if test="weight != null">
+                weight = #{weight,jdbcType=DECIMAL},
+            </if>
+            <if test="productInfo != null">
+                product_info = #{productInfo,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateById" parameterType="com.system.shop.entity.Product">
+        <!--@mbg.generated-->
+        update product
+        set product_name         = #{productName,jdbcType=VARCHAR},
+            product_code         = #{productCode,jdbcType=VARCHAR},
+            brand_id             = #{brandId,jdbcType=BIGINT},
+            category_class_one   = #{categoryClassOne,jdbcType=BIGINT},
+            category_class_two   = #{categoryClassTwo,jdbcType=BIGINT},
+            category_class_three = #{categoryClassThree,jdbcType=BIGINT},
+            category_class_four  = #{categoryClassFour,jdbcType=BIGINT},
+            buy_count            = #{buyCount,jdbcType=INTEGER},
+            cost_price           = #{costPrice,jdbcType=DECIMAL},
+            sale_price           = #{salePrice,jdbcType=DECIMAL},
+            market_price         = #{marketPrice,jdbcType=DECIMAL},
+            audit_status         = #{auditStatus,jdbcType=INTEGER},
+            up_down_status       = #{upDownStatus,jdbcType=INTEGER},
+            quantity             = #{quantity,jdbcType=INTEGER},
+            store_id             = #{storeId,jdbcType=BIGINT},
+            store_name           = #{storeName,jdbcType=VARCHAR},
+            head_image           = #{headImage,jdbcType=VARCHAR},
+            year_code            = #{yearCode,jdbcType=VARCHAR},
+            season_code          = #{seasonCode,jdbcType=VARCHAR},
+            spec_id              = #{specId,jdbcType=VARCHAR},
+            freight_template_id  = #{freightTemplateId,jdbcType=BIGINT},
+            weight               = #{weight,jdbcType=DECIMAL},
+            product_info         = #{productInfo,jdbcType=LONGVARCHAR},
+            create_time          = #{createTime,jdbcType=TIMESTAMP},
+            create_by            = #{createBy,jdbcType=VARCHAR},
+            update_by            = #{updateBy,jdbcType=VARCHAR},
+            update_time          = #{updateTime,jdbcType=TIMESTAMP},
+            delete_flag          = #{deleteFlag,jdbcType=INTEGER}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update product
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="product_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.productName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="product_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.productCode,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="brand_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.brandId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="category_class_one = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.categoryClassOne,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="category_class_two = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.categoryClassTwo,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="category_class_three = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.categoryClassThree,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="category_class_four = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.categoryClassFour,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="buy_count = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.buyCount,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="cost_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.costPrice,jdbcType=DECIMAL}
+                </foreach>
+            </trim>
+            <trim prefix="sale_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.salePrice,jdbcType=DECIMAL}
+                </foreach>
+            </trim>
+            <trim prefix="market_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.marketPrice,jdbcType=DECIMAL}
+                </foreach>
+            </trim>
+            <trim prefix="audit_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.auditStatus,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="up_down_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.upDownStatus,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="quantity = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.quantity,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="store_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.storeId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="store_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.storeName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="head_image = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.headImage,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="year_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.yearCode,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="season_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.seasonCode,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="spec_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.specId,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="freight_template_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.freightTemplateId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="weight = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.weight,jdbcType=DECIMAL}
+                </foreach>
+            </trim>
+            <trim prefix="product_info = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.productInfo,jdbcType=LONGVARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="create_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="update_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="delete_flag = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update product
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="product_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.productName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.productName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="product_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.productCode != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.productCode,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="brand_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.brandId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.brandId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="category_class_one = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.categoryClassOne != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.categoryClassOne,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="category_class_two = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.categoryClassTwo != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.categoryClassTwo,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="category_class_three = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.categoryClassThree != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.categoryClassThree,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="category_class_four = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.categoryClassFour != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.categoryClassFour,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="buy_count = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.buyCount != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.buyCount,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="cost_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.costPrice != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.costPrice,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="sale_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.salePrice != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.salePrice,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="market_price = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.marketPrice != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.marketPrice,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="audit_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.auditStatus != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.auditStatus,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="up_down_status = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.upDownStatus != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.upDownStatus,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="quantity = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.quantity != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.quantity,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="store_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.storeId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.storeId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="store_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.storeName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.storeName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="head_image = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.headImage != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.headImage,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="year_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.yearCode != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.yearCode,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="season_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.seasonCode != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.seasonCode,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="spec_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.specId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.specId,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="freight_template_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.freightTemplateId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.freightTemplateId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="weight = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.weight != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.weight,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="product_info = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.productInfo != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.productInfo,jdbcType=LONGVARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createBy != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateBy != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="delete_flag = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.deleteFlag != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into product
+        (id, product_name, product_code, brand_id, category_class_one, category_class_two,
+         category_class_three, category_class_four, buy_count, cost_price, sale_price, market_price,
+         audit_status, up_down_status, quantity, store_id, store_name, head_image, year_code,
+         season_code, spec_id, freight_template_id, weight, product_info, create_time, create_by,
+         update_by, update_time, delete_flag)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id,jdbcType=BIGINT}, #{item.productName,jdbcType=VARCHAR}, #{item.productCode,jdbcType=VARCHAR},
+             #{item.brandId,jdbcType=BIGINT}, #{item.categoryClassOne,jdbcType=BIGINT},
+             #{item.categoryClassTwo,jdbcType=BIGINT},
+             #{item.categoryClassThree,jdbcType=BIGINT}, #{item.categoryClassFour,jdbcType=BIGINT},
+             #{item.buyCount,jdbcType=INTEGER}, #{item.costPrice,jdbcType=DECIMAL}, #{item.salePrice,jdbcType=DECIMAL},
+             #{item.marketPrice,jdbcType=DECIMAL}, #{item.auditStatus,jdbcType=INTEGER},
+             #{item.upDownStatus,jdbcType=INTEGER},
+             #{item.quantity,jdbcType=INTEGER}, #{item.storeId,jdbcType=BIGINT}, #{item.storeName,jdbcType=VARCHAR},
+             #{item.headImage,jdbcType=VARCHAR}, #{item.yearCode,jdbcType=VARCHAR}, #{item.seasonCode,jdbcType=VARCHAR},
+             #{item.specId,jdbcType=VARCHAR}, #{item.freightTemplateId,jdbcType=BIGINT},
+             #{item.weight,jdbcType=DECIMAL},
+             #{item.productInfo,jdbcType=LONGVARCHAR}, #{item.createTime,jdbcType=TIMESTAMP},
+             #{item.createBy,jdbcType=VARCHAR}, #{item.updateBy,jdbcType=VARCHAR},
+             #{item.updateTime,jdbcType=TIMESTAMP},
+             #{item.deleteFlag,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" parameterType="com.system.shop.entity.Product">
+        <!--@mbg.generated-->
+        insert into product
+        (id, product_name, product_code, brand_id, category_class_one, category_class_two,
+         category_class_three, category_class_four, buy_count, cost_price, sale_price, market_price,
+         audit_status, up_down_status, quantity, store_id, store_name, head_image, year_code,
+         season_code, spec_id, freight_template_id, weight, product_info, create_time, create_by,
+         update_by, update_time, delete_flag)
+        values (#{id,jdbcType=BIGINT}, #{productName,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR},
+                #{brandId,jdbcType=BIGINT}, #{categoryClassOne,jdbcType=BIGINT}, #{categoryClassTwo,jdbcType=BIGINT},
+                #{categoryClassThree,jdbcType=BIGINT}, #{categoryClassFour,jdbcType=BIGINT},
+                #{buyCount,jdbcType=INTEGER},
+                #{costPrice,jdbcType=DECIMAL}, #{salePrice,jdbcType=DECIMAL}, #{marketPrice,jdbcType=DECIMAL},
+                #{auditStatus,jdbcType=INTEGER}, #{upDownStatus,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER},
+                #{storeId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR}, #{headImage,jdbcType=VARCHAR},
+                #{yearCode,jdbcType=VARCHAR}, #{seasonCode,jdbcType=VARCHAR}, #{specId,jdbcType=VARCHAR},
+                #{freightTemplateId,jdbcType=BIGINT}, #{weight,jdbcType=DECIMAL}, #{productInfo,jdbcType=LONGVARCHAR},
+                #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER})
+        on duplicate key update id                   = #{id,jdbcType=BIGINT},
+                                product_name         = #{productName,jdbcType=VARCHAR},
+                                product_code         = #{productCode,jdbcType=VARCHAR},
+                                brand_id             = #{brandId,jdbcType=BIGINT},
+                                category_class_one   = #{categoryClassOne,jdbcType=BIGINT},
+                                category_class_two   = #{categoryClassTwo,jdbcType=BIGINT},
+                                category_class_three = #{categoryClassThree,jdbcType=BIGINT},
+                                category_class_four  = #{categoryClassFour,jdbcType=BIGINT},
+                                buy_count            = #{buyCount,jdbcType=INTEGER},
+                                cost_price           = #{costPrice,jdbcType=DECIMAL},
+                                sale_price           = #{salePrice,jdbcType=DECIMAL},
+                                market_price         = #{marketPrice,jdbcType=DECIMAL},
+                                audit_status         = #{auditStatus,jdbcType=INTEGER},
+                                up_down_status       = #{upDownStatus,jdbcType=INTEGER},
+                                quantity             = #{quantity,jdbcType=INTEGER},
+                                store_id             = #{storeId,jdbcType=BIGINT},
+                                store_name           = #{storeName,jdbcType=VARCHAR},
+                                head_image           = #{headImage,jdbcType=VARCHAR},
+                                year_code            = #{yearCode,jdbcType=VARCHAR},
+                                season_code          = #{seasonCode,jdbcType=VARCHAR},
+                                spec_id              = #{specId,jdbcType=VARCHAR},
+                                freight_template_id  = #{freightTemplateId,jdbcType=BIGINT},
+                                weight               = #{weight,jdbcType=DECIMAL},
+                                product_info         = #{productInfo,jdbcType=LONGVARCHAR},
+                                create_time          = #{createTime,jdbcType=TIMESTAMP},
+                                create_by            = #{createBy,jdbcType=VARCHAR},
+                                update_by            = #{updateBy,jdbcType=VARCHAR},
+                                update_time          = #{updateTime,jdbcType=TIMESTAMP},
+                                delete_flag          = #{deleteFlag,jdbcType=INTEGER}
+    </insert>
+    <insert id="insertOrUpdateSelective" parameterType="com.system.shop.entity.Product">
+        <!--@mbg.generated-->
+        insert into product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="productCode != null">
+                product_code,
+            </if>
+            <if test="brandId != null">
+                brand_id,
+            </if>
+            <if test="categoryClassOne != null">
+                category_class_one,
+            </if>
+            <if test="categoryClassTwo != null">
+                category_class_two,
+            </if>
+            <if test="categoryClassThree != null">
+                category_class_three,
+            </if>
+            <if test="categoryClassFour != null">
+                category_class_four,
+            </if>
+            <if test="buyCount != null">
+                buy_count,
+            </if>
+            <if test="costPrice != null">
+                cost_price,
+            </if>
+            <if test="salePrice != null">
+                sale_price,
+            </if>
+            <if test="marketPrice != null">
+                market_price,
+            </if>
+            <if test="auditStatus != null">
+                audit_status,
+            </if>
+            <if test="upDownStatus != null">
+                up_down_status,
+            </if>
+            <if test="quantity != null">
+                quantity,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="headImage != null">
+                head_image,
+            </if>
+            <if test="yearCode != null">
+                year_code,
+            </if>
+            <if test="seasonCode != null">
+                season_code,
+            </if>
+            <if test="specId != null">
+                spec_id,
+            </if>
+            <if test="freightTemplateId != null">
+                freight_template_id,
+            </if>
+            <if test="weight != null">
+                weight,
+            </if>
+            <if test="productInfo != null">
+                product_info,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="productCode != null">
+                #{productCode,jdbcType=VARCHAR},
+            </if>
+            <if test="brandId != null">
+                #{brandId,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassOne != null">
+                #{categoryClassOne,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassTwo != null">
+                #{categoryClassTwo,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassThree != null">
+                #{categoryClassThree,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassFour != null">
+                #{categoryClassFour,jdbcType=BIGINT},
+            </if>
+            <if test="buyCount != null">
+                #{buyCount,jdbcType=INTEGER},
+            </if>
+            <if test="costPrice != null">
+                #{costPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="salePrice != null">
+                #{salePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="marketPrice != null">
+                #{marketPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="auditStatus != null">
+                #{auditStatus,jdbcType=INTEGER},
+            </if>
+            <if test="upDownStatus != null">
+                #{upDownStatus,jdbcType=INTEGER},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=BIGINT},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="headImage != null">
+                #{headImage,jdbcType=VARCHAR},
+            </if>
+            <if test="yearCode != null">
+                #{yearCode,jdbcType=VARCHAR},
+            </if>
+            <if test="seasonCode != null">
+                #{seasonCode,jdbcType=VARCHAR},
+            </if>
+            <if test="specId != null">
+                #{specId,jdbcType=VARCHAR},
+            </if>
+            <if test="freightTemplateId != null">
+                #{freightTemplateId,jdbcType=BIGINT},
+            </if>
+            <if test="weight != null">
+                #{weight,jdbcType=DECIMAL},
+            </if>
+            <if test="productInfo != null">
+                #{productInfo,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="productCode != null">
+                product_code = #{productCode,jdbcType=VARCHAR},
+            </if>
+            <if test="brandId != null">
+                brand_id = #{brandId,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassOne != null">
+                category_class_one = #{categoryClassOne,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassTwo != null">
+                category_class_two = #{categoryClassTwo,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassThree != null">
+                category_class_three = #{categoryClassThree,jdbcType=BIGINT},
+            </if>
+            <if test="categoryClassFour != null">
+                category_class_four = #{categoryClassFour,jdbcType=BIGINT},
+            </if>
+            <if test="buyCount != null">
+                buy_count = #{buyCount,jdbcType=INTEGER},
+            </if>
+            <if test="costPrice != null">
+                cost_price = #{costPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="salePrice != null">
+                sale_price = #{salePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="marketPrice != null">
+                market_price = #{marketPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="auditStatus != null">
+                audit_status = #{auditStatus,jdbcType=INTEGER},
+            </if>
+            <if test="upDownStatus != null">
+                up_down_status = #{upDownStatus,jdbcType=INTEGER},
+            </if>
+            <if test="quantity != null">
+                quantity = #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=BIGINT},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="headImage != null">
+                head_image = #{headImage,jdbcType=VARCHAR},
+            </if>
+            <if test="yearCode != null">
+                year_code = #{yearCode,jdbcType=VARCHAR},
+            </if>
+            <if test="seasonCode != null">
+                season_code = #{seasonCode,jdbcType=VARCHAR},
+            </if>
+            <if test="specId != null">
+                spec_id = #{specId,jdbcType=VARCHAR},
+            </if>
+            <if test="freightTemplateId != null">
+                freight_template_id = #{freightTemplateId,jdbcType=BIGINT},
+            </if>
+            <if test="weight != null">
+                weight = #{weight,jdbcType=DECIMAL},
+            </if>
+            <if test="productInfo != null">
+                product_info = #{productInfo,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectList" resultType="com.system.shop.entity.Product">
+        select
+        <include refid="Base_Column_List"/>,
+                                               concat((select name
+                                                       from product_category
+                                                       where id = category_class_one),
+                                                      '&gt;', (select name
+                                                               from product_category
+                                                               where id = category_class_two),
+                                                      '&gt;', (select name
+                                                               from product_category
+                                                               where id = category_class_three),
+                                                      '&gt;', (select name
+                                                               from product_category
+                                                               where id = category_class_four)) as category_class_name
+    from product
+        <where>
+            <if test="param.productName != null and param.productName != ''">
+                and product_name like concat('%', #{param.productName}, '%')
+            </if>
+            <if test="param.productCode != null and param.productCode != ''">
+                and product_code like concat('%', #{param.productCode}, '%')
+            </if>
+            <if test="param.upDownStatus != null and param.upDownStatus.size &gt; 0">
+                and up_down_status in
+                <foreach close=")" collection="param.upDownStatus" item="upDownStatus" open="(" separator=",">
+                    #{upDownStatus}
+                </foreach>
+            </if>
+            <if test="param.auditStatus != null and param.auditStatus.size &gt; 0">
+                and audit_status in
+                <foreach close=")" collection="param.auditStatus" item="auditStatus" open="(" separator=",">
+                    #{auditStatus}
+                </foreach>
+            </if>
+            <if test="param.categoryClassThree != null">
+                and category_class_three = #{param.categoryClassThree}
+            </if>
+            <if test="param.categoryClassOne != null">
+                and category_class_one = #{param.categoryClassOne}
+            </if>
+            <if test="param.storeId != null">
+                and store_id = #{param.storeId}
+            </if>
+            <if test="param.storeIds != null and param.storeIds.size &gt; 0">
+                and store_id in
+                <foreach close=")" collection="param.storeIds" item="storeId" open="(" separator=",">
+                    #{storeId}
+                </foreach>
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+
+    <select id="selectProductByIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product where id in
+        <foreach close=")" collection="productIds" item="id" open="(" separator=",">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.shop.mapper.AfterSaleMapper">
+  <resultMap id="BaseResultMap" type="com.system.shop.entity.AfterSale">
+    <!--@mbg.generated-->
+    <!--@Table after_sale-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="order_code" jdbcType="VARCHAR" property="orderCode" />
+    <result column="after_sale_code" jdbcType="VARCHAR" property="afterSaleCode" />
+    <result column="after_sale_num" jdbcType="INTEGER" property="afterSaleNum" />
+    <result column="after_sale_price" jdbcType="DECIMAL" property="afterSalePrice" />
+    <result column="apply_after_sale_price" jdbcType="DECIMAL" property="applyAfterSalePrice" />
+    <result column="order_after_status" jdbcType="VARCHAR" property="orderAfterStatus" />
+    <result column="order_after_type" jdbcType="VARCHAR" property="orderAfterType" />
+    <result column="reason_id" jdbcType="BIGINT" property="reasonId" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="explain" jdbcType="VARCHAR" property="explain" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="apply_time" jdbcType="TIMESTAMP" property="applyTime" />
+    <result column="refund_status" jdbcType="VARCHAR" property="refundStatus" />
+    <result column="refund_time" jdbcType="TIMESTAMP" property="refundTime" />
+    <result column="store_remark" jdbcType="VARCHAR" property="storeRemark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, store_id, store_name, member_id, order_code, after_sale_code, after_sale_num,
+    after_sale_price, apply_after_sale_price, order_after_status, order_after_type, reason_id,
+    reason, `explain`, image, apply_time, refund_status, refund_time, store_remark, create_time,
+    create_by, update_by, update_time, delete_flag
+  </sql>
+  <sql id="After_Sale_Column_List">
+    <!--@mbg.generated-->
+    after_sale.id,
+    after_sale.store_id,
+    after_sale.store_name,
+    after_sale.member_id,
+    after_sale.order_code,
+    after_sale.after_sale_code,
+    after_sale.after_sale_num,
+    after_sale.after_sale_price,
+    after_sale.apply_after_sale_price,
+    after_sale.order_after_status,
+    after_sale.order_after_type,
+    after_sale.reason_id,
+    after_sale.reason,
+    after_sale.`explain`,
+    after_sale.image,
+    after_sale.apply_time,
+    after_sale.refund_status,
+    after_sale.refund_time,
+    after_sale.store_remark,
+    after_sale.create_time,
+    after_sale.create_by,
+    after_sale.update_by,
+    after_sale.update_time,
+    after_sale.delete_flag
+  </sql>
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from after_sale
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from after_sale
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.system.shop.entity.AfterSale">
+    <!--@mbg.generated-->
+    insert into after_sale (id, store_id, store_name,
+      member_id, order_code, after_sale_code,
+      after_sale_num, after_sale_price, apply_after_sale_price,
+      order_after_status, order_after_type, reason_id,
+      reason, `explain`, image,
+      apply_time, refund_status, refund_time,
+      store_remark, create_time, create_by,
+      update_by, update_time, delete_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR},
+      #{memberId,jdbcType=BIGINT}, #{orderCode,jdbcType=VARCHAR}, #{afterSaleCode,jdbcType=VARCHAR},
+      #{afterSaleNum,jdbcType=INTEGER}, #{afterSalePrice,jdbcType=DECIMAL}, #{applyAfterSalePrice,jdbcType=DECIMAL},
+      #{orderAfterStatus,jdbcType=VARCHAR}, #{orderAfterType,jdbcType=VARCHAR}, #{reasonId,jdbcType=BIGINT},
+      #{reason,jdbcType=VARCHAR}, #{explain,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR},
+      #{applyTime,jdbcType=TIMESTAMP}, #{refundStatus,jdbcType=VARCHAR}, #{refundTime,jdbcType=TIMESTAMP},
+      #{storeRemark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
+      #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.system.shop.entity.AfterSale">
+    <!--@mbg.generated-->
+    insert into after_sale
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="orderCode != null">
+        order_code,
+      </if>
+      <if test="afterSaleCode != null">
+        after_sale_code,
+      </if>
+      <if test="afterSaleNum != null">
+        after_sale_num,
+      </if>
+      <if test="afterSalePrice != null">
+        after_sale_price,
+      </if>
+      <if test="applyAfterSalePrice != null">
+        apply_after_sale_price,
+      </if>
+      <if test="orderAfterStatus != null">
+        order_after_status,
+      </if>
+      <if test="orderAfterType != null">
+        order_after_type,
+      </if>
+      <if test="reasonId != null">
+        reason_id,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="explain != null">
+        `explain`,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="applyTime != null">
+        apply_time,
+      </if>
+      <if test="refundStatus != null">
+        refund_status,
+      </if>
+      <if test="refundTime != null">
+        refund_time,
+      </if>
+      <if test="storeRemark != null">
+        store_remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="orderCode != null">
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleCode != null">
+        #{afterSaleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleNum != null">
+        #{afterSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="afterSalePrice != null">
+        #{afterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="applyAfterSalePrice != null">
+        #{applyAfterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAfterStatus != null">
+        #{orderAfterStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAfterType != null">
+        #{orderAfterType,jdbcType=VARCHAR},
+      </if>
+      <if test="reasonId != null">
+        #{reasonId,jdbcType=BIGINT},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="explain != null">
+        #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null">
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundStatus != null">
+        #{refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTime != null">
+        #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeRemark != null">
+        #{storeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByIdSelective" parameterType="com.system.shop.entity.AfterSale">
+    <!--@mbg.generated-->
+    update after_sale
+    <set>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="orderCode != null">
+        order_code = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleCode != null">
+        after_sale_code = #{afterSaleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleNum != null">
+        after_sale_num = #{afterSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="afterSalePrice != null">
+        after_sale_price = #{afterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="applyAfterSalePrice != null">
+        apply_after_sale_price = #{applyAfterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAfterStatus != null">
+        order_after_status = #{orderAfterStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAfterType != null">
+        order_after_type = #{orderAfterType,jdbcType=VARCHAR},
+      </if>
+      <if test="reasonId != null">
+        reason_id = #{reasonId,jdbcType=BIGINT},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="explain != null">
+        `explain` = #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null">
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundStatus != null">
+        refund_status = #{refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTime != null">
+        refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeRemark != null">
+        store_remark = #{storeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateById" parameterType="com.system.shop.entity.AfterSale">
+    <!--@mbg.generated-->
+    update after_sale
+    set store_id = #{storeId,jdbcType=BIGINT},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=BIGINT},
+      order_code = #{orderCode,jdbcType=VARCHAR},
+      after_sale_code = #{afterSaleCode,jdbcType=VARCHAR},
+      after_sale_num = #{afterSaleNum,jdbcType=INTEGER},
+      after_sale_price = #{afterSalePrice,jdbcType=DECIMAL},
+      apply_after_sale_price = #{applyAfterSalePrice,jdbcType=DECIMAL},
+      order_after_status = #{orderAfterStatus,jdbcType=VARCHAR},
+      order_after_type = #{orderAfterType,jdbcType=VARCHAR},
+      reason_id = #{reasonId,jdbcType=BIGINT},
+      reason = #{reason,jdbcType=VARCHAR},
+      `explain` = #{explain,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      refund_status = #{refundStatus,jdbcType=VARCHAR},
+      refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      store_remark = #{storeRemark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update after_sale
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="store_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.storeId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="store_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.storeName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="member_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.memberId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="order_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.orderCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_num = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleNum,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.afterSalePrice,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="apply_after_sale_price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.applyAfterSalePrice,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="order_after_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.orderAfterStatus,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="order_after_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.orderAfterType,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="reason_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.reasonId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="reason = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.reason,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`explain` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.explain,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="image = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.image,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="apply_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.applyTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="refund_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.refundStatus,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="refund_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.refundTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="store_remark = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.storeRemark,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="create_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="update_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="delete_flag = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update after_sale
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="store_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.storeId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.storeId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="store_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.storeName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.storeName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="member_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.memberId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.memberId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="order_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.orderCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.orderCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.afterSaleCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_num = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.afterSaleNum != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleNum,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.afterSalePrice != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.afterSalePrice,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="apply_after_sale_price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.applyAfterSalePrice != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.applyAfterSalePrice,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="order_after_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.orderAfterStatus != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.orderAfterStatus,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="order_after_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.orderAfterType != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.orderAfterType,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="reason_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.reasonId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.reasonId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="reason = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.reason != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.reason,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`explain` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.explain != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.explain,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="image = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.image != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.image,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="apply_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.applyTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.applyTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="refund_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.refundStatus != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.refundStatus,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="refund_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.refundTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.refundTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="store_remark = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.storeRemark != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.storeRemark,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createBy != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateBy != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="delete_flag = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deleteFlag != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into after_sale
+    (id, store_id, store_name, member_id, order_code, after_sale_code, after_sale_num,
+      after_sale_price, apply_after_sale_price, order_after_status, order_after_type,
+      reason_id, reason, `explain`, image, apply_time, refund_status, refund_time, store_remark,
+      create_time, create_by, update_by, update_time, delete_flag)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.storeId,jdbcType=BIGINT}, #{item.storeName,jdbcType=VARCHAR},
+        #{item.memberId,jdbcType=BIGINT}, #{item.orderCode,jdbcType=VARCHAR}, #{item.afterSaleCode,jdbcType=VARCHAR},
+        #{item.afterSaleNum,jdbcType=INTEGER}, #{item.afterSalePrice,jdbcType=DECIMAL},
+        #{item.applyAfterSalePrice,jdbcType=DECIMAL}, #{item.orderAfterStatus,jdbcType=VARCHAR},
+        #{item.orderAfterType,jdbcType=VARCHAR}, #{item.reasonId,jdbcType=BIGINT}, #{item.reason,jdbcType=VARCHAR},
+        #{item.explain,jdbcType=VARCHAR}, #{item.image,jdbcType=VARCHAR}, #{item.applyTime,jdbcType=TIMESTAMP},
+        #{item.refundStatus,jdbcType=VARCHAR}, #{item.refundTime,jdbcType=TIMESTAMP}, #{item.storeRemark,jdbcType=VARCHAR},
+        #{item.createTime,jdbcType=TIMESTAMP}, #{item.createBy,jdbcType=VARCHAR}, #{item.updateBy,jdbcType=VARCHAR},
+        #{item.updateTime,jdbcType=TIMESTAMP}, #{item.deleteFlag,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.system.shop.entity.AfterSale">
+    <!--@mbg.generated-->
+    insert into after_sale
+    (id, store_id, store_name, member_id, order_code, after_sale_code, after_sale_num,
+      after_sale_price, apply_after_sale_price, order_after_status, order_after_type,
+      reason_id, reason, `explain`, image, apply_time, refund_status, refund_time, store_remark,
+      create_time, create_by, update_by, update_time, delete_flag)
+    values
+    (#{id,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR},
+      #{memberId,jdbcType=BIGINT}, #{orderCode,jdbcType=VARCHAR}, #{afterSaleCode,jdbcType=VARCHAR},
+      #{afterSaleNum,jdbcType=INTEGER}, #{afterSalePrice,jdbcType=DECIMAL}, #{applyAfterSalePrice,jdbcType=DECIMAL},
+      #{orderAfterStatus,jdbcType=VARCHAR}, #{orderAfterType,jdbcType=VARCHAR}, #{reasonId,jdbcType=BIGINT},
+      #{reason,jdbcType=VARCHAR}, #{explain,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR},
+      #{applyTime,jdbcType=TIMESTAMP}, #{refundStatus,jdbcType=VARCHAR}, #{refundTime,jdbcType=TIMESTAMP},
+      #{storeRemark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
+      #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER}
+      )
+    on duplicate key update
+    id = #{id,jdbcType=BIGINT},
+    store_id = #{storeId,jdbcType=BIGINT},
+    store_name = #{storeName,jdbcType=VARCHAR},
+    member_id = #{memberId,jdbcType=BIGINT},
+    order_code = #{orderCode,jdbcType=VARCHAR},
+    after_sale_code = #{afterSaleCode,jdbcType=VARCHAR},
+    after_sale_num = #{afterSaleNum,jdbcType=INTEGER},
+    after_sale_price = #{afterSalePrice,jdbcType=DECIMAL},
+    apply_after_sale_price = #{applyAfterSalePrice,jdbcType=DECIMAL},
+    order_after_status = #{orderAfterStatus,jdbcType=VARCHAR},
+    order_after_type = #{orderAfterType,jdbcType=VARCHAR},
+    reason_id = #{reasonId,jdbcType=BIGINT},
+    reason = #{reason,jdbcType=VARCHAR},
+    `explain` = #{explain,jdbcType=VARCHAR},
+    image = #{image,jdbcType=VARCHAR},
+    apply_time = #{applyTime,jdbcType=TIMESTAMP},
+    refund_status = #{refundStatus,jdbcType=VARCHAR},
+    refund_time = #{refundTime,jdbcType=TIMESTAMP},
+    store_remark = #{storeRemark,jdbcType=VARCHAR},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    create_by = #{createBy,jdbcType=VARCHAR},
+    update_by = #{updateBy,jdbcType=VARCHAR},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    delete_flag = #{deleteFlag,jdbcType=INTEGER}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.system.shop.entity.AfterSale">
+    <!--@mbg.generated-->
+    insert into after_sale
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="orderCode != null">
+        order_code,
+      </if>
+      <if test="afterSaleCode != null">
+        after_sale_code,
+      </if>
+      <if test="afterSaleNum != null">
+        after_sale_num,
+      </if>
+      <if test="afterSalePrice != null">
+        after_sale_price,
+      </if>
+      <if test="applyAfterSalePrice != null">
+        apply_after_sale_price,
+      </if>
+      <if test="orderAfterStatus != null">
+        order_after_status,
+      </if>
+      <if test="orderAfterType != null">
+        order_after_type,
+      </if>
+      <if test="reasonId != null">
+        reason_id,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="explain != null">
+        `explain`,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="applyTime != null">
+        apply_time,
+      </if>
+      <if test="refundStatus != null">
+        refund_status,
+      </if>
+      <if test="refundTime != null">
+        refund_time,
+      </if>
+      <if test="storeRemark != null">
+        store_remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="orderCode != null">
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleCode != null">
+        #{afterSaleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleNum != null">
+        #{afterSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="afterSalePrice != null">
+        #{afterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="applyAfterSalePrice != null">
+        #{applyAfterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAfterStatus != null">
+        #{orderAfterStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAfterType != null">
+        #{orderAfterType,jdbcType=VARCHAR},
+      </if>
+      <if test="reasonId != null">
+        #{reasonId,jdbcType=BIGINT},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="explain != null">
+        #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null">
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundStatus != null">
+        #{refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTime != null">
+        #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeRemark != null">
+        #{storeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="orderCode != null">
+        order_code = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleCode != null">
+        after_sale_code = #{afterSaleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleNum != null">
+        after_sale_num = #{afterSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="afterSalePrice != null">
+        after_sale_price = #{afterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="applyAfterSalePrice != null">
+        apply_after_sale_price = #{applyAfterSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAfterStatus != null">
+        order_after_status = #{orderAfterStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAfterType != null">
+        order_after_type = #{orderAfterType,jdbcType=VARCHAR},
+      </if>
+      <if test="reasonId != null">
+        reason_id = #{reasonId,jdbcType=BIGINT},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="explain != null">
+        `explain` = #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null">
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundStatus != null">
+        refund_status = #{refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTime != null">
+        refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeRemark != null">
+        store_remark = #{storeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="findPage" resultMap="BaseResultMap">
+    select<include refid="After_Sale_Column_List" />,
+    member.mobile,
+    member.user_name
+    from after_sale
+    left join member on member.id = after_sale.member_id
+    <where>
+      <if test="param.memberId != null">
+        and after_sale.member_id = #{param.memberId}
+      </if>
+      <if test="param.mobile != null and param.mobile != ''">
+        and member.mobile = #{param.mobile}
+      </if>
+      <if test="param.userName != null and param.userName != ''">
+        and member.user_name = #{param.userName}
+      </if>
+      <if test="param.storeId != null">
+        and after_sale.store_id = #{param.storeId}
+      </if>
+      <if test="param.orderCode != null and param.orderCode != ''">
+        and after_sale.order_code = #{param.orderCode}
+      </if>
+      <if test="param.afterSaleCode != null and param.afterSaleCode != ''">
+        and after_sale.after_sale_code = #{param.afterSaleCode}
+      </if>
+      <if test="param.orderAfterStatus != null and param.orderAfterStatus != ''">
+        and after_sale.order_after_status = #{param.orderAfterStatus}
+      </if>
+      <if test="param.orderAfterType != null and param.orderAfterType != ''">
+        and after_sale.order_after_type = #{param.orderAfterType}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+
+  <select id="selectByAfterSaleCode" resultMap="BaseResultMap">
+    select<include refid="After_Sale_Column_List" />,
+    member.mobile,
+    member.user_name
+    from after_sale
+    left join member on member.id = after_sale.member_id
+    where after_sale.after_sale_code = #{afterSaleCode}
+  </select>
+  <select id="selectList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from after_sale
+      <where>
+          <if test="param.memberId != null">
+              and member_id = #{param.memberId}
+          </if>
+          <if test="param.mobile != null and param.mobile != ''">
+              and mobile = #{param.mobile}
+          </if>
+          <if test="param.userName != null and param.userName != ''">
+              and user_name = #{param.userName}
+          </if>
+          <if test="param.storeId != null">
+              and store_id = #{param.storeId}
+          </if>
+          <if test="param.orderCode != null and param.orderCode != ''">
+              and order_code = #{param.orderCode}
+          </if>
+          <if test="param.afterSaleCode != null and param.afterSaleCode != ''">
+              and after_sale_code = #{param.afterSaleCode}
+          </if>
+          <if test="param.orderAfterStatus != null and param.orderAfterStatus != ''">
+              and order_after_status = #{param.orderAfterStatus}
+          </if>
+          <if test="param.orderAfterType != null and param.orderAfterType != ''">
+              and order_after_type = #{param.orderAfterType}
+          </if>
+      </where>
+      order by create_time desc
+  </select>
+</mapper>

@@ -45,6 +45,7 @@
     <logger name="com.system.shop" level="DEBUG"/>
     <logger name="org.springframework" level="INFO"/>
     <logger name="org.mybatis" level="DEBUG"/>
+    <logger name="org.springframework.amqp" level="DEBUG"/>
 
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>

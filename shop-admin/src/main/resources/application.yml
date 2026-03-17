@@ -12,7 +12,17 @@ spring:
     port: 7000
     database: 0
     timeout: 10000
-    # 国际化配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    publisher-confirm-type: correlated
+    publisher-returns: true
+    template:
+      mandatory: true
+  # 国际化配置
   messages:
     basename: i18n/messages
     encoding: UTF-8

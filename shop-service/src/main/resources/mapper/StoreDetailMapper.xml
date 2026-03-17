@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.shop.mapper.StoreDetailMapper">
+  <resultMap id="BaseResultMap" type="com.system.shop.entity.StoreDetail">
+    <!--@mbg.generated-->
+    <!--@Table store_detail-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="store_address_path_id" jdbcType="VARCHAR" property="storeAddressPathId" />
+    <result column="store_address_path_name" jdbcType="VARCHAR" property="storeAddressPathName" />
+    <result column="store_address_detail" jdbcType="VARCHAR" property="storeAddressDetail" />
+    <result column="store_detail" jdbcType="VARCHAR" property="storeDetail" />
+    <result column="delivery_name" jdbcType="VARCHAR" property="deliveryName" />
+    <result column="delivery_mobile" jdbcType="VARCHAR" property="deliveryMobile" />
+    <result column="delivery_address_path_id" jdbcType="VARCHAR" property="deliveryAddressPathId" />
+    <result column="delivery_address_path_name" jdbcType="VARCHAR" property="deliveryAddressPathName" />
+    <result column="delivery_address_detail" jdbcType="VARCHAR" property="deliveryAddressDetail" />
+    <result column="after_sale_name" jdbcType="VARCHAR" property="afterSaleName" />
+    <result column="after_sale_mobile" jdbcType="VARCHAR" property="afterSaleMobile" />
+    <result column="after_sale_address_path_id" jdbcType="VARCHAR" property="afterSaleAddressPathId" />
+    <result column="after_sale_address_path_name" jdbcType="VARCHAR" property="afterSaleAddressPathName" />
+    <result column="after_sale_address_detail" jdbcType="VARCHAR" property="afterSaleAddressDetail" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, store_id, store_name, store_address_path_id, store_address_path_name, store_address_detail, 
+    store_detail, delivery_name, delivery_mobile, delivery_address_path_id, delivery_address_path_name, 
+    delivery_address_detail, after_sale_name, after_sale_mobile, after_sale_address_path_id, 
+    after_sale_address_path_name, after_sale_address_detail, create_time, create_by, 
+    update_by, update_time, delete_flag
+  </sql>
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from store_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from store_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.system.shop.entity.StoreDetail">
+    <!--@mbg.generated-->
+    insert into store_detail (id, store_id, store_name, 
+      store_address_path_id, store_address_path_name, 
+      store_address_detail, store_detail, delivery_name, 
+      delivery_mobile, delivery_address_path_id, 
+      delivery_address_path_name, delivery_address_detail, 
+      after_sale_name, after_sale_mobile, after_sale_address_path_id, 
+      after_sale_address_path_name, after_sale_address_detail, 
+      create_time, create_by, update_by, 
+      update_time, delete_flag)
+    values (#{id,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR}, 
+      #{storeAddressPathId,jdbcType=VARCHAR}, #{storeAddressPathName,jdbcType=VARCHAR}, 
+      #{storeAddressDetail,jdbcType=VARCHAR}, #{storeDetail,jdbcType=VARCHAR}, #{deliveryName,jdbcType=VARCHAR}, 
+      #{deliveryMobile,jdbcType=VARCHAR}, #{deliveryAddressPathId,jdbcType=VARCHAR}, 
+      #{deliveryAddressPathName,jdbcType=VARCHAR}, #{deliveryAddressDetail,jdbcType=VARCHAR}, 
+      #{afterSaleName,jdbcType=VARCHAR}, #{afterSaleMobile,jdbcType=VARCHAR}, #{afterSaleAddressPathId,jdbcType=VARCHAR}, 
+      #{afterSaleAddressPathName,jdbcType=VARCHAR}, #{afterSaleAddressDetail,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.system.shop.entity.StoreDetail">
+    <!--@mbg.generated-->
+    insert into store_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="storeAddressPathId != null">
+        store_address_path_id,
+      </if>
+      <if test="storeAddressPathName != null">
+        store_address_path_name,
+      </if>
+      <if test="storeAddressDetail != null">
+        store_address_detail,
+      </if>
+      <if test="storeDetail != null">
+        store_detail,
+      </if>
+      <if test="deliveryName != null">
+        delivery_name,
+      </if>
+      <if test="deliveryMobile != null">
+        delivery_mobile,
+      </if>
+      <if test="deliveryAddressPathId != null">
+        delivery_address_path_id,
+      </if>
+      <if test="deliveryAddressPathName != null">
+        delivery_address_path_name,
+      </if>
+      <if test="deliveryAddressDetail != null">
+        delivery_address_detail,
+      </if>
+      <if test="afterSaleName != null">
+        after_sale_name,
+      </if>
+      <if test="afterSaleMobile != null">
+        after_sale_mobile,
+      </if>
+      <if test="afterSaleAddressPathId != null">
+        after_sale_address_path_id,
+      </if>
+      <if test="afterSaleAddressPathName != null">
+        after_sale_address_path_name,
+      </if>
+      <if test="afterSaleAddressDetail != null">
+        after_sale_address_detail,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressPathId != null">
+        #{storeAddressPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressPathName != null">
+        #{storeAddressPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressDetail != null">
+        #{storeAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDetail != null">
+        #{storeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryName != null">
+        #{deliveryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryMobile != null">
+        #{deliveryMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressPathId != null">
+        #{deliveryAddressPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressPathName != null">
+        #{deliveryAddressPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressDetail != null">
+        #{deliveryAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleName != null">
+        #{afterSaleName,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleMobile != null">
+        #{afterSaleMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleAddressPathId != null">
+        #{afterSaleAddressPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleAddressPathName != null">
+        #{afterSaleAddressPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleAddressDetail != null">
+        #{afterSaleAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByIdSelective" parameterType="com.system.shop.entity.StoreDetail">
+    <!--@mbg.generated-->
+    update store_detail
+    <set>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressPathId != null">
+        store_address_path_id = #{storeAddressPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressPathName != null">
+        store_address_path_name = #{storeAddressPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressDetail != null">
+        store_address_detail = #{storeAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDetail != null">
+        store_detail = #{storeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryName != null">
+        delivery_name = #{deliveryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryMobile != null">
+        delivery_mobile = #{deliveryMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressPathId != null">
+        delivery_address_path_id = #{deliveryAddressPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressPathName != null">
+        delivery_address_path_name = #{deliveryAddressPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressDetail != null">
+        delivery_address_detail = #{deliveryAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleName != null">
+        after_sale_name = #{afterSaleName,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleMobile != null">
+        after_sale_mobile = #{afterSaleMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleAddressPathId != null">
+        after_sale_address_path_id = #{afterSaleAddressPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleAddressPathName != null">
+        after_sale_address_path_name = #{afterSaleAddressPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleAddressDetail != null">
+        after_sale_address_detail = #{afterSaleAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateById" parameterType="com.system.shop.entity.StoreDetail">
+    <!--@mbg.generated-->
+    update store_detail
+    set store_id = #{storeId,jdbcType=BIGINT},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      store_address_path_id = #{storeAddressPathId,jdbcType=VARCHAR},
+      store_address_path_name = #{storeAddressPathName,jdbcType=VARCHAR},
+      store_address_detail = #{storeAddressDetail,jdbcType=VARCHAR},
+      store_detail = #{storeDetail,jdbcType=VARCHAR},
+      delivery_name = #{deliveryName,jdbcType=VARCHAR},
+      delivery_mobile = #{deliveryMobile,jdbcType=VARCHAR},
+      delivery_address_path_id = #{deliveryAddressPathId,jdbcType=VARCHAR},
+      delivery_address_path_name = #{deliveryAddressPathName,jdbcType=VARCHAR},
+      delivery_address_detail = #{deliveryAddressDetail,jdbcType=VARCHAR},
+      after_sale_name = #{afterSaleName,jdbcType=VARCHAR},
+      after_sale_mobile = #{afterSaleMobile,jdbcType=VARCHAR},
+      after_sale_address_path_id = #{afterSaleAddressPathId,jdbcType=VARCHAR},
+      after_sale_address_path_name = #{afterSaleAddressPathName,jdbcType=VARCHAR},
+      after_sale_address_detail = #{afterSaleAddressDetail,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update store_detail
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="store_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.storeId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="store_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.storeName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="store_address_path_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.storeAddressPathId,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="store_address_path_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.storeAddressPathName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="store_address_detail = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.storeAddressDetail,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="store_detail = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.storeDetail,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="delivery_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deliveryName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="delivery_mobile = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deliveryMobile,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="delivery_address_path_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deliveryAddressPathId,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="delivery_address_path_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deliveryAddressPathName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="delivery_address_detail = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deliveryAddressDetail,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_mobile = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleMobile,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_address_path_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleAddressPathId,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_address_path_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleAddressPathName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_address_detail = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleAddressDetail,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="create_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="update_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="delete_flag = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update store_detail
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="store_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.storeId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.storeId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="store_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.storeName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.storeName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="store_address_path_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.storeAddressPathId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.storeAddressPathId,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="store_address_path_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.storeAddressPathName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.storeAddressPathName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="store_address_detail = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.storeAddressDetail != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.storeAddressDetail,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="store_detail = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.storeDetail != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.storeDetail,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="delivery_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deliveryName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deliveryName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="delivery_mobile = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deliveryMobile != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deliveryMobile,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="delivery_address_path_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deliveryAddressPathId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deliveryAddressPathId,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="delivery_address_path_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deliveryAddressPathName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deliveryAddressPathName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="delivery_address_detail = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deliveryAddressDetail != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deliveryAddressDetail,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.afterSaleName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_mobile = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.afterSaleMobile != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleMobile,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_address_path_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.afterSaleAddressPathId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleAddressPathId,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_address_path_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.afterSaleAddressPathName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleAddressPathName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="after_sale_address_detail = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.afterSaleAddressDetail != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.afterSaleAddressDetail,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createBy != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateBy != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="delete_flag = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deleteFlag != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into store_detail
+    (id, store_id, store_name, store_address_path_id, store_address_path_name, store_address_detail, 
+      store_detail, delivery_name, delivery_mobile, delivery_address_path_id, delivery_address_path_name, 
+      delivery_address_detail, after_sale_name, after_sale_mobile, after_sale_address_path_id, 
+      after_sale_address_path_name, after_sale_address_detail, create_time, create_by, 
+      update_by, update_time, delete_flag)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.storeId,jdbcType=BIGINT}, #{item.storeName,jdbcType=VARCHAR}, 
+        #{item.storeAddressPathId,jdbcType=VARCHAR}, #{item.storeAddressPathName,jdbcType=VARCHAR}, 
+        #{item.storeAddressDetail,jdbcType=VARCHAR}, #{item.storeDetail,jdbcType=VARCHAR}, 
+        #{item.deliveryName,jdbcType=VARCHAR}, #{item.deliveryMobile,jdbcType=VARCHAR}, 
+        #{item.deliveryAddressPathId,jdbcType=VARCHAR}, #{item.deliveryAddressPathName,jdbcType=VARCHAR}, 
+        #{item.deliveryAddressDetail,jdbcType=VARCHAR}, #{item.afterSaleName,jdbcType=VARCHAR}, 
+        #{item.afterSaleMobile,jdbcType=VARCHAR}, #{item.afterSaleAddressPathId,jdbcType=VARCHAR}, 
+        #{item.afterSaleAddressPathName,jdbcType=VARCHAR}, #{item.afterSaleAddressDetail,jdbcType=VARCHAR}, 
+        #{item.createTime,jdbcType=TIMESTAMP}, #{item.createBy,jdbcType=VARCHAR}, #{item.updateBy,jdbcType=VARCHAR}, 
+        #{item.updateTime,jdbcType=TIMESTAMP}, #{item.deleteFlag,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.system.shop.entity.StoreDetail">
+    <!--@mbg.generated-->
+    insert into store_detail
+    (id, store_id, store_name, store_address_path_id, store_address_path_name, store_address_detail, 
+      store_detail, delivery_name, delivery_mobile, delivery_address_path_id, delivery_address_path_name, 
+      delivery_address_detail, after_sale_name, after_sale_mobile, after_sale_address_path_id, 
+      after_sale_address_path_name, after_sale_address_detail, create_time, create_by, 
+      update_by, update_time, delete_flag)
+    values
+    (#{id,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR}, 
+      #{storeAddressPathId,jdbcType=VARCHAR}, #{storeAddressPathName,jdbcType=VARCHAR}, 
+      #{storeAddressDetail,jdbcType=VARCHAR}, #{storeDetail,jdbcType=VARCHAR}, #{deliveryName,jdbcType=VARCHAR}, 
+      #{deliveryMobile,jdbcType=VARCHAR}, #{deliveryAddressPathId,jdbcType=VARCHAR}, 
+      #{deliveryAddressPathName,jdbcType=VARCHAR}, #{deliveryAddressDetail,jdbcType=VARCHAR}, 
+      #{afterSaleName,jdbcType=VARCHAR}, #{afterSaleMobile,jdbcType=VARCHAR}, #{afterSaleAddressPathId,jdbcType=VARCHAR}, 
+      #{afterSaleAddressPathName,jdbcType=VARCHAR}, #{afterSaleAddressDetail,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER})
+    on duplicate key update 
+    id = #{id,jdbcType=BIGINT}, 
+    store_id = #{storeId,jdbcType=BIGINT}, 
+    store_name = #{storeName,jdbcType=VARCHAR}, 
+    store_address_path_id = #{storeAddressPathId,jdbcType=VARCHAR}, 
+    store_address_path_name = #{storeAddressPathName,jdbcType=VARCHAR}, 
+    store_address_detail = #{storeAddressDetail,jdbcType=VARCHAR}, 
+    store_detail = #{storeDetail,jdbcType=VARCHAR}, 
+    delivery_name = #{deliveryName,jdbcType=VARCHAR}, 
+    delivery_mobile = #{deliveryMobile,jdbcType=VARCHAR}, 
+    delivery_address_path_id = #{deliveryAddressPathId,jdbcType=VARCHAR}, 
+    delivery_address_path_name = #{deliveryAddressPathName,jdbcType=VARCHAR}, 
+    delivery_address_detail = #{deliveryAddressDetail,jdbcType=VARCHAR}, 
+    after_sale_name = #{afterSaleName,jdbcType=VARCHAR}, 
+    after_sale_mobile = #{afterSaleMobile,jdbcType=VARCHAR}, 
+    after_sale_address_path_id = #{afterSaleAddressPathId,jdbcType=VARCHAR}, 
+    after_sale_address_path_name = #{afterSaleAddressPathName,jdbcType=VARCHAR}, 
+    after_sale_address_detail = #{afterSaleAddressDetail,jdbcType=VARCHAR}, 
+    create_time = #{createTime,jdbcType=TIMESTAMP}, 
+    create_by = #{createBy,jdbcType=VARCHAR}, 
+    update_by = #{updateBy,jdbcType=VARCHAR}, 
+    update_time = #{updateTime,jdbcType=TIMESTAMP}, 
+    delete_flag = #{deleteFlag,jdbcType=INTEGER}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.system.shop.entity.StoreDetail">
+    <!--@mbg.generated-->
+    insert into store_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="storeAddressPathId != null">
+        store_address_path_id,
+      </if>
+      <if test="storeAddressPathName != null">
+        store_address_path_name,
+      </if>
+      <if test="storeAddressDetail != null">
+        store_address_detail,
+      </if>
+      <if test="storeDetail != null">
+        store_detail,
+      </if>
+      <if test="deliveryName != null">
+        delivery_name,
+      </if>
+      <if test="deliveryMobile != null">
+        delivery_mobile,
+      </if>
+      <if test="deliveryAddressPathId != null">
+        delivery_address_path_id,
+      </if>
+      <if test="deliveryAddressPathName != null">
+        delivery_address_path_name,
+      </if>
+      <if test="deliveryAddressDetail != null">
+        delivery_address_detail,
+      </if>
+      <if test="afterSaleName != null">
+        after_sale_name,
+      </if>
+      <if test="afterSaleMobile != null">
+        after_sale_mobile,
+      </if>
+      <if test="afterSaleAddressPathId != null">
+        after_sale_address_path_id,
+      </if>
+      <if test="afterSaleAddressPathName != null">
+        after_sale_address_path_name,
+      </if>
+      <if test="afterSaleAddressDetail != null">
+        after_sale_address_detail,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressPathId != null">
+        #{storeAddressPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressPathName != null">
+        #{storeAddressPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressDetail != null">
+        #{storeAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDetail != null">
+        #{storeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryName != null">
+        #{deliveryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryMobile != null">
+        #{deliveryMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressPathId != null">
+        #{deliveryAddressPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressPathName != null">
+        #{deliveryAddressPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressDetail != null">
+        #{deliveryAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleName != null">
+        #{afterSaleName,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleMobile != null">
+        #{afterSaleMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleAddressPathId != null">
+        #{afterSaleAddressPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleAddressPathName != null">
+        #{afterSaleAddressPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleAddressDetail != null">
+        #{afterSaleAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressPathId != null">
+        store_address_path_id = #{storeAddressPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressPathName != null">
+        store_address_path_name = #{storeAddressPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddressDetail != null">
+        store_address_detail = #{storeAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDetail != null">
+        store_detail = #{storeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryName != null">
+        delivery_name = #{deliveryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryMobile != null">
+        delivery_mobile = #{deliveryMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressPathId != null">
+        delivery_address_path_id = #{deliveryAddressPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressPathName != null">
+        delivery_address_path_name = #{deliveryAddressPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddressDetail != null">
+        delivery_address_detail = #{deliveryAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleName != null">
+        after_sale_name = #{afterSaleName,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleMobile != null">
+        after_sale_mobile = #{afterSaleMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleAddressPathId != null">
+        after_sale_address_path_id = #{afterSaleAddressPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleAddressPathName != null">
+        after_sale_address_path_name = #{afterSaleAddressPathName,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleAddressDetail != null">
+        after_sale_address_detail = #{afterSaleAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectByStoreId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from store_detail where store_id = #{storeId}
+  </select>
+</mapper>

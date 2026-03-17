@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.shop.mapper.LogisticsMapper">
+    <resultMap id="BaseResultMap" type="com.system.shop.entity.Logistics">
+        <!--@mbg.generated-->
+        <!--@Table logistics-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="logistics_company_code" jdbcType="VARCHAR" property="logisticsCompanyCode"/>
+        <result column="logistics_company_name" jdbcType="VARCHAR" property="logisticsCompanyName"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id,
+        logistics_company_code,
+        logistics_company_name,
+        `status`,
+        create_time,
+        create_by,
+        update_by,
+        update_time,
+        delete_flag
+    </sql>
+    <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from logistics
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteById" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete
+        from logistics
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.system.shop.entity.Logistics">
+        <!--@mbg.generated-->
+        insert into logistics (id, logistics_company_code, logistics_company_name,
+                               `status`, create_time, create_by,
+                               update_by, update_time, delete_flag)
+        values (#{id,jdbcType=BIGINT}, #{logisticsCompanyCode,jdbcType=VARCHAR},
+                #{logisticsCompanyName,jdbcType=VARCHAR},
+                #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
+                #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.system.shop.entity.Logistics">
+        <!--@mbg.generated-->
+        insert into logistics
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="logisticsCompanyCode != null">
+                logistics_company_code,
+            </if>
+            <if test="logisticsCompanyName != null">
+                logistics_company_name,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="logisticsCompanyCode != null">
+                #{logisticsCompanyCode,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsCompanyName != null">
+                #{logisticsCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.system.shop.entity.Logistics">
+        <!--@mbg.generated-->
+        update logistics
+        <set>
+            <if test="logisticsCompanyCode != null">
+                logistics_company_code = #{logisticsCompanyCode,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsCompanyName != null">
+                logistics_company_name = #{logisticsCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateById" parameterType="com.system.shop.entity.Logistics">
+        <!--@mbg.generated-->
+        update logistics
+        set logistics_company_code = #{logisticsCompanyCode,jdbcType=VARCHAR},
+            logistics_company_name = #{logisticsCompanyName,jdbcType=VARCHAR},
+            `status`               = #{status,jdbcType=INTEGER},
+            create_time            = #{createTime,jdbcType=TIMESTAMP},
+            create_by              = #{createBy,jdbcType=VARCHAR},
+            update_by              = #{updateBy,jdbcType=VARCHAR},
+            update_time            = #{updateTime,jdbcType=TIMESTAMP},
+            delete_flag            = #{deleteFlag,jdbcType=INTEGER}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update logistics
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="logistics_company_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.logisticsCompanyCode,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="logistics_company_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.logisticsCompanyName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`status` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="create_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="update_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="delete_flag = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update logistics
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="logistics_company_code = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.logisticsCompanyCode != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.logisticsCompanyCode,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="logistics_company_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.logisticsCompanyName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.logisticsCompanyName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`status` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.status != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createBy != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_by = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateBy != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="delete_flag = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.deleteFlag != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into logistics
+        (id, logistics_company_code, logistics_company_name, `status`, create_time, create_by,
+         update_by, update_time, delete_flag)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id,jdbcType=BIGINT}, #{item.logisticsCompanyCode,jdbcType=VARCHAR},
+             #{item.logisticsCompanyName,jdbcType=VARCHAR},
+             #{item.status,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.createBy,jdbcType=VARCHAR},
+             #{item.updateBy,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=TIMESTAMP},
+             #{item.deleteFlag,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" parameterType="com.system.shop.entity.Logistics">
+        <!--@mbg.generated-->
+        insert into logistics
+        (id, logistics_company_code, logistics_company_name, `status`, create_time, create_by,
+         update_by, update_time, delete_flag)
+        values (#{id,jdbcType=BIGINT}, #{logisticsCompanyCode,jdbcType=VARCHAR},
+                #{logisticsCompanyName,jdbcType=VARCHAR},
+                #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
+                #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER})
+        on duplicate key update id                     = #{id,jdbcType=BIGINT},
+                                logistics_company_code = #{logisticsCompanyCode,jdbcType=VARCHAR},
+                                logistics_company_name = #{logisticsCompanyName,jdbcType=VARCHAR},
+                                `status`               = #{status,jdbcType=INTEGER},
+                                create_time            = #{createTime,jdbcType=TIMESTAMP},
+                                create_by              = #{createBy,jdbcType=VARCHAR},
+                                update_by              = #{updateBy,jdbcType=VARCHAR},
+                                update_time            = #{updateTime,jdbcType=TIMESTAMP},
+                                delete_flag            = #{deleteFlag,jdbcType=INTEGER}
+    </insert>
+    <insert id="insertOrUpdateSelective" parameterType="com.system.shop.entity.Logistics">
+        <!--@mbg.generated-->
+        insert into logistics
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="logisticsCompanyCode != null">
+                logistics_company_code,
+            </if>
+            <if test="logisticsCompanyName != null">
+                logistics_company_name,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="logisticsCompanyCode != null">
+                #{logisticsCompanyCode,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsCompanyName != null">
+                #{logisticsCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="logisticsCompanyCode != null">
+                logistics_company_code = #{logisticsCompanyCode,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsCompanyName != null">
+                logistics_company_name = #{logisticsCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <delete id="deleteList">
+        delete
+        from logistics where id in
+        <foreach collection="ids" item="id" open="(" separator=", " close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from logistics
+        <where>
+            <if test="param.logisticsCompanyCode != null and param.logisticsCompanyCode != ''">
+                and logistics_company_code like concat('%', #{param.logisticsCompanyCode}, '%')
+            </if>
+            <if test="param.logisticsCompanyName != null and param.logisticsCompanyName != ''">
+                and logistics_company_name like concat('%', #{param.logisticsCompanyName}, '%')
+            </if>
+            <if test="param.status != null">
+                and `status` = #{param.status}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectStoreList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from logistics
+        where `status` = 1
+          and id in (select logistics_id from store_logistics where store_id = #{storeId} and `status` = 1)
+    </select>
+</mapper>
