@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface SysMenuService {
     List<SysMenu> findAll();
-    SysMenu findById(Long id);
+    SysMenu selectById(Long id);
     SysMenu create(SysMenu menu);
     SysMenu update(SysMenu menu);
     void delete(Long id);

@@ -35,7 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserById(Long id) {
         logger.debug("Loading user by id: {}", id);
-        SysUser user = userMapper.findById(id)
+        SysUser user = userMapper.selectById(id)
                 .orElseThrow(() -> {
                     logger.error("User not found with id: {}", id);
                     return new UsernameNotFoundException("User not found with id: " + id);

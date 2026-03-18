@@ -27,7 +27,7 @@ public class SysUserController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public Result<SysUser> getUserById(@PathVariable Long id) {
-        return Result.success(userService.findById(id));
+        return Result.success(userService.selectById(id));
     }
 
     @PostMapping

@@ -12,7 +12,7 @@
         <result property="deleteFlag" column="delete_flag"/>
     </resultMap>
 
-    <select id="findById" resultMap="roleMap">
+    <select id="selectById" resultMap="roleMap">
         SELECT * FROM sys_role
         WHERE id = #{id}
         AND delete_flag = 0

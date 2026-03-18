@@ -21,6 +21,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private JwtTokenProvider tokenProvider;
 
     @Autowired
+    private TokenService tokenService;
+
+    @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
@@ -31,15 +34,25 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             String jwt = getJwtFromRequest(request);
 
-            if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
-                Long userId = tokenProvider.getUserIdFromJWT(jwt);
+            if (StringUtils.hasText(jwt)) {
+                // 先验证 JWT token 格式是否有效
+                if (tokenProvider.validateToken(jwt)) {
+                    // 再验证 Redis 中是否存在（可选，增强安全性）
+                    boolean tokenInRedis = tokenService.validateTokenInRedis(jwt);
+                    
+                    if (tokenInRedis) {
+                        Long userId = tokenProvider.getUserIdFromJWT(jwt);
 
-                UserDetails userDetails = customUserDetailsService.loadUserById(userId);
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        UserDetails userDetails = customUserDetailsService.loadUserById(userId);
+                        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                                userDetails, null, userDetails.getAuthorities());
+                        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+                    } else {
+                        logger.warn("Token not found in Redis, may have been logged out");
+                    }
+                }
             }
         } catch (Exception ex) {
             logger.error("Could not set user authentication in security context", ex);

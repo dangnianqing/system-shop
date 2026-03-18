@@ -3,6 +3,8 @@ package com.system.shop.service.impl;
 import com.system.shop.entity.SysUser;
 import com.system.shop.exception.BusinessException;
 import com.system.shop.security.JwtTokenProvider;
+import com.system.shop.security.TokenService;
+import com.system.shop.security.UserPrincipal;
 import com.system.shop.service.AuthService;
 import com.system.shop.service.SysUserService;
 import org.slf4j.Logger;
@@ -28,6 +30,9 @@ public class AuthServiceImpl implements AuthService {
     private JwtTokenProvider tokenProvider;
 
     @Autowired
+    private TokenService tokenService;
+
+    @Autowired
     private SysUserService userService;
 
     @Override
@@ -40,6 +45,10 @@ public class AuthServiceImpl implements AuthService {
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = tokenProvider.generateToken(authentication);
+
+            // 将 token 存入 Redis
+            UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+            tokenService.saveToken(userPrincipal.getId(), jwt);
 
             Map<String, Object> result = new HashMap<>();
             result.put("token", jwt);
@@ -66,6 +75,12 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public void logout() {
         logger.debug("Logging out user");
+        // 从 SecurityContext 获取当前用户并删除 Redis 中的 token
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserPrincipal) {
+            UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+            tokenService.removeTokenByUserId(userPrincipal.getId());
+        }
         SecurityContextHolder.clearContext();
     }
 } 

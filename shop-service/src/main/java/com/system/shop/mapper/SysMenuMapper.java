@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Mapper
 public interface SysMenuMapper {
-    Optional<SysMenu> findById(@Param("id") Long id);
+    Optional<SysMenu> selectById(@Param("id") Long id);
     List<SysMenu> findAll();
     void insert(SysMenu menu);
     void update(SysMenu menu);

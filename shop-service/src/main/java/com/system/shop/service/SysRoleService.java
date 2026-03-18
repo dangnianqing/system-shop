@@ -7,7 +7,7 @@ import java.util.List;
 public interface SysRoleService {
     List<SysRole> findAll();
 
-    SysRole findById(Long id);
+    SysRole selectById(Long id);
 
     SysRole create(SysRole role);
 

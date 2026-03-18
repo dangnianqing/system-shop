@@ -27,7 +27,7 @@ public class SysMenuController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public Result<SysMenu> getMenuById(@PathVariable Long id) {
-        return Result.success(menuService.findById(id));
+        return Result.success(menuService.selectById(id));
     }
 
     @PostMapping

@@ -28,8 +28,8 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public SysUser findById(Long id) {
-        return userMapper.findById(id)
+    public SysUser selectById(Long id) {
+        return userMapper.selectById(id)
                 .orElseThrow(() -> new BusinessException("user.not.found"));
     }
 
@@ -51,7 +51,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     @Transactional
     public SysUser update(SysUser user) {
-        SysUser existingUser = findById(user.getId());
+        SysUser existingUser = selectById(user.getId());
         user.setUpdateTime(LocalDateTime.now());
         userMapper.update(user);
         return user;
@@ -60,7 +60,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     @Transactional
     public void delete(Long id) {
-        SysUser user = findById(id);
+        SysUser user = selectById(id);
         user.setDeleteFlag(1);
         user.setUpdateTime(LocalDateTime.now());
         userMapper.update(user);

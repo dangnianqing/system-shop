@@ -66,7 +66,7 @@ public class ProductElasticSearchServiceImpl implements ProductElasticSearchServ
 
     @Override
     public ProductIndex searchByProductId(String productId) {
-        Optional<ProductIndex> productIndex = productIndexRepository.findById(productId);
+        Optional<ProductIndex> productIndex = productIndexRepository.selectById(productId);
         Product product = productService.selectById(Long.valueOf(productId));
         productIndex.get().setQuantity(product.getQuantity());
         productIndex.get().setBuyCount(product.getBuyCount());

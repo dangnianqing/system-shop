@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Mapper
 public interface SysRoleMapper {
-    Optional<SysRole> findById(@Param("id") Long id);
+    Optional<SysRole> selectById(@Param("id") Long id);
     List<SysRole> findAll();
     void insert(SysRole role);
     void update(SysRole role);

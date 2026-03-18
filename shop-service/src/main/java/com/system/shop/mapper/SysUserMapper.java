@@ -9,7 +9,7 @@ import java.util.Optional;
 @Mapper
 public interface SysUserMapper {
     Optional<SysUser> findByUsername(@Param("username") String username);
-    Optional<SysUser> findById(@Param("id") Long id);
+    Optional<SysUser> selectById(@Param("id") Long id);
     List<SysUser> findAll();
     void insert(SysUser user);
     void update(SysUser user);

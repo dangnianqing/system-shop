@@ -27,7 +27,7 @@ public class SysRoleController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public Result<SysRole> getRoleById(@PathVariable Long id) {
-        return Result.success(roleService.findById(id));
+        return Result.success(roleService.selectById(id));
     }
 
     @PostMapping

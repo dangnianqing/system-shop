@@ -22,8 +22,8 @@ public class SysMenuServiceImpl implements SysMenuService {
     }
 
     @Override
-    public SysMenu findById(Long id) {
-        return menuMapper.findById(id)
+    public SysMenu selectById(Long id) {
+        return menuMapper.selectById(id)
                 .orElseThrow(() -> new RuntimeException("Menu not found with id: " + id));
     }
 
@@ -39,7 +39,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     @Override
     @Transactional
     public SysMenu update(SysMenu menu) {
-        SysMenu existingMenu = findById(menu.getId());
+        SysMenu existingMenu = selectById(menu.getId());
         menu.setUpdateTime(LocalDateTime.now());
         menuMapper.update(menu);
         return menu;
@@ -48,7 +48,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     @Override
     @Transactional
     public void delete(Long id) {
-        SysMenu menu = findById(id);
+        SysMenu menu = selectById(id);
         menu.setDeleteFlag(1);
         menu.setUpdateTime(LocalDateTime.now());
         menuMapper.update(menu);

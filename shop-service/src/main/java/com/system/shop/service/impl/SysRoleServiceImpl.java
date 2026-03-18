@@ -26,8 +26,8 @@ public class SysRoleServiceImpl implements SysRoleService {
     }
 
     @Override
-    public SysRole findById(Long id) {
-        return roleMapper.findById(id)
+    public SysRole selectById(Long id) {
+        return roleMapper.selectById(id)
                 .orElseThrow(() -> new RuntimeException("Role not found with id: " + id));
     }
 
@@ -43,7 +43,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     @Override
     @Transactional
     public SysRole update(SysRole role) {
-        SysRole existingRole = findById(role.getId());
+        SysRole existingRole = selectById(role.getId());
         role.setUpdateTime(LocalDateTime.now());
         roleMapper.update(role);
         return role;
@@ -52,7 +52,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     @Override
     @Transactional
     public void delete(Long id) {
-        SysRole role = findById(id);
+        SysRole role = selectById(id);
         role.setDeleteFlag(1);
         role.setUpdateTime(LocalDateTime.now());
         roleMapper.update(role);
