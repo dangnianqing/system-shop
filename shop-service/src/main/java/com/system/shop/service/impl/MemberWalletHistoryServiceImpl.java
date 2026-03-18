@@ -2,7 +2,6 @@ package com.system.shop.service.impl;
 
 import com.system.shop.base.ServiceImpl;
 import com.system.shop.enumer.RechargeType;
-import com.system.shop.redis.RedisLock;
 import com.system.shop.mapper.MemberWalletHistoryMapper;
 import com.system.shop.entity.Member;
 import com.system.shop.entity.MemberWalletHistory;
@@ -17,8 +16,6 @@ import java.math.BigDecimal;
 public class MemberWalletHistoryServiceImpl extends ServiceImpl<MemberWalletHistoryMapper, MemberWalletHistory> implements MemberWalletHistoryService {
     @Autowired
     private MemberService memberService;
-    @Autowired
-    private RedisLock redisLock;
 
     @Override
     public Boolean saveWallet(MemberWalletHistory memberWalletHistory) {

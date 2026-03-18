@@ -1,14 +1,14 @@
 package com.system.shop.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.shop.index.ProductIndex;
-import com.shop.index.ProductIndexSearch;
-import com.shop.index.Sku;
 import com.system.shop.entity.Product;
 import com.system.shop.entity.ProductImage;
 import com.system.shop.entity.ProductSku;
 import com.system.shop.entity.ProductSpec;
-import com.shop.repository.ProductIndexRepository;
+import com.system.shop.index.ProductIndex;
+import com.system.shop.index.ProductIndexSearch;
+import com.system.shop.index.Sku;
+import com.system.shop.repository.ProductIndexRepository;
 import com.system.shop.service.ProductElasticSearchService;
 import com.system.shop.service.ProductImageService;
 import com.system.shop.service.ProductService;
@@ -53,7 +53,7 @@ public class ProductElasticSearchServiceImpl implements ProductElasticSearchServ
     public Page<ProductIndex> searchPage(ProductIndexSearch search) {
         //Pageable pageable=new PageRequest(search.getPageNumber(), search.getPageSize(), null);
         // Order order = new Order(Sort.Direction.valueOf(search.getOrder().toUpperCase()), search.getSort());
-        Pageable pageable = PageRequest.of(search.getPageNumber() - 1, search.getPageSize());
+        Pageable pageable = PageRequest.of(search.getPageNum() - 1, search.getPageSize());
         return productIndexRepository.findAll(pageable);
     }
 

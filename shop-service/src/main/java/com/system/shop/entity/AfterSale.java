@@ -1,8 +1,8 @@
 package com.system.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.shop.bean.order.AfterSaleInfo;
 import com.system.shop.base.BaseEntity;
+import com.system.shop.bean.order.AfterSaleInfo;
 import com.system.shop.enumer.AfterSaleRefundStatus;
 import com.system.shop.enumer.AfterSaleStatus;
 import com.system.shop.utils.SnowFlake;

@@ -89,14 +89,14 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             bean.setCancel(cancel);
             return this.updateByIdSelective(bean);
         }
-        throw new BusinessException(ResultCode.DATA_CHECK_ERROR, "只有待发货状态的订单才可修改取消状态");
+        throw new BusinessException(ResultCode.ORDER_CANCEL_STATUS_MODIFY);
     }
 
     @Override
     public Boolean updateAddress(Order order) {
         Order bean = baseMapper.selectByOrderCode(order.getOrderCode());
         if (bean == null) {
-            throw new BusinessException(ResultCode.PARAM_ERROR, "订单不存在");
+            throw new BusinessException(ResultCode.ORDER_NOT_EXIST);
         }
         order.setId(bean.getId());
         return this.updateByIdSelective(order);
@@ -107,7 +107,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public Boolean updatePayPrice(Order order, Operator operator) {
         Order bean = baseMapper.selectByOrderCode(order.getOrderCode());
         if (bean == null) {
-            throw new BusinessException(ResultCode.PARAM_ERROR, "订单不存在");
+            throw new BusinessException(ResultCode.ORDER_NOT_EXIST);
         }
         order.setId(bean.getId());
         OrderLog orderLog = new OrderLog(order.getOrderCode(), "订单[" + order.getOrderCode() + "]修改支付金额，修改后的金额为：" + order.getPayPrice(), operator);
@@ -124,10 +124,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public Boolean saveOrderLogistics(Order order, Operator operator) {
         Order bean = baseMapper.selectByOrderCode(order.getOrderCode());
         if (bean == null) {
-            throw new BusinessException(ResultCode.PARAM_ERROR, "订单不存在");
+            throw new BusinessException(ResultCode.ORDER_NOT_EXIST);
         }
         if (!bean.getOrderStatus().equals(OrderStatus.PENDING_DELIVERY.name())) {
-            throw new BusinessException(ResultCode.DATA_CHECK_ERROR, "订单状态不正确");
+            throw new BusinessException(ResultCode.ORDER_STATUS_ERROR);
         }
         orderLogisticsService.update(order.getOrderCode(), order.getOrderLogisticsList());
         order.setOrderStatus(OrderStatus.PENDING_RECEIPT.name());
@@ -142,7 +142,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public Boolean updateCompleteOrder(String orderCode, Operator operator) {
         Order order = baseMapper.selectByOrderCode(orderCode);
         if (order == null) {
-            throw new BusinessException(ResultCode.PARAM_ERROR, "订单不存在");
+            throw new BusinessException(ResultCode.ORDER_NOT_EXIST);
         }
         Order bean = new Order();
         bean.setId(order.getId());
@@ -157,10 +157,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public Boolean updateCancelOrder(String orderCode, Operator operator) {
         Order order = baseMapper.selectByOrderCode(orderCode);
         if (order.getCancel() == 0) {
-            throw new BusinessException(ResultCode.DATA_CHECK_ERROR, "订单不可取消");
+            throw new BusinessException(ResultCode.ORDER_CANNOT_CANCEL);
         }
         if (order.getOrderStatus().equals(OrderStatus.CANCELLED.name())) {
-            throw new BusinessException(ResultCode.DATA_CHECK_ERROR, "订单已取消");
+            throw new BusinessException(ResultCode.ORDER_ALREADY_CANCELLED);
         }
         Order bean = new Order();
         bean.setId(order.getId());
@@ -177,13 +177,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public Boolean updatePayOrder(String orderCode, Operator operator) {
         Order bean = baseMapper.selectByOrderCode(orderCode);
         if (bean == null) {
-            throw new BusinessException(ResultCode.PARAM_ERROR, "订单不存在");
+            throw new BusinessException(ResultCode.ORDER_NOT_EXIST);
         }
         if (bean.getPayStatus().equals(PayStatus.PAID.name())) {
-            throw new BusinessException(ResultCode.DATA_CHECK_ERROR, "订单已支付");
+            throw new BusinessException(ResultCode.ORDER_ALREADY_PAID);
         }
         if (bean.getOrderStatus().equals(OrderStatus.CANCELLED.name())) {
-            throw new BusinessException(ResultCode.DATA_CHECK_ERROR, "订单已取消");
+            throw new BusinessException(ResultCode.ORDER_ALREADY_CANCELLED);
         }
         if (bean.getPayStatus().equals(PayStatus.UNPAID.name()) && bean.getOrderStatus().equals(OrderStatus.PENDING_PAYMENT.name())) {
             Order order = new Order();
@@ -194,7 +194,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             order.setId(bean.getId());
             boolean status = memberService.updateWalletPrice(bean.getMemberId(), bean.getPayPrice());
             if (!status) {
-                throw new BusinessException(ResultCode.ERROR, "余额不足，支付失败");
+                throw new BusinessException(ResultCode.INSUFFICIENT_BALANCE);
             }
             this.updateByIdSelective(order);
             OrderLog orderLog = new OrderLog(bean.getOrderCode(), "订单[" + bean.getOrderCode() + "]已支付", operator);
@@ -202,7 +202,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             return orderLogService.insert(orderLog);
 
         }
-        throw new BusinessException(ResultCode.DATA_CHECK_ERROR, "订单状态不正确");
+        throw new BusinessException(ResultCode.ORDER_STATUS_ERROR);
 
     }
 

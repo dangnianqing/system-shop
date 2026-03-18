@@ -1,8 +1,8 @@
 package com.system.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.shop.bean.cart.StoreSettlement;
 import com.system.shop.base.BaseEntity;
+import com.system.shop.bean.cart.StoreSettlement;
 import com.system.shop.enumer.OrderStatus;
 import com.system.shop.enumer.PayStatus;
 import com.system.shop.utils.SnowFlake;

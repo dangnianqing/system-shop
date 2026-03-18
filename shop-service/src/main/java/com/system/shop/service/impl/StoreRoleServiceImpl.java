@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class StoreRoleServiceImpl extends ServiceImpl<StoreRoleMapper, StoreRole> implements StoreRoleService {
@@ -50,7 +51,7 @@ public class StoreRoleServiceImpl extends ServiceImpl<StoreRoleMapper, StoreRole
     public Map<String, Object> selectMenuList(Long roleId) {
         return new HashMap<String, Object>() {{
             put("menuList", storeMenuService.selectListTree());
-            put("roleMenuList", storeRoleMenuService.selectListByRoleId(roleId).stream().map(StoreRoleMenu::getMenuId).toList());
+            put("roleMenuList", storeRoleMenuService.selectListByRoleId(roleId).stream().map(StoreRoleMenu::getMenuId).collect(Collectors.toList()));
         }};
 
     }

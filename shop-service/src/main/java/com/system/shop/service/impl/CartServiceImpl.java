@@ -1,8 +1,9 @@
 package com.system.shop.service.impl;
 
-import com.system.shop.entity.cart.CartItem;
-import com.system.shop.entity.cart.ProductItem;
-import com.system.shop.entity.cart.StoreItem;
+
+import com.system.shop.bean.cart.CartItem;
+import com.system.shop.bean.cart.CartProductItem;
+import com.system.shop.bean.cart.CartStoreItem;
 import com.system.shop.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,7 +27,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void addToCart(Long userId, String storeCode, String storeName, ProductItem productItem) {
+    public void addToCart(Long userId, String storeCode, String storeName, CartProductItem productItem) {
         String cartKey = getCartKey(userId);
         CartItem cartItem = Optional.ofNullable(getCart(userId))
                 .orElseGet(() -> {
@@ -36,11 +37,11 @@ public class CartServiceImpl implements CartService {
                 });
 
         // 查找或创建门店
-        StoreItem storeItem = cartItem.getStoreItems().stream()
+        CartStoreItem storeItem = cartItem.getStoreItems().stream()
                 .filter(store -> store.getStoreCode().equals(storeCode))
                 .findFirst()
                 .orElseGet(() -> {
-                    StoreItem newStore = new StoreItem();
+                    CartStoreItem newStore = new CartStoreItem();
                     newStore.setStoreCode(storeCode);
                     newStore.setStoreName(storeName);
                     newStore.setProductItems(new ArrayList<>());
@@ -49,14 +50,14 @@ public class CartServiceImpl implements CartService {
                 });
 
         // 查找商品是否已存在
-        Optional<ProductItem> existingProduct = storeItem.getProductItems().stream()
+        Optional<CartProductItem> existingProduct = storeItem.getProductItems().stream()
                 .filter(p -> p.getProductCode().equals(productItem.getProductCode()) 
                         && p.getSkuCode().equals(productItem.getSkuCode()))
                 .findFirst();
 
         if (existingProduct.isPresent()) {
             // 更新数量
-            ProductItem product = existingProduct.get();
+            CartProductItem product = existingProduct.get();
             product.setQuantity(product.getQuantity() + productItem.getQuantity());
         } else {
             // 添加新商品
@@ -105,14 +106,10 @@ public class CartServiceImpl implements CartService {
         if (cartItem != null) {
             cartItem.getStoreItems().stream()
                     .filter(store -> store.getStoreCode().equals(storeCode))
-                    .findFirst()
-                    .ifPresent(store -> 
-                        store.getProductItems().stream()
-                            .filter(product -> product.getProductCode().equals(productCode) 
-                                && product.getSkuCode().equals(skuCode))
-                            .findFirst()
-                            .ifPresent(product -> product.setQuantity(quantity))
-                    );
+                    .findFirst().flatMap(store -> store.getProductItems().stream()
+                            .filter(product -> product.getProductCode().equals(productCode)
+                                    && product.getSkuCode().equals(skuCode))
+                            .findFirst()).ifPresent(product -> product.setQuantity(quantity));
 
             redisTemplate.opsForValue().set(cartKey, cartItem);
         }
@@ -138,14 +135,10 @@ public class CartServiceImpl implements CartService {
         if (cartItem != null) {
             cartItem.getStoreItems().stream()
                     .filter(store -> store.getStoreCode().equals(storeCode))
-                    .findFirst()
-                    .ifPresent(store -> 
-                        store.getProductItems().stream()
-                            .filter(product -> product.getProductCode().equals(productCode) 
-                                && product.getSkuCode().equals(skuCode))
-                            .findFirst()
-                            .ifPresent(product -> product.setSelected(selected))
-                    );
+                    .findFirst().flatMap(store -> store.getProductItems().stream()
+                            .filter(product -> product.getProductCode().equals(productCode)
+                                    && product.getSkuCode().equals(skuCode))
+                            .findFirst()).ifPresent(product -> product.setSelected(selected));
 
             redisTemplate.opsForValue().set(cartKey, cartItem);
         }
@@ -191,8 +184,8 @@ public class CartServiceImpl implements CartService {
 
         return cartItem.getStoreItems().stream()
                 .flatMap(store -> store.getProductItems().stream())
-                .filter(ProductItem::isSelected)
-                .map(product -> product.getPrice().multiply(new BigDecimal(product.getQuantity())))
+                .filter(CartProductItem::isSelected)
+                .map(product -> product.getSalePrice().multiply(new BigDecimal(product.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
@@ -205,8 +198,8 @@ public class CartServiceImpl implements CartService {
 
         return cartItem.getStoreItems().stream()
                 .flatMap(store -> store.getProductItems().stream())
-                .filter(ProductItem::isSelected)
-                .mapToInt(ProductItem::getQuantity)
+                .filter(CartProductItem::isSelected)
+                .mapToInt(CartProductItem::getQuantity)
                 .sum();
     }
 } 

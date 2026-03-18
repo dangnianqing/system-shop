@@ -3,23 +3,23 @@ package com.system.shop.service.impl;
 import cn.hutool.core.collection.CollectionUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.shop.bean.order.AfterSaleInfo;
 import com.system.shop.base.ServiceImpl;
 import com.system.shop.bean.Operator;
+import com.system.shop.bean.order.AfterSaleInfo;
+import com.system.shop.bean.search.AfterSaleSearch;
 import com.system.shop.enumer.AfterSaleRefundStatus;
 import com.system.shop.enumer.AfterSaleStatus;
 import com.system.shop.enumer.AfterSaleType;
 import com.system.shop.enumer.OrderItemAfterSaleStatus;
 import com.system.shop.enumer.OrderStatus;
-import com.system.shop.exception.BaseException;
-import com.system.shop.result.ResultCode;
+import com.system.shop.exception.BusinessException;
+import com.system.shop.common.ResultCode;
 import com.system.shop.mapper.AfterSaleMapper;
 import com.system.shop.entity.AfterSale;
 import com.system.shop.entity.AfterSaleItem;
 import com.system.shop.entity.AfterSaleLog;
 import com.system.shop.entity.Order;
 import com.system.shop.entity.OrderItem;
-import com.system.shop.search.AfterSaleSearch;
 import com.system.shop.service.AfterSaleItemService;
 import com.system.shop.service.AfterSaleLogService;
 import com.system.shop.service.AfterSaleService;
@@ -52,7 +52,7 @@ public class AfterSaleServiceImpl extends ServiceImpl<AfterSaleMapper, AfterSale
         Order order = orderService.selectByOrderCode(orderCode);
         //订单未支付，不能申请申请售后
         if (!order.getOrderStatus().equals(OrderStatus.COMPLETE.name()) && !order.getOrderStatus().equals(OrderStatus.PENDING_RECEIPT.name())) {
-            throw new BaseException(ResultCode.PARAM_ERROR, "订单状态不允许申请售后，请联系平台或商家");
+            throw new BusinessException(ResultCode.AFTER_SALES_ORDER_STATUS_ERROR);
         }
         List<OrderItem> orderItems = order.getOrderItems();
         List<AfterSaleItem> afterSaleItems = new ArrayList<>();
@@ -63,7 +63,7 @@ public class AfterSaleServiceImpl extends ServiceImpl<AfterSaleMapper, AfterSale
             }
         }
         if (CollectionUtil.isEmpty(afterSaleItems)) {
-            throw new BaseException(ResultCode.PARAM_ERROR, "订单状态不允许申请售后，请联系平台或商家");
+            throw new BusinessException(ResultCode.AFTER_SALES_ORDER_STATUS_ERROR);
         }
         AfterSale bean = new AfterSale(order, afterSaleItems);
         return bean;
@@ -81,11 +81,11 @@ public class AfterSaleServiceImpl extends ServiceImpl<AfterSaleMapper, AfterSale
             OrderItem orderItem = orderItemService.selectByOrderItemCode(afterSaleItemInfo.getOrderItemCode());
             //未申请售后或部分售后订单货物才能进行申请
             if (orderItem.getAfterSaleStatus().equals(OrderItemAfterSaleStatus.NEW.name()) || orderItem.getAfterSaleStatus().equals(OrderItemAfterSaleStatus.EXPIRED.name()) || orderItem.getAfterSaleStatus().equals(OrderItemAfterSaleStatus.ALREADY_APPLIED.name())) {
-                throw new BaseException(ResultCode.PARAM_ERROR, "订单状态不允许申请售后，请联系平台或商家");
+                throw new BusinessException(ResultCode.AFTER_SALES_ITEM_STATUS_ERROR);
             }
             //申请商品数量不能超过商品总数量-售后商品数量
             if (afterSaleItemInfo.getAfterNum() > (orderItem.getProductNum() - orderItem.getAfterSaleNum())) {
-                throw new BaseException(ResultCode.PARAM_ERROR, "申请售后商品数量错误");
+                throw new BusinessException(ResultCode.AFTER_SALES_QUANTITY_ERROR);
             }
             AfterSaleItem afterSaleItem = new AfterSaleItem(afterSale.getAfterSaleCode(), orderItem, afterSaleItemInfo);
             afterSaleItems.add(afterSaleItem);
@@ -108,7 +108,7 @@ public class AfterSaleServiceImpl extends ServiceImpl<AfterSaleMapper, AfterSale
 
     @Override
     public PageInfo<AfterSale> findPage(AfterSaleSearch afterSaleSearch) {
-        PageHelper.startPage(afterSaleSearch.getPageNumber(), afterSaleSearch.getPageSize());
+        PageHelper.startPage(afterSaleSearch.getPageNum(), afterSaleSearch.getPageSize());
         return new PageInfo(baseMapper.findPage(afterSaleSearch.querymap()));
     }
 
@@ -131,11 +131,11 @@ public class AfterSaleServiceImpl extends ServiceImpl<AfterSaleMapper, AfterSale
         AfterSale afterSale = this.selectByAfterSaleCode(afterSaleCode);
         //判断为待审核的售后服务
         if (!afterSale.getOrderAfterStatus().equals(AfterSaleStatus.APPLY.name())) {
-            throw new BaseException(ResultCode.PARAM_ERROR, "售后单状态不允许审核，请联系平台或商家");
+            throw new BusinessException(ResultCode.AFTER_SALES_ORDER_STATUS_ERROR);
         }
         //判断退款金额与付款金额是否正确,退款金额不能大于付款金额
         if (afterSalePrice.compareTo(afterSale.getApplyAfterSalePrice()) > 0) {
-            throw new BaseException(ResultCode.PARAM_ERROR, "申请退款金额错误 实际退款金额不能大于支付金额");
+            throw new BusinessException(ResultCode.AFTER_SALES_REFUND_AMOUNT_ERROR);
         }
         List<AfterSaleItem> afterSaleItems = afterSaleItemService.selectByAfterSaleCode(afterSaleCode);
         if (status == 1) {
@@ -163,7 +163,7 @@ public class AfterSaleServiceImpl extends ServiceImpl<AfterSaleMapper, AfterSale
                     afterSale.setRefundStatus(AfterSaleRefundStatus.REFUND_SUCCESS.name());
                     afterSale.setOrderAfterStatus(AfterSaleStatus.COMPLETE.name());
                 } else {
-                    throw new BaseException(ResultCode.PARAM_ERROR, "退款失败，请联系平台或商家");
+                    throw new BusinessException(ResultCode.AFTER_SALES_REFUND_FAILED);
                 }
             }
             if (afterSale.getOrderAfterType().equals(AfterSaleType.RETURN_REFUND.name())) {

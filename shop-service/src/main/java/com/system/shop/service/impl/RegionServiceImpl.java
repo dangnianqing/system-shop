@@ -6,11 +6,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.system.shop.base.ServiceImpl;
-import com.system.shop.redis.RedisUtil;
 import com.system.shop.mapper.RegionMapper;
 import com.system.shop.entity.Region;
 import com.system.shop.service.RegionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -21,8 +19,6 @@ import java.util.stream.Collectors;
 @Service
 public class RegionServiceImpl extends ServiceImpl<RegionMapper, Region> implements RegionService {
 
-    @Autowired
-    private RedisUtil redisUtil;
 
     @Override
     public Boolean initData() {
@@ -69,36 +65,26 @@ public class RegionServiceImpl extends ServiceImpl<RegionMapper, Region> impleme
 
     @Override
     public List<Region> selectListTree() {
-        List<Region> regions = redisUtil.getList("region");
-        if (CollectionUtil.isEmpty(regions)) {
-            List<Region> list = this.selectList(null);
-            list.stream().filter(o -> o.getParentId() == 100000L).peek(o -> o.setChildren(initChild(o, list)))
-                    // 收集
-                    .collect(Collectors.toList());
-            redisUtil.setList("region", list);
-            return list;
-        }
-        return regions;
+        List<Region> list = this.selectList(null);
+        list.stream().filter(o -> o.getParentId() == 100000L).peek(o -> o.setChildren(initChild(o, list)))
+                // 收集
+                .collect(Collectors.toList());
+        return list;
 
     }
 
     @Override
     public List<Region> selectCity() {
-        List<Region> regions = redisUtil.getList("region_city");
-        if (CollectionUtil.isEmpty(regions)) {
-            List<Region> provinceList = baseMapper.selectList(new HashMap<String, Object>() {{
-                put("level", "province");
+        List<Region> provinceList = baseMapper.selectList(new HashMap<String, Object>() {{
+            put("level", "province");
+        }});
+        provinceList.forEach(region -> {
+            List<Region> list = this.selectList(new HashMap<String, Object>() {{
+                put("parentId", region.getId());
             }});
-            provinceList.forEach(region -> {
-                List<Region> list = this.selectList(new HashMap<String, Object>() {{
-                    put("parentId", region.getId());
-                }});
-                region.setChildren(list);
-            });
-            redisUtil.setList("region_city", provinceList);
-            return provinceList;
-        }
-        return regions;
+            region.setChildren(list);
+        });
+        return provinceList;
     }
 
     private List<Region> initChild(Region model, List<Region> regions) {

@@ -1,7 +1,8 @@
 package com.system.shop.bean.search;
 
 
-import com.shop.common.base.PageParam;
+
+import com.github.pagehelper.PageParam;
 import lombok.Data;
 
 import java.io.Serializable;

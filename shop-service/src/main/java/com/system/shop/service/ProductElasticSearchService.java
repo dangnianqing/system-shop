@@ -1,7 +1,7 @@
 package com.system.shop.service;
 
-import com.shop.index.ProductIndex;
-import com.shop.index.ProductIndexSearch;
+import com.system.shop.index.ProductIndex;
+import com.system.shop.index.ProductIndexSearch;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

@@ -2,16 +2,16 @@ package com.system.shop.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.alibaba.fastjson.JSON;
-import com.shop.bean.mq.ProductPush;
+import com.github.pagehelper.util.StringUtil;
 import com.system.shop.base.ServiceImpl;
+import com.system.shop.bean.mq.ProductPush;
+import com.system.shop.common.ResultCode;
 import com.system.shop.config.RabbitConfig;
-import com.system.shop.exception.BaseException;
-import com.system.shop.result.ResultCode;
+import com.system.shop.exception.BusinessException;
 import com.system.shop.utils.SnowFlake;
 import com.system.shop.mapper.ProductMapper;
 import com.system.shop.entity.*;
 import com.system.shop.service.*;
-import io.micrometer.common.util.StringUtils;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageBuilder;
 import org.springframework.amqp.core.MessageDeliveryMode;
@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,7 +53,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
             List<Product> list = this.selectProductByIds(productIds);
             boolean isAll = list.stream().allMatch(product -> product.getAuditStatus() == 1);
             if (!isAll) {
-                throw new BaseException(ResultCode.DATA_CHECK_ERROR, "商品存在未审核通过的商品");
+                throw new BusinessException(ResultCode.PRODUCT_UNAUDITED);
             }
         }
         List<Product> list = new ArrayList<>();
@@ -71,7 +72,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         //查询sku
         List<ProductSku> skuList = productSkuService.selectByProductId(product.getId());
         product.setSkuList(skuList);
-        product.setCategoryClassIds(List.of(product.getCategoryClassOne(), product.getCategoryClassTwo(), product.getCategoryClassThree(), product.getCategoryClassFour()));
+        product.setCategoryClassIds(Arrays.asList(product.getCategoryClassOne(), product.getCategoryClassTwo(), product.getCategoryClassThree(), product.getCategoryClassFour()));
         List<ProductSpec> specList = new ArrayList<>();
         for (String specId : product.getSpecId().split(",")) {
             ProductSpec productSpec = productSpecService.selectById(Long.valueOf(specId));
@@ -92,7 +93,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     public Boolean updateReviewProduct(Long productId, Integer auditStatus) {
         Product product = this.selectById(productId);
         if (product == null) {
-            throw new BaseException(ResultCode.DATA_CHECK_ERROR, "商品不存在");
+            throw new BusinessException(ResultCode.PRODUCT_NOT_EXIST);
 
         }
         Product updateProduct = new Product();
@@ -136,7 +137,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     public Long saveSecond(Product product) {
         Product bean = this.selectById(product.getId());
         if (bean == null) {
-            throw new BaseException(ResultCode.DATA_CHECK_ERROR, "商品不存在");
+            throw new BusinessException(ResultCode.PRODUCT_NOT_EXIST);
         }
         productSpecValueService.updateList(product.getSpecList(), product.getId());
         productSkuService.updateList(product.getSkuList(), product.getId());
@@ -148,7 +149,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     public Long saveThird(Product product) {
         Product bean = this.selectById(product.getId());
         if (bean == null) {
-            throw new BaseException(ResultCode.DATA_CHECK_ERROR, "商品不存在");
+            throw new BusinessException(ResultCode.PRODUCT_NOT_EXIST);
         }
         Product updateProduct = new Product();
         updateProduct.setId(product.getId());
@@ -163,7 +164,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         Product product = this.selectById(id);
         product.setProductInfo(null);
         product.setImagePath(productImageService.selectByProductId(product.getId()).stream().map(ProductImage::getImagePath).collect(Collectors.toList()));
-        product.setCategoryClassIds(List.of(product.getCategoryClassOne(), product.getCategoryClassTwo(), product.getCategoryClassThree(), product.getCategoryClassFour()));
+        product.setCategoryClassIds(Arrays.asList(product.getCategoryClassOne(), product.getCategoryClassTwo(), product.getCategoryClassThree(), product.getCategoryClassFour()));
         return product;
     }
 
@@ -178,7 +179,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         //查询sku
         List<ProductSku> skuList = productSkuService.selectByProductId(product.getId());
         bean.setSkuList(skuList);
-        if (StringUtils.isNotEmpty(product.getSpecId())) {
+        if (StringUtil.isNotEmpty(product.getSpecId())) {
             String[] specIds = product.getSpecId().split(",");
             List<ProductSpec> specList = new ArrayList<>();
             for (String specId : specIds) {

@@ -13,15 +13,23 @@ spring:
     database: 0
     timeout: 10000
   rabbitmq:
-    host: localhost
+    host: 10.0.4.156
     port: 5672
-    username: guest
-    password: guest
+    username: mq
+    password: mq
     virtual-host: /
     publisher-confirm-type: correlated
     publisher-returns: true
     template:
       mandatory: true
+  # Elasticsearch 配置
+  elasticsearch:
+    uris: http://10.0.4.156:9200
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+
   # 国际化配置
   messages:
     basename: i18n/messages
@@ -32,7 +40,7 @@ spring:
     # 默认语言
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.example.systemshop.entity
+  type-aliases-package: com.system.shop.entity
   configuration:
     map-underscore-to-camel-case: true
 
@@ -44,9 +52,13 @@ jwt:
 logging:
   level:
     root: info
-    com.example.systemshop: debug
-    org.springframework.security: DEBUG
-    org.springframework.web: DEBUG
+    com:
+      system:
+        shop: debug
+    org:
+      springframework:
+        security: DEBUG
+        web: DEBUG
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
 

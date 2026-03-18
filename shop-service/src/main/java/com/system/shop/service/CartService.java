@@ -1,7 +1,7 @@
 package com.system.shop.service;
 
-import com.system.shop.entity.cart.CartItem;
-import com.system.shop.entity.cart.ProductItem;
+import com.system.shop.bean.cart.CartItem;
+import com.system.shop.bean.cart.CartProductItem;
 
 import java.math.BigDecimal;
 
@@ -14,7 +14,7 @@ public interface CartService {
      * @param storeName 门店名称
      * @param productItem 商品信息
      */
-    void addToCart(Long userId, String storeCode, String storeName, ProductItem productItem);
+    void addToCart(Long userId, String storeCode, String storeName, CartProductItem productItem);
     
     /**
      * 从购物车中删除商品

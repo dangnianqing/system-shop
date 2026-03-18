@@ -1,8 +1,8 @@
 package com.system.shop.controller;
 
+import com.system.shop.bean.cart.CartProductItem;
 import com.system.shop.common.Result;
-import com.system.shop.entity.cart.CartItem;
-import com.system.shop.entity.cart.ProductItem;
+import com.system.shop.bean.cart.CartItem;
 import com.system.shop.security.UserPrincipal;
 import com.system.shop.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class CartController {
             @AuthenticationPrincipal UserPrincipal userPrincipal,
             @RequestParam String storeCode,
             @RequestParam String storeName,
-            @RequestBody ProductItem productItem) {
+            @RequestBody CartProductItem productItem) {
         cartService.addToCart(userPrincipal.getId(), storeCode, storeName, productItem);
         return Result.success();
     }

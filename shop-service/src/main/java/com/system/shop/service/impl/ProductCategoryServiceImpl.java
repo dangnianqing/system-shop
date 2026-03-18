@@ -1,7 +1,6 @@
 package com.system.shop.service.impl;
 
 import com.system.shop.base.ServiceImpl;
-import com.system.shop.redis.RedisUtil;
 import com.system.shop.mapper.ProductCategoryMapper;
 import com.system.shop.entity.ProductCategory;
 import com.system.shop.service.ProductCategoryService;
@@ -15,8 +14,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductCategoryServiceImpl extends ServiceImpl<ProductCategoryMapper, ProductCategory> implements ProductCategoryService {
-    @Autowired
-    private RedisUtil redisUtil;
 
     @Override
     public List<ProductCategory> selectTreeList() {

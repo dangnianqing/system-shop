@@ -1,7 +1,7 @@
 package com.system.shop.entity;
 
-import com.shop.bean.cart.ProductSettlement;
 import com.system.shop.base.BaseEntity;
+import com.system.shop.bean.cart.ProductSettlement;
 import com.system.shop.enumer.CommentStatus;
 import com.system.shop.enumer.OrderItemAfterSaleStatus;
 import com.system.shop.utils.SnowFlake;

@@ -1,8 +1,8 @@
 package com.system.shop.service.impl;
 
 import com.system.shop.base.ServiceImpl;
-import com.system.shop.exception.BaseException;
-import com.system.shop.result.ResultCode;
+import com.system.shop.common.ResultCode;
+import com.system.shop.exception.BusinessException;
 import com.system.shop.mapper.ActivityMapper;
 import com.system.shop.entity.Activity;
 import com.system.shop.service.ActivityProductService;
@@ -32,7 +32,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
     public Activity selectActivity(Long activityId, Long storeId) {
         Activity activity = this.selectById(activityId);
         if (!Objects.equals(storeId, activity.getStoreId())) {
-            throw new BaseException(ResultCode.COMMON_FAILED);
+            throw new BusinessException(ResultCode.UNAUTHORIZED);
         }
         if (activity.getScopeType() == 1) {
             activity.setProductList(activityProductService.selectProductList(activityId, activity.getStoreId()));

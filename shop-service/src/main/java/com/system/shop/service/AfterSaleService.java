@@ -2,11 +2,11 @@ package com.system.shop.service;
 
 
 import com.github.pagehelper.PageInfo;
-import com.shop.bean.order.AfterSaleInfo;
 import com.system.shop.base.IService;
 import com.system.shop.bean.Operator;
+import com.system.shop.bean.order.AfterSaleInfo;
+import com.system.shop.bean.search.AfterSaleSearch;
 import com.system.shop.entity.AfterSale;
-import com.system.shop.search.AfterSaleSearch;
 
 import java.math.BigDecimal;
 

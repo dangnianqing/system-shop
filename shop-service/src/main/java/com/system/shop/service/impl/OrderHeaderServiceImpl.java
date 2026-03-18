@@ -1,12 +1,12 @@
 package com.system.shop.service.impl;
 
 import cn.hutool.json.JSONUtil;
-import com.shop.bean.cart.ProductSettlement;
-import com.shop.bean.cart.ShoppSettlement;
-import com.shop.bean.cart.StoreSettlement;
 import com.system.shop.base.ServiceImpl;
-import com.system.shop.exception.BaseException;
-import com.system.shop.result.ResultCode;
+import com.system.shop.bean.cart.ProductSettlement;
+import com.system.shop.bean.cart.ShoppSettlement;
+import com.system.shop.bean.cart.StoreSettlement;
+import com.system.shop.exception.BusinessException;
+import com.system.shop.common.ResultCode;
 import com.system.shop.mapper.OrderHeaderMapper;
 import com.system.shop.entity.*;
 import com.system.shop.service.*;
@@ -53,7 +53,7 @@ public class OrderHeaderServiceImpl extends ServiceImpl<OrderHeaderMapper, Order
                 //创建订单时直接扣库
                 boolean status = productSkuService.updateReduceStock(productSettlement.getProductSkuId(), productSettlement.getNum());
                 if (!status) {
-                    throw new BaseException(ResultCode.ERROR, "商品" + productSettlement.getProductName() + "库存不足");
+                    throw new BusinessException(ResultCode.PRODUCT_INSUFFICIENT_STOCK, productSettlement.getProductName());
                 }
                 OrderItem orderItem = new OrderItem(order.getOrderCode(), productSettlement);
                 orderItems.add(orderItem);

@@ -1,7 +1,7 @@
 package com.system.shop.entity;
 
-import com.shop.bean.cart.ShoppSettlement;
 import com.system.shop.base.BaseEntity;
+import com.system.shop.bean.cart.ShoppSettlement;
 import com.system.shop.utils.SnowFlake;
 import lombok.AllArgsConstructor;
 import lombok.Data;

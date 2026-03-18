@@ -1,10 +1,10 @@
 package com.system.shop.service.impl;
 
 import com.system.shop.base.ServiceImpl;
+import com.system.shop.bean.search.LogisticsSearch;
 import com.system.shop.mapper.StoreLogisticsMapper;
 import com.system.shop.entity.Logistics;
 import com.system.shop.entity.StoreLogistics;
-import com.system.shop.search.LogisticsSearch;
 import com.system.shop.service.LogisticsService;
 import com.system.shop.service.StoreLogisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
