@@ -18,7 +18,7 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
 
     @Override
     public Boolean saveOrUpdate(Logistics logistics) {
-        Logistics bean = baseMapper.selectById(logistics.getId());
+        Logistics bean = this.selectById(logistics.getId());
         if (bean != null) {
             return baseMapper.updateByIdSelective(logistics);
         } else {

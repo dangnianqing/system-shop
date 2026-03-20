@@ -48,7 +48,7 @@ public class FreightTemplateServiceImpl extends ServiceImpl<FreightTemplateMappe
 
     @Override
     public FreightTemplate selectInfoById(Long id) {
-        FreightTemplate freightTemplate = baseMapper.selectById(id);
+        FreightTemplate freightTemplate = this.selectById(id);
         freightTemplate.setFreightTemplateChildList(freightTemplateChildService.selectByFreightTemplateId(id));
         return freightTemplate;
     }

@@ -25,7 +25,7 @@ public class StoreController extends BaseController {
 
     @PostMapping("/selectPage")
     public Result<PageInfo<Store>> selectPage(@RequestBody StoreSearch search) {
-        return Result.success(storeService.selectPage(search.getPageNumber(), search.getPageSize(), search.querymap()));
+        return Result.success(storeService.selectPage(search.getPageNum(), search.getPageSize(), search.querymap()));
     }
 
     @GetMapping("/selectListOpen")

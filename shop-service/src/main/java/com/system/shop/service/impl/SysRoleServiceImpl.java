@@ -1,73 +1,74 @@
 package com.system.shop.service.impl;
 
-import com.system.shop.entity.SysRole;
+import com.system.shop.base.ServiceImpl;
 import com.system.shop.mapper.SysRoleMapper;
-import com.system.shop.mapper.SysRoleMenuMapper;
+import com.system.shop.entity.SysRole;
+import com.system.shop.entity.SysRoleMenu;
+import com.system.shop.service.SysMenuService;
+import com.system.shop.service.SysRoleMenuService;
 import com.system.shop.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
-public class SysRoleServiceImpl implements SysRoleService {
-
+public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
     @Autowired
-    private SysRoleMapper roleMapper;
-
+    private SysRoleMenuService sysRoleMenuService;
     @Autowired
-    private SysRoleMenuMapper roleMenuMapper;
+    private SysMenuService sysMenuService;
 
     @Override
-    public List<SysRole> findAll() {
-        return roleMapper.findAll();
+    public Boolean update(SysRole role) {
+        sysRoleMenuService.insetRoleMenu(role.getId(), role.getMenuIds());
+        return updateByIdSelective(role);
+    }
+
+
+    @Override
+    public Boolean delete(Long roleId) {
+        sysRoleMenuService.deleteByRoleId(roleId);
+        return this.deleteById(roleId);
     }
 
     @Override
-    public SysRole selectById(Long id) {
-        return roleMapper.selectById(id)
-                .orElseThrow(() -> new RuntimeException("Role not found with id: " + id));
+    public Boolean deleteList(List<Long> roleIds) {
+        sysRoleMenuService.deleteByRoleIds(roleIds);
+        return baseMapper.deleteByIds(roleIds);
     }
 
     @Override
-    @Transactional
-    public SysRole create(SysRole role) {
-        role.setCreateTime(LocalDateTime.now());
-        role.setDeleteFlag(0);
-        roleMapper.insert(role);
-        return role;
+    public Boolean saveOrUpdate(SysRole role) {
+        if (this.selectById(role.getId()) == null) {
+            this.insert(role);
+        } else {
+            this.updateByIdSelective(role);
+        }
+        sysRoleMenuService.insetRoleMenu(role.getId(), role.getMenuIds());
+        return true;
     }
 
     @Override
-    @Transactional
-    public SysRole update(SysRole role) {
-        SysRole existingRole = selectById(role.getId());
-        role.setUpdateTime(LocalDateTime.now());
-        roleMapper.update(role);
-        return role;
+    public SysRole select(Long id) {
+        SysRole sysRole = this.selectById(id);
+        return sysRole;
     }
 
     @Override
-    @Transactional
-    public void delete(Long id) {
-        SysRole role = selectById(id);
-        role.setDeleteFlag(1);
-        role.setUpdateTime(LocalDateTime.now());
-        roleMapper.update(role);
-        // 删除角色菜单关联
-        roleMenuMapper.deleteByRoleId(id);
+    public Map<String, Object> selectMenuList(Long roleId) {
+        return new HashMap<String, Object>() {{
+            put("menuList", sysMenuService.selectListTree());
+            put("roleMenuList", sysRoleMenuService.selectListByRoleId(roleId).stream().map(SysRoleMenu::getMenuId).toList());
+        }};
+
     }
 
     @Override
-    @Transactional
-    public void assignMenus(Long roleId, List<Long> menuIds) {
-        // 先删除原有菜单
-        roleMenuMapper.deleteByRoleId(roleId);
-        // 添加新菜单
-//        for (Long menuId : menuIds) {
-//            roleMenuMapper.insert(roleId, menuId);
-//        }
+    public Boolean saveRoleMenu(SysRole role) {
+        sysRoleMenuService.insetRoleMenu(role.getId(), role.getMenuIds());
+        return true;
     }
-} 
+}

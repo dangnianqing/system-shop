@@ -30,7 +30,7 @@ public class RoleController extends BaseController {
 
     @PostMapping("/list")
     public Result<PageInfo<SysRole>> list(@RequestBody RoleSearch userSearch) {
-        return Result.success(sysRoleService.selectPage(userSearch.getPageNumber(), userSearch.getPageSize(), userSearch.querymap()));
+        return Result.success(sysRoleService.selectPage(userSearch.getPageNum(), userSearch.getPageSize(), userSearch.querymap()));
     }
 
     @GetMapping("/select/{id}")

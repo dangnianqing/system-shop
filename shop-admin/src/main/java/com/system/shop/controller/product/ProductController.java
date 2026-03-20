@@ -32,7 +32,7 @@ public class ProductController extends BaseController {
 
     @PostMapping("/selectPage")
     public Result<PageInfo<Product>> selectPage(@RequestBody ProductSearch productSearch) {
-        return Result.success(productService.selectPage(productSearch.getPageNumber(), productSearch.getPageSize(), productSearch.querymap()));
+        return Result.success(productService.selectPage(productSearch.getPageNum(), productSearch.getPageSize(), productSearch.querymap()));
     }
 
     @GetMapping("/selectProduct/{id}")

@@ -30,7 +30,7 @@ public class UserController extends BaseController {
 
     @PostMapping("/list")
     public Result<PageInfo<SysUser>> list(@RequestBody UserSearch userSearch) {
-        return Result.success(userService.selectPage(userSearch.getPageNumber(), userSearch.getPageSize(), userSearch.querymap()));
+        return Result.success(userService.selectPage(userSearch.getPageNum(), userSearch.getPageSize(), userSearch.querymap()));
     }
 
     @PostMapping("/updateStatus")

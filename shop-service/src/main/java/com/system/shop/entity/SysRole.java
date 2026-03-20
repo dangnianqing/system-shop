@@ -1,16 +1,30 @@
 package com.system.shop.entity;
 
-import lombok.Data;
-import java.time.LocalDateTime;
 
+import com.system.shop.base.BaseEntity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * 管理系统角色表
+ */
 @Data
-public class SysRole {
-    private Long id;
+@EqualsAndHashCode(callSuper = true)
+public class SysRole extends BaseEntity implements Serializable {
+    /**
+     * 角色名称
+     */
     private String name;
+
+    /**
+     * 备注
+     */
     private String remark;
-    private LocalDateTime createTime;
-    private String createBy;
-    private String updateBy;
-    private LocalDateTime updateTime;
-    private Integer deleteFlag;
-} 
+
+    private List<Long> menuIds;
+
+    private static final long serialVersionUID = 1L;
+}

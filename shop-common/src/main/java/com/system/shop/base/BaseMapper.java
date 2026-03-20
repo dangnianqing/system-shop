@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @Author ：zhanghaijun
@@ -22,7 +23,7 @@ public interface BaseMapper<T> {
 
     boolean insertSelective(T t);
 
-    T selectById(Long id);
+    Optional<T> selectById(Long id);
 
     boolean updateByIdSelective(T t);
 

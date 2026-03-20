@@ -20,7 +20,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper,Member> implemen
 
     @Override
     public Boolean update(Member member, Long memberId) {
-        Member bean=baseMapper.selectById(memberId);
+        Member bean=this.selectById(memberId);
         if (bean ==null){
             throw new BusinessException(ResultCode.MEMBER_NOT_EXIST);
         }

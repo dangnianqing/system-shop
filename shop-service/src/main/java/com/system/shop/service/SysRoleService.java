@@ -1,19 +1,25 @@
 package com.system.shop.service;
 
+import com.system.shop.base.IService;
 import com.system.shop.entity.SysRole;
 
 import java.util.List;
+import java.util.Map;
 
-public interface SysRoleService {
-    List<SysRole> findAll();
+public interface SysRoleService extends IService<SysRole> {
 
-    SysRole selectById(Long id);
 
-    SysRole create(SysRole role);
+    Boolean update(SysRole user);
 
-    SysRole update(SysRole role);
+    Boolean delete(Long roleId);
 
-    void delete(Long id);
+    Boolean deleteList(List<Long> roleIds);
 
-    void assignMenus(Long roleId, List<Long> menuIds);
-} 
+    Boolean saveOrUpdate(SysRole role);
+
+    SysRole select(Long id);
+
+    Map<String ,Object> selectMenuList(Long roleId);
+
+    Boolean saveRoleMenu(SysRole role);
+}

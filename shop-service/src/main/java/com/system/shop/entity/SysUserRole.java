@@ -1,13 +1,34 @@
 package com.system.shop.entity;
 
+import com.system.shop.base.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+
+/**
+ * 管理系统用户角色表
+ */
 @Data
-public class SysUserRole {
-    private Long id;
+@EqualsAndHashCode(callSuper=true)
+public class SysUserRole extends BaseEntity implements Serializable {
+    /**
+    * 用户ID
+    */
     private Long userId;
+
+    /**
+    * 角色ID
+    */
     private Long roleId;
-    private String createTime;
-    private String updateTime;
-    private Integer deleteFlag;
-} 
+
+    private static final long serialVersionUID = 1L;
+
+    public SysUserRole(Long userId, Long roleId) {
+        this.userId = userId;
+        this.roleId = roleId;
+    }
+
+    public SysUserRole() {
+    }
+}

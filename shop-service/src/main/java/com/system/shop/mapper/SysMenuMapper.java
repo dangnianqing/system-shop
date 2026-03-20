@@ -1,16 +1,17 @@
 package com.system.shop.mapper;
 
+
+import com.system.shop.base.BaseMapper;
 import com.system.shop.entity.SysMenu;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 @Mapper
-public interface SysMenuMapper {
-    Optional<SysMenu> selectById(@Param("id") Long id);
-    List<SysMenu> findAll();
-    void insert(SysMenu menu);
-    void update(SysMenu menu);
-} 
+public interface SysMenuMapper extends BaseMapper<SysMenu> {
+
+    List<SysMenu> selectParentId(@Param("parentId") Long parentId);
+
+    boolean deleteByIds(@Param("removeIds") List<Long> removeIds);
+}

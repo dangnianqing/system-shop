@@ -46,7 +46,7 @@ public class AfterSaleController extends BaseController {
     @PostMapping("/selectPage")
     public Result<PageInfo<AfterSale>> findPage(@RequestBody AfterSaleSearch afterSaleSearch, HttpServletRequest request) {
         afterSaleSearch.setMemberId(this.getLoginMember(request).getId());
-        PageInfo<AfterSale> pageInfo = afterSaleService.selectPage(afterSaleSearch.getPageNumber(), afterSaleSearch.getPageSize(), afterSaleSearch.querymap());
+        PageInfo<AfterSale> pageInfo = afterSaleService.selectPage(afterSaleSearch.getPageNum(), afterSaleSearch.getPageSize(), afterSaleSearch.querymap());
         pageInfo.getList().forEach(afterSale -> {
             afterSale.setAfterSaleItems(afterSaleItemService.selectByAfterSaleCode(afterSale.getAfterSaleCode()));
         });

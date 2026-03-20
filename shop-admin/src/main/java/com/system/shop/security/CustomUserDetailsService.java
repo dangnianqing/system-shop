@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
     private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
@@ -23,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         logger.debug("Loading user by username: {}", username);
-        SysUser user = userMapper.findByUsername(username)
+        SysUser user = userMapper.selectByUserName(username)
                 .orElseThrow(() -> {
                     logger.error("User not found with username: {}", username);
                     return new UsernameNotFoundException("User not found with username: " + username);

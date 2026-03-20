@@ -12,7 +12,7 @@ public class ProductSpecServiceImpl extends ServiceImpl<ProductSpecMapper, Produ
 
     @Override
     public Boolean saveOrUpdate(ProductSpec productSpec) {
-        ProductSpec bean = baseMapper.selectById(productSpec.getId());
+        ProductSpec bean = this.selectById(productSpec.getId());
         if (bean == null) {
             return this.insert(productSpec);
         }

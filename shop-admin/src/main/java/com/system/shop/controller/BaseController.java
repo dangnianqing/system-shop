@@ -1,5 +1,6 @@
 package com.system.shop.controller;
 
+import com.system.shop.bean.Operator;
 import com.system.shop.entity.SysUser;
 import com.system.shop.exception.BusinessException;
 import com.system.shop.security.JwtTokenProvider;
@@ -102,6 +103,13 @@ public class BaseController {
         if (authentication == null || !authentication.isAuthenticated()) {
             throw new BusinessException("common.unauthorized");
         }
-        return userService.findByUsername(authentication.getName());
+        return userService.selectByUserName(authentication.getName());
+    }
+
+    public Operator getOperator(HttpServletRequest request) {
+        SysUser sysUser = getCurrentUser(request);
+        Operator operator = new Operator(sysUser.getId(), sysUser.getUserName(), "门店管理员");
+        return operator;
+
     }
 }

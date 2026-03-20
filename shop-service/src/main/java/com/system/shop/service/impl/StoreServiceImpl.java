@@ -15,7 +15,7 @@ public class StoreServiceImpl extends ServiceImpl<StoreMapper, Store> implements
 
     @Override
     public List<Store> selectByIds(List<Long> storeIds) {
-        return baseMapper.selectByIds(storeIds);
+        return this.selectByIds(storeIds);
     }
 }
 

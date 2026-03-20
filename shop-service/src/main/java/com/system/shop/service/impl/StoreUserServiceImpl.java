@@ -28,7 +28,7 @@ public class StoreUserServiceImpl extends ServiceImpl<StoreUserMapper, StoreUser
 
     @Override
     public StoreUser select(Long userId) {
-        StoreUser storeUser = baseMapper.selectById(userId);
+        StoreUser storeUser = this.selectById(userId);
         storeUser.setRoleIds(storeUserRoleService.selectByUserId(userId));
         return storeUser;
     }

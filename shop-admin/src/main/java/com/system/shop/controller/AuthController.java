@@ -1,8 +1,10 @@
 package com.system.shop.controller;
 
+import com.system.shop.bean.Token;
 import com.system.shop.common.Result;
 import com.system.shop.entity.SysUser;
 import com.system.shop.payload.LoginRequest;
+import com.system.shop.payload.RefreshTokenRequest;
 import com.system.shop.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,6 +24,11 @@ public class AuthController {
     @PostMapping("/login")
     public Result<Map<String, Object>> login(@Valid @RequestBody LoginRequest loginRequest) {
         return Result.success(authService.login(loginRequest.getUsername(), loginRequest.getPassword()));
+    }
+
+    @PostMapping("/refresh")
+    public Result<Token> refreshToken(@Valid @RequestBody RefreshTokenRequest request) {
+        return Result.success(authService.refreshToken(request.getRefreshToken()));
     }
 
     @GetMapping("/info")

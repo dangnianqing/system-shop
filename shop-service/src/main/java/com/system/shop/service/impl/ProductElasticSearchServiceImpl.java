@@ -51,7 +51,7 @@ public class ProductElasticSearchServiceImpl implements ProductElasticSearchServ
 
     @Override
     public Page<ProductIndex> searchPage(ProductIndexSearch search) {
-        //Pageable pageable=new PageRequest(search.getPageNumber(), search.getPageSize(), null);
+        //Pageable pageable=new PageRequest(search.getPageNum(), search.getPageSize(), null);
         // Order order = new Order(Sort.Direction.valueOf(search.getOrder().toUpperCase()), search.getSort());
         Pageable pageable = PageRequest.of(search.getPageNum() - 1, search.getPageSize());
         return productIndexRepository.findAll(pageable);
@@ -66,7 +66,7 @@ public class ProductElasticSearchServiceImpl implements ProductElasticSearchServ
 
     @Override
     public ProductIndex searchByProductId(String productId) {
-        Optional<ProductIndex> productIndex = productIndexRepository.selectById(productId);
+        Optional<ProductIndex> productIndex = productIndexRepository.findById(productId);
         Product product = productService.selectById(Long.valueOf(productId));
         productIndex.get().setQuantity(product.getQuantity());
         productIndex.get().setBuyCount(product.getBuyCount());

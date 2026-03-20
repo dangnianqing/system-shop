@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @Author ：zhanghaijun
@@ -46,7 +47,8 @@ public class ServiceImpl<M extends BaseMapper<T>, T> implements IService<T> {
 
     @Override
     public T selectById(Long id) {
-        return baseMapper.selectById(id);
+        Optional<T> optional=baseMapper.selectById(id);
+        return optional.orElse(null);
     }
 
     @Override

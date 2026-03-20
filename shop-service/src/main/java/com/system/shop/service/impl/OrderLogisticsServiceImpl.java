@@ -55,7 +55,7 @@ public class OrderLogisticsServiceImpl extends ServiceImpl<OrderLogisticsMapper,
     @Override
     public OrderLogistics selectLogisticsId(Long orderLogisticsId) {
         Map<String, Object> map = new HashMap<>();
-        OrderLogistics orderLogistics = baseMapper.selectById(orderLogisticsId);
+        OrderLogistics orderLogistics = this.selectById(orderLogisticsId);
         //ID
         String EBusinessID = "1767798";
         //KEY

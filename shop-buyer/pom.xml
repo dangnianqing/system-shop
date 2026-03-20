@@ -18,6 +18,10 @@
     <dependencies>
         <!-- 依赖 shop-service -->
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.system.shop</groupId>
             <artifactId>shop-service</artifactId>
             <version>1.0.0</version>

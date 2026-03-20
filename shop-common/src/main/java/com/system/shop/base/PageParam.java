@@ -21,7 +21,7 @@ public class PageParam implements Serializable {
     private String sort;
 
     private String order = "desc";
-    public Integer getPageNumber() {
+    public Integer getPageNum() {
         return pageNumber == null || pageNumber <= 0 ? 1 : pageNumber;
     }
 
