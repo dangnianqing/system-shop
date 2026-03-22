@@ -31,6 +31,8 @@ public interface ProductService extends IService<Product> {
     Product selectThird(Long id);
 
     Boolean updateCancelAudit(List<Long> productIds);
+
+    List<Long> selectProductIds();
 }
 
 

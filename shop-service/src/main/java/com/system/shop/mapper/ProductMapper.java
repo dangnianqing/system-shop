@@ -13,4 +13,5 @@ public interface ProductMapper extends BaseMapper<Product> {
 
     List<Product> selectProductByIds(@Param("productIds") List<Long> productIds);
 
+    List<Long> selectProductIds();
 }

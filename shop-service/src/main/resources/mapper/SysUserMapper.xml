@@ -16,6 +16,13 @@
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag"/>
     </resultMap>
+
+    <resultMap id="UserWithRolesResultMap" type="com.system.shop.entity.SysUser" extends="BaseResultMap">
+        <collection property="roles" ofType="com.system.shop.entity.SysRole">
+            <id column="role_id" jdbcType="BIGINT" property="id"/>
+            <result column="role_name" jdbcType="VARCHAR" property="name"/>
+        </collection>
+    </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
         id,
@@ -412,10 +419,13 @@
         </foreach>
     </delete>
 
-    <select id="selectByUserName" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from sys_user
-        where user_name = #{username}
+    <select id="selectByUserName" resultMap="UserWithRolesResultMap">
+        select u.id, u.user_name, u.mobile, u.image, u.status, u.password,
+               u.create_time, u.create_by, u.update_by, u.update_time, u.delete_flag,
+               r.id as role_id, r.name as role_name
+        from sys_user u
+        left join sys_user_role ur on u.id = ur.user_id
+        left join sys_role r on ur.role_id = r.id
+        where u.user_name = #{username}
     </select>
 </mapper>

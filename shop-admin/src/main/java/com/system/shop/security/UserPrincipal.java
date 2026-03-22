@@ -2,6 +2,7 @@ package com.system.shop.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.system.shop.entity.SysUser;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,11 +13,12 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails {
-    private Long id;
-    private String username;
+    @Getter
+    private final Long id;
+    private final String username;
     @JsonIgnore
     private String password;
-    private Collection<? extends GrantedAuthority> authorities;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     public UserPrincipal(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
@@ -26,9 +28,11 @@ public class UserPrincipal implements UserDetails {
     }
 
     public static UserPrincipal create(SysUser user) {
-        List<GrantedAuthority> authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
+        List<GrantedAuthority> authorities = user.getRoles() == null 
+                ? List.of()
+                : user.getRoles().stream()
+                    .map(role -> new SimpleGrantedAuthority(role.getName()))
+                    .collect(Collectors.toList());
 
         return new UserPrincipal(
                 user.getId(),
@@ -36,10 +40,6 @@ public class UserPrincipal implements UserDetails {
                 user.getPassword(),
                 authorities
         );
-    }
-
-    public Long getId() {
-        return id;
     }
 
     @Override

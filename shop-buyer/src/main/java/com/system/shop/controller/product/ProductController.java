@@ -9,6 +9,7 @@ import com.system.shop.enumer.OrderStatus;
 import com.system.shop.index.ProductIndex;
 import com.system.shop.index.ProductIndexSearch;
 import com.system.shop.service.ProductElasticSearchService;
+import com.system.shop.service.ProductService;
 import com.system.shop.service.StoreService;
 import com.system.shop.utils.SnowFlake;
 import org.springframework.amqp.core.Message;
@@ -40,6 +41,8 @@ public class ProductController {
     private ProductElasticSearchService productElasticSearchService;
     @Autowired
     private StoreService storeService;
+    @Autowired
+    private ProductService productService;
 
     @PostMapping("/searchPage")
     public Result<Page<ProductIndex>> searchPage(@RequestBody ProductIndexSearch productIndexSearch) {
@@ -56,6 +59,13 @@ public class ProductController {
     public Result<Store> selectStore(@PathVariable Long id) {
         return Result.success(storeService.selectById(id));
     }
+
+
+    @GetMapping("/init")
+    public Result<Boolean> init() {
+        return Result.success(productElasticSearchService.insertList(productService.selectProductIds()));
+    }
+
 
     @Autowired
     private RabbitTemplate rabbitTemplate;

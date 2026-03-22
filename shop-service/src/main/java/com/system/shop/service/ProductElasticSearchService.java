@@ -10,7 +10,6 @@ public interface ProductElasticSearchService {
 
     Page<ProductIndex> searchPage(ProductIndexSearch search);
 
-
     Boolean insertList(List<Long> productIds);
 
     ProductIndex searchByProductId(String productId);

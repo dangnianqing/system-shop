@@ -215,5 +215,10 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         }
         return false;
     }
+
+    @Override
+    public List<Long> selectProductIds() {
+        return baseMapper.selectProductIds();
+    }
 }
 
