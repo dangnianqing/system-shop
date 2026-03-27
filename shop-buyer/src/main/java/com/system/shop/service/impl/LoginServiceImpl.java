@@ -68,13 +68,12 @@ public class LoginServiceImpl implements LoginService {
 
         // 生成 Token
         String accessToken = memberJwtTokenProvider.generateToken(member.getId());
-        String refreshToken = memberJwtTokenProvider.generateRefreshToken(member.getId());
         
         // 保存 Token 到 Redis
-        memberTokenService.saveTokens(member.getId(), accessToken, refreshToken);
+        memberTokenService.saveToken(member.getId(), accessToken);
         
         log.info("会员微信小程序登录成功: memberId={}", member.getId());
-        return new Token(accessToken, refreshToken);
+        return new Token(accessToken);
     }
 
     @Override
@@ -96,56 +95,12 @@ public class LoginServiceImpl implements LoginService {
 
         // 生成 Token
         String accessToken = memberJwtTokenProvider.generateToken(member.getId());
-        String refreshToken = memberJwtTokenProvider.generateRefreshToken(member.getId());
         
         // 保存 Token 到 Redis
-        memberTokenService.saveTokens(member.getId(), accessToken, refreshToken);
+        memberTokenService.saveToken(member.getId(), accessToken);
         
         log.info("会员登录成功: memberId={}", member.getId());
-        return new Token(accessToken, refreshToken);
-    }
-
-    @Override
-    public Token refreshToken(String refreshToken) {
-        log.debug("开始刷新 Token");
-
-        // 验证 refreshToken 格式
-        if (!memberJwtTokenProvider.validateToken(refreshToken)) {
-            log.error("无效的 refreshToken");
-            throw new BusinessException(ResultCode.MEMBER_LOGIN_EXPIRED);
-        }
-
-        // 验证是否为 refreshToken 类型
-        if (!memberJwtTokenProvider.isRefreshToken(refreshToken)) {
-            log.error("Token 不是 refreshToken 类型");
-            throw new BusinessException("token.not.refresh");
-        }
-
-        // 验证 refreshToken 是否在 Redis 中有效
-        if (!memberTokenService.validateRefreshTokenInRedis(refreshToken)) {
-            log.error("refreshToken 已过期");
-            throw new BusinessException(ResultCode.MEMBER_LOGIN_EXPIRED);
-        }
-
-        // 获取会员ID
-        Long memberId = memberTokenService.getMemberIdByRefreshToken(refreshToken);
-        if (memberId == null) {
-            log.error("无法从 refreshToken 获取会员ID");
-            throw new BusinessException(ResultCode.MEMBER_LOGIN_EXPIRED);
-        }
-
-        // 删除旧的 refreshToken
-        memberTokenService.removeRefreshToken(refreshToken);
-
-        // 生成新的 accessToken 和 refreshToken
-        String newAccessToken = memberJwtTokenProvider.generateToken(memberId);
-        String newRefreshToken = memberJwtTokenProvider.generateRefreshToken(memberId);
-
-        // 保存新的 Token
-        memberTokenService.saveTokens(memberId, newAccessToken, newRefreshToken);
-
-        log.debug("Token 刷新成功: memberId={}", memberId);
-        return new Token(newAccessToken, newRefreshToken);
+        return new Token(accessToken);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class MemberIntegralHistoryServiceImpl extends ServiceImpl<MemberIntegral
 
     @Override
     public Boolean saveIntegral(MemberIntegralHistory memberIntegralHistory) {
-        Member member = memberService.selectById(memberIntegralHistory.getMemberId());
+       /* Member member = memberService.selectById(memberIntegralHistory.getMemberId());
         Integer integer = member.getIntegral() == null ? 0 : member.getIntegral();
         memberIntegralHistory.setBefore(integer);
         Member bean = new Member();
@@ -30,7 +30,7 @@ public class MemberIntegralHistoryServiceImpl extends ServiceImpl<MemberIntegral
             bean.setIntegral((int) (member.getIntegral() - memberIntegralHistory.getIntegral()));
             memberIntegralHistory.setCurrent(bean.getIntegral());
         }
-        memberService.updateByIdSelective(bean);
+        memberService.updateByIdSelective(bean);*/
         return this.insert(memberIntegralHistory);
     }
 }

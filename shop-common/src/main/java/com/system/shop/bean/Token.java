@@ -17,6 +17,10 @@ public class Token implements Serializable {
         this.refreshToken = refreshToken;
     }
 
+    public Token(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
     public Token() {
     }
 }

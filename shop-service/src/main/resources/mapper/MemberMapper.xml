@@ -1,622 +1,443 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.system.shop.mapper.MemberMapper">
-    <resultMap id="BaseResultMap" type="com.system.shop.entity.Member">
-        <!--@mbg.generated-->
-        <!--@Table `member`-->
-        <id column="id" jdbcType="BIGINT" property="id"/>
-        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
-        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
-        <result column="birthday" jdbcType="TIMESTAMP" property="birthday"/>
-        <result column="password" jdbcType="VARCHAR" property="password"/>
-        <result column="sex" jdbcType="INTEGER" property="sex"/>
-        <result column="face" jdbcType="VARCHAR" property="face"/>
-        <result column="integral" jdbcType="INTEGER" property="integral"/>
-        <result column="wallet" jdbcType="DECIMAL" property="wallet"/>
-        <result column="login_time" jdbcType="TIMESTAMP" property="loginTime"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
-        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
-        <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-        <!--@mbg.generated-->
+  <resultMap id="BaseResultMap" type="com.system.shop.entity.Member">
+    <!--@mbg.generated-->
+    <!--@Table `member`-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="points" jdbcType="INTEGER" property="points" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="face" jdbcType="VARCHAR" property="face" />
+    <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, mobile, user_name, birthday, `name`, points, `password`, sex, face, login_time, 
+    create_time, create_by, update_by, update_time, delete_flag
+  </sql>
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `member`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from `member`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.system.shop.entity.Member">
+    <!--@mbg.generated-->
+    insert into `member` (id, mobile, user_name, 
+      birthday, `name`, points, 
+      `password`, sex, face, 
+      login_time, create_time, create_by, 
+      update_by, update_time, delete_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{mobile,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, #{points,jdbcType=INTEGER}, 
+      #{password,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{face,jdbcType=VARCHAR}, 
+      #{loginTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.system.shop.entity.Member">
+    <!--@mbg.generated-->
+    insert into `member`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
+      </if>
+      <if test="mobile != null">
         mobile,
+      </if>
+      <if test="userName != null">
         user_name,
+      </if>
+      <if test="birthday != null">
         birthday,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="points != null">
+        points,
+      </if>
+      <if test="password != null">
         `password`,
+      </if>
+      <if test="sex != null">
         sex,
+      </if>
+      <if test="face != null">
         face,
-        integral,
-        wallet,
+      </if>
+      <if test="loginTime != null">
         login_time,
+      </if>
+      <if test="createTime != null">
         create_time,
+      </if>
+      <if test="createBy != null">
         create_by,
+      </if>
+      <if test="updateBy != null">
         update_by,
+      </if>
+      <if test="updateTime != null">
         update_time,
-        delete_flag
-    </sql>
-    <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
-        <!--@mbg.generated-->
-        select
-        <include refid="Base_Column_List"/>
-        from `member`
-        where id = #{id,jdbcType=BIGINT}
-    </select>
-    <delete id="deleteById" parameterType="java.lang.Long">
-        <!--@mbg.generated-->
-        delete
-        from `member`
-        where id = #{id,jdbcType=BIGINT}
-    </delete>
-    <insert id="insert" parameterType="com.system.shop.entity.Member">
-        <!--@mbg.generated-->
-        insert into `member` (id, mobile, user_name,
-                              birthday, `password`, sex,
-                              face, integral, wallet,
-                              login_time, create_time, create_by,
-                              update_by, update_time, delete_flag)
-        values (#{id,jdbcType=BIGINT}, #{mobile,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
-                #{birthday,jdbcType=TIMESTAMP}, #{password,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER},
-                #{face,jdbcType=VARCHAR}, #{integral,jdbcType=INTEGER}, #{wallet,jdbcType=DECIMAL},
-                #{loginTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
-                #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER})
-    </insert>
-    <insert id="insertSelective" parameterType="com.system.shop.entity.Member">
-        <!--@mbg.generated-->
-        insert into `member`
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="mobile != null">
-                mobile,
-            </if>
-            <if test="userName != null">
-                user_name,
-            </if>
-            <if test="birthday != null">
-                birthday,
-            </if>
-            <if test="password != null">
-                `password`,
-            </if>
-            <if test="sex != null">
-                sex,
-            </if>
-            <if test="face != null">
-                face,
-            </if>
-            <if test="integral != null">
-                integral,
-            </if>
-            <if test="wallet != null">
-                wallet,
-            </if>
-            <if test="loginTime != null">
-                login_time,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="createBy != null">
-                create_by,
-            </if>
-            <if test="updateBy != null">
-                update_by,
-            </if>
-            <if test="updateTime != null">
-                update_time,
-            </if>
-            <if test="deleteFlag != null">
-                delete_flag,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
-            <if test="mobile != null">
-                #{mobile,jdbcType=VARCHAR},
-            </if>
-            <if test="userName != null">
-                #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="birthday != null">
-                #{birthday,jdbcType=TIMESTAMP},
-            </if>
-            <if test="password != null">
-                #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="sex != null">
-                #{sex,jdbcType=INTEGER},
-            </if>
-            <if test="face != null">
-                #{face,jdbcType=VARCHAR},
-            </if>
-            <if test="integral != null">
-                #{integral,jdbcType=INTEGER},
-            </if>
-            <if test="wallet != null">
-                #{wallet,jdbcType=DECIMAL},
-            </if>
-            <if test="loginTime != null">
-                #{loginTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createBy != null">
-                #{createBy,jdbcType=VARCHAR},
-            </if>
-            <if test="updateBy != null">
-                #{updateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime != null">
-                #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="deleteFlag != null">
-                #{deleteFlag,jdbcType=INTEGER},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByIdSelective" parameterType="com.system.shop.entity.Member">
-        <!--@mbg.generated-->
-        update `member`
-        <set>
-            <if test="mobile != null">
-                mobile = #{mobile,jdbcType=VARCHAR},
-            </if>
-            <if test="userName != null">
-                user_name = #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="birthday != null">
-                birthday = #{birthday,jdbcType=TIMESTAMP},
-            </if>
-            <if test="password != null">
-                `password` = #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="sex != null">
-                sex = #{sex,jdbcType=INTEGER},
-            </if>
-            <if test="face != null">
-                face = #{face,jdbcType=VARCHAR},
-            </if>
-            <if test="integral != null">
-                integral = #{integral,jdbcType=INTEGER},
-            </if>
-            <if test="wallet != null">
-                wallet = #{wallet,jdbcType=DECIMAL},
-            </if>
-            <if test="loginTime != null">
-                login_time = #{loginTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createBy != null">
-                create_by = #{createBy,jdbcType=VARCHAR},
-            </if>
-            <if test="updateBy != null">
-                update_by = #{updateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="deleteFlag != null">
-                delete_flag = #{deleteFlag,jdbcType=INTEGER},
-            </if>
-        </set>
-        where id = #{id,jdbcType=BIGINT}
-    </update>
-    <update id="updateById" parameterType="com.system.shop.entity.Member">
-        <!--@mbg.generated-->
-        update `member`
-        set mobile      = #{mobile,jdbcType=VARCHAR},
-            user_name   = #{userName,jdbcType=VARCHAR},
-            birthday    = #{birthday,jdbcType=TIMESTAMP},
-            `password`  = #{password,jdbcType=VARCHAR},
-            sex         = #{sex,jdbcType=INTEGER},
-            face        = #{face,jdbcType=VARCHAR},
-            integral    = #{integral,jdbcType=INTEGER},
-            wallet      = #{wallet,jdbcType=DECIMAL},
-            login_time  = #{loginTime,jdbcType=TIMESTAMP},
-            create_time = #{createTime,jdbcType=TIMESTAMP},
-            create_by   = #{createBy,jdbcType=VARCHAR},
-            update_by   = #{updateBy,jdbcType=VARCHAR},
-            update_time = #{updateTime,jdbcType=TIMESTAMP},
-            delete_flag = #{deleteFlag,jdbcType=INTEGER}
-        where id = #{id,jdbcType=BIGINT}
-    </update>
-    <update id="updateBatch" parameterType="java.util.List">
-        <!--@mbg.generated-->
-        update `member`
-        <trim prefix="set" suffixOverrides=",">
-            <trim prefix="mobile = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.mobile,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="user_name = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.userName,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="birthday = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.birthday,jdbcType=TIMESTAMP}
-                </foreach>
-            </trim>
-            <trim prefix="`password` = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.password,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="sex = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.sex,jdbcType=INTEGER}
-                </foreach>
-            </trim>
-            <trim prefix="face = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.face,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="integral = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.integral,jdbcType=INTEGER}
-                </foreach>
-            </trim>
-            <trim prefix="wallet = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.wallet,jdbcType=DECIMAL}
-                </foreach>
-            </trim>
-            <trim prefix="login_time = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.loginTime,jdbcType=TIMESTAMP}
-                </foreach>
-            </trim>
-            <trim prefix="create_time = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
-                </foreach>
-            </trim>
-            <trim prefix="create_by = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="update_by = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="update_time = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
-                </foreach>
-            </trim>
-            <trim prefix="delete_flag = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
-                </foreach>
-            </trim>
-        </trim>
-        where id in
-        <foreach close=")" collection="list" item="item" open="(" separator=", ">
-            #{item.id,jdbcType=BIGINT}
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="points != null">
+        #{points,jdbcType=INTEGER},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="face != null">
+        #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByIdSelective" parameterType="com.system.shop.entity.Member">
+    <!--@mbg.generated-->
+    update `member`
+    <set>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="points != null">
+        points = #{points,jdbcType=INTEGER},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="face != null">
+        face = #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        login_time = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateById" parameterType="com.system.shop.entity.Member">
+    <!--@mbg.generated-->
+    update `member`
+    set mobile = #{mobile,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      `name` = #{name,jdbcType=VARCHAR},
+      points = #{points,jdbcType=INTEGER},
+      `password` = #{password,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      face = #{face,jdbcType=VARCHAR},
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update `member`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="mobile = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.mobile,jdbcType=VARCHAR}
         </foreach>
-    </update>
-    <update id="updateBatchSelective" parameterType="java.util.List">
-        <!--@mbg.generated-->
-        update `member`
-        <trim prefix="set" suffixOverrides=",">
-            <trim prefix="mobile = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.mobile != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.mobile,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="user_name = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.userName != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.userName,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="birthday = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.birthday != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.birthday,jdbcType=TIMESTAMP}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="`password` = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.password != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.password,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="sex = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.sex != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.sex,jdbcType=INTEGER}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="face = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.face != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.face,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="integral = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.integral != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.integral,jdbcType=INTEGER}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="wallet = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.wallet != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.wallet,jdbcType=DECIMAL}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="login_time = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.loginTime != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.loginTime,jdbcType=TIMESTAMP}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="create_time = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.createTime != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="create_by = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.createBy != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="update_by = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.updateBy != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="update_time = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.updateTime != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="delete_flag = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.deleteFlag != null">
-                        when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
-                    </if>
-                </foreach>
-            </trim>
-        </trim>
-        where id in
-        <foreach close=")" collection="list" item="item" open="(" separator=", ">
-            #{item.id,jdbcType=BIGINT}
+      </trim>
+      <trim prefix="user_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.userName,jdbcType=VARCHAR}
         </foreach>
-    </update>
-    <insert id="batchInsert" parameterType="map">
-        <!--@mbg.generated-->
-        insert into `member`
-        (id, mobile, user_name, birthday, `password`, sex, face, integral, wallet, login_time,
-         create_time, create_by, update_by, update_time, delete_flag)
-        values
-        <foreach collection="list" item="item" separator=",">
-            (#{item.id,jdbcType=BIGINT}, #{item.mobile,jdbcType=VARCHAR}, #{item.userName,jdbcType=VARCHAR},
-             #{item.birthday,jdbcType=TIMESTAMP}, #{item.password,jdbcType=VARCHAR}, #{item.sex,jdbcType=INTEGER},
-             #{item.face,jdbcType=VARCHAR}, #{item.integral,jdbcType=INTEGER}, #{item.wallet,jdbcType=DECIMAL},
-             #{item.loginTime,jdbcType=TIMESTAMP}, #{item.createTime,jdbcType=TIMESTAMP},
-             #{item.createBy,jdbcType=VARCHAR},
-             #{item.updateBy,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=TIMESTAMP},
-             #{item.deleteFlag,jdbcType=INTEGER})
+      </trim>
+      <trim prefix="birthday = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.birthday,jdbcType=TIMESTAMP}
         </foreach>
-    </insert>
-    <insert id="insertOrUpdate" parameterType="com.system.shop.entity.Member">
-        <!--@mbg.generated-->
-        insert into `member`
-        (id, mobile, user_name, birthday, `password`, sex, face, integral, wallet, login_time,
-         create_time, create_by, update_by, update_time, delete_flag)
-        values (#{id,jdbcType=BIGINT}, #{mobile,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
-                #{birthday,jdbcType=TIMESTAMP}, #{password,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER},
-                #{face,jdbcType=VARCHAR}, #{integral,jdbcType=INTEGER}, #{wallet,jdbcType=DECIMAL},
-                #{loginTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
-                #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER})
-        on duplicate key update id          = #{id,jdbcType=BIGINT},
-                                mobile      = #{mobile,jdbcType=VARCHAR},
-                                user_name   = #{userName,jdbcType=VARCHAR},
-                                birthday    = #{birthday,jdbcType=TIMESTAMP},
-                                `password`  = #{password,jdbcType=VARCHAR},
-                                sex         = #{sex,jdbcType=INTEGER},
-                                face        = #{face,jdbcType=VARCHAR},
-                                integral    = #{integral,jdbcType=INTEGER},
-                                wallet      = #{wallet,jdbcType=DECIMAL},
-                                login_time  = #{loginTime,jdbcType=TIMESTAMP},
-                                create_time = #{createTime,jdbcType=TIMESTAMP},
-                                create_by   = #{createBy,jdbcType=VARCHAR},
-                                update_by   = #{updateBy,jdbcType=VARCHAR},
-                                update_time = #{updateTime,jdbcType=TIMESTAMP},
-                                delete_flag = #{deleteFlag,jdbcType=INTEGER}
-    </insert>
-    <insert id="insertOrUpdateSelective" parameterType="com.system.shop.entity.Member">
-        <!--@mbg.generated-->
-        insert into `member`
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="mobile != null">
-                mobile,
-            </if>
-            <if test="userName != null">
-                user_name,
-            </if>
-            <if test="birthday != null">
-                birthday,
-            </if>
-            <if test="password != null">
-                `password`,
-            </if>
-            <if test="sex != null">
-                sex,
-            </if>
-            <if test="face != null">
-                face,
-            </if>
-            <if test="integral != null">
-                integral,
-            </if>
-            <if test="wallet != null">
-                wallet,
-            </if>
-            <if test="loginTime != null">
-                login_time,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="createBy != null">
-                create_by,
-            </if>
-            <if test="updateBy != null">
-                update_by,
-            </if>
-            <if test="updateTime != null">
-                update_time,
-            </if>
-            <if test="deleteFlag != null">
-                delete_flag,
-            </if>
-        </trim>
-        values
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
-            <if test="mobile != null">
-                #{mobile,jdbcType=VARCHAR},
-            </if>
-            <if test="userName != null">
-                #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="birthday != null">
-                #{birthday,jdbcType=TIMESTAMP},
-            </if>
-            <if test="password != null">
-                #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="sex != null">
-                #{sex,jdbcType=INTEGER},
-            </if>
-            <if test="face != null">
-                #{face,jdbcType=VARCHAR},
-            </if>
-            <if test="integral != null">
-                #{integral,jdbcType=INTEGER},
-            </if>
-            <if test="wallet != null">
-                #{wallet,jdbcType=DECIMAL},
-            </if>
-            <if test="loginTime != null">
-                #{loginTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createBy != null">
-                #{createBy,jdbcType=VARCHAR},
-            </if>
-            <if test="updateBy != null">
-                #{updateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime != null">
-                #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="deleteFlag != null">
-                #{deleteFlag,jdbcType=INTEGER},
-            </if>
-        </trim>
-        on duplicate key update
-        <trim suffixOverrides=",">
-            <if test="id != null">
-                id = #{id,jdbcType=BIGINT},
-            </if>
-            <if test="mobile != null">
-                mobile = #{mobile,jdbcType=VARCHAR},
-            </if>
-            <if test="userName != null">
-                user_name = #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="birthday != null">
-                birthday = #{birthday,jdbcType=TIMESTAMP},
-            </if>
-            <if test="password != null">
-                `password` = #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="sex != null">
-                sex = #{sex,jdbcType=INTEGER},
-            </if>
-            <if test="face != null">
-                face = #{face,jdbcType=VARCHAR},
-            </if>
-            <if test="integral != null">
-                integral = #{integral,jdbcType=INTEGER},
-            </if>
-            <if test="wallet != null">
-                wallet = #{wallet,jdbcType=DECIMAL},
-            </if>
-            <if test="loginTime != null">
-                login_time = #{loginTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createBy != null">
-                create_by = #{createBy,jdbcType=VARCHAR},
-            </if>
-            <if test="updateBy != null">
-                update_by = #{updateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="deleteFlag != null">
-                delete_flag = #{deleteFlag,jdbcType=INTEGER},
-            </if>
-        </trim>
-    </insert>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="points = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.points,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`password` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.password,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="sex = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.sex,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="face = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.face,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="login_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.loginTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="create_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="update_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="delete_flag = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update `member`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="mobile = case" suffix="else mobile end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.mobile != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.mobile,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="user_name = case" suffix="else user_name end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.userName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="birthday = case" suffix="else birthday end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.birthday != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.birthday,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="else `name` end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="points = case" suffix="else points end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.points != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.points,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`password` = case" suffix="else `password` end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.password != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.password,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sex = case" suffix="else sex end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sex != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.sex,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="face = case" suffix="else face end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.face != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.face,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="login_time = case" suffix="else login_time end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.loginTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.loginTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="else create_time end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_by = case" suffix="else create_by end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createBy != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_by = case" suffix="else update_by end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateBy != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="else update_time end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="delete_flag = case" suffix="else delete_flag end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.deleteFlag != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.deleteFlag,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into `member`
+    (id, mobile, user_name, birthday, `name`, points, `password`, sex, face, login_time, 
+      create_time, create_by, update_by, update_time, delete_flag)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.mobile,jdbcType=VARCHAR}, #{item.userName,jdbcType=VARCHAR}, 
+        #{item.birthday,jdbcType=TIMESTAMP}, #{item.name,jdbcType=VARCHAR}, #{item.points,jdbcType=INTEGER}, 
+        #{item.password,jdbcType=VARCHAR}, #{item.sex,jdbcType=INTEGER}, #{item.face,jdbcType=VARCHAR}, 
+        #{item.loginTime,jdbcType=TIMESTAMP}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.createBy,jdbcType=VARCHAR}, 
+        #{item.updateBy,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=TIMESTAMP}, #{item.deleteFlag,jdbcType=INTEGER}
+        )
+    </foreach>
+  </insert>
+  <delete id="deleteByIdIn">
+    <!--@mbg.generated-->
+    delete from `member` where id in 
+    <foreach close=")" collection="list" item="id" open="(" separator=", ">
+      #{id,jdbcType=BIGINT}
+    </foreach>
+  </delete>
 
     <select id="selectByUserName" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from member
         where user_name = #{userName}
     </select>
     <select id="selectList" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from member
         <where>
             <if test="param.userName != null and param.userName != ''">

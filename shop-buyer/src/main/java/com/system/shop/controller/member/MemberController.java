@@ -25,9 +25,25 @@ public class MemberController extends BaseController {
     @Autowired
     private MemberReceiptService memberReceiptService;
 
+    /**
+     * 修改全部信息
+     */
     @PostMapping("/update")
     public Result<Boolean> update(@RequestBody Member member, HttpServletRequest request) {
         return Result.success(memberService.update(member, this.getLoginMember(request).getId()));
+    }
+
+    /**
+     * 修改头像和昵称
+     */
+    @PostMapping("/updateBasic")
+    public Result<Boolean> updateBasic(@RequestBody Member member, HttpServletRequest request) {
+        Long memberId = this.getLoginMember(request).getId();
+        Member updateMember = new Member();
+        updateMember.setId(memberId);
+        updateMember.setUserName(member.getUserName());
+        updateMember.setFace(member.getFace());
+        return Result.success(memberService.updateByIdSelective(updateMember));
     }
 
 

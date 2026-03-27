@@ -3,6 +3,7 @@ package com.system.shop.controller;
 import com.system.shop.bean.Token;
 import com.system.shop.bean.WxLogin;
 import com.system.shop.common.Result;
+import com.system.shop.entity.Member;
 import com.system.shop.service.LoginService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -39,14 +40,6 @@ public class LoginController extends BaseController {
     }
 
     /**
-     * 刷新 Token
-     */
-    @PostMapping("/refresh")
-    public Result<Token> refreshToken(@Valid @RequestBody RefreshTokenRequest request) {
-        return Result.success(loginService.refreshToken(request.getRefreshToken()));
-    }
-
-    /**
      * 登出
      */
     @PostMapping("/logout")
@@ -60,17 +53,9 @@ public class LoginController extends BaseController {
      * 获取当前登录会员信息
      */
     @GetMapping("/info")
-    public Result<MemberInfo> getMemberInfo(HttpServletRequest request) {
-
-        var member = getLoginMember(request);
-        MemberInfo info = new MemberInfo();
-        info.setId(member.getId());
-        info.setUserName(member.getUserName());
-        info.setMobile(member.getMobile());
-        info.setFace(member.getFace());
-        info.setIntegral(member.getIntegral());
-        info.setWallet(member.getWallet());
-        return Result.success(info);
+    public Result<Member> getMemberInfo(HttpServletRequest request) {
+        Member member = getLoginMember(request);
+        return Result.success(member);
     }
 
     @Data
@@ -82,19 +67,5 @@ public class LoginController extends BaseController {
         private String password;
     }
 
-    @Data
-    public static class RefreshTokenRequest {
-        @NotBlank(message = "refresh.token.required")
-        private String refreshToken;
-    }
 
-    @Data
-    public static class MemberInfo {
-        private Long id;
-        private String userName;
-        private String mobile;
-        private String face;
-        private Integer integral;
-        private java.math.BigDecimal wallet;
-    }
 }

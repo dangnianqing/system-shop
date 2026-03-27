@@ -28,7 +28,7 @@ public class ProductCategoryController {
         return Result.success(productCategoryService.selectListOneLevel());
     }
     @GetMapping("/getCategoryChildrenList/{parentId}")
-    public Result<ProductCategory> getCategoryChildrenList(@PathVariable("parentId") Long parentId) {
+    public Result<ProductCategory> getCategoryChildrenList(@PathVariable Long parentId) {
         return Result.success(productCategoryService.selectCategoryChildrenList(parentId));
     }
 

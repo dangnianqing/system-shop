@@ -20,7 +20,7 @@ public class MemberWalletHistoryServiceImpl extends ServiceImpl<MemberWalletHist
     @Override
     public Boolean saveWallet(MemberWalletHistory memberWalletHistory) {
 
-        Member member = memberService.selectById(memberWalletHistory.getMemberId());
+       /* Member member = memberService.selectById(memberWalletHistory.getMemberId());
         BigDecimal wallet = member.getWallet()==null?new BigDecimal("0.00"):member.getWallet();
         memberWalletHistory.setBefore(wallet);
         memberWalletHistory.setWallet(new BigDecimal(memberWalletHistory.getValue()));
@@ -34,7 +34,7 @@ public class MemberWalletHistoryServiceImpl extends ServiceImpl<MemberWalletHist
             bean.setWallet(member.getWallet().subtract(memberWalletHistory.getWallet()));
             memberWalletHistory.setCurrent(member.getWallet().subtract(memberWalletHistory.getWallet()));
         }
-        memberService.updateByIdSelective(bean);
+        memberService.updateByIdSelective(bean);*/
         return this.insert(memberWalletHistory);
     }
 }

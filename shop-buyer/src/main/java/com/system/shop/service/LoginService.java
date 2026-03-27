@@ -20,11 +20,6 @@ public interface LoginService {
     Token login(String mobile, String password);
 
     /**
-     * 刷新 Token
-     */
-    Token refreshToken(String refreshToken);
-
-    /**
      * 登出
      */
     void logout(Long memberId);

@@ -1,25 +1,18 @@
 package com.system.shop.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.system.shop.base.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
+
+import com.system.shop.base.BaseEntity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 会员表
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-@AllArgsConstructor
 @NoArgsConstructor
-public class Member extends BaseEntity implements Serializable {
+public class Member extends BaseEntity implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 手机号码
      */
@@ -33,9 +26,17 @@ public class Member extends BaseEntity implements Serializable {
     /**
      * 生日
      */
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
+
+    /**
+     * 姓名
+     */
+    private String name;
+
+    /**
+     * 会员积分
+     */
+    private Integer points;
 
     /**
      * 密码
@@ -53,23 +54,8 @@ public class Member extends BaseEntity implements Serializable {
     private String face;
 
     /**
-     * 积分余额
-     */
-    private Integer integral;
-
-    /**
-     * 钱包余额
-     */
-    private BigDecimal wallet;
-
-    /**
      * 最近登录时间
      */
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date loginTime;
-
-    private static final long serialVersionUID = 1L;
-
 
 }

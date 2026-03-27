@@ -24,12 +24,12 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .authorizeHttpRequests(auth -> auth
-                // 登录接口
-                .requestMatchers("/login/**").permitAll()
+                // 登录接口 - 不需要认证
+                .requestMatchers("/auth/wxLogin", "/auth/login","/auth/info").permitAll()
                 // 商品分类接口 - 公开访问
                 .requestMatchers("/productCategory/**").permitAll()
                 .requestMatchers("/product/**").permitAll()
-                // 其他请求需要认证
+                // 其他请求需要认证（包括 /auth/info、/auth/logout）
                 .anyRequest().authenticated()
             );
 
